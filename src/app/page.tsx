@@ -1,69 +1,247 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { HeroBanner } from '@/components/home/HeroBanner';
+import { QuickSearchBar } from '@/components/home/QuickSearchBar';
+import { DateRibbon } from '@/components/home/DateRibbon';
+import { MovieCard } from '@/components/home/MovieCard';
+import { EventCard } from '@/components/home/EventCard';
+import { AggregatorTrustBanner } from '@/components/home/AggregatorTrustBanner';
+import { TrendingCinemas } from '@/components/home/TrendingCinemas';
+import { MOVIES, EVENTS } from '@/data/mockData';
+import {
+  Music,
+  ArrowRight,
+  Sparkles,
+  Flame,
+  HelpCircle,
+  ChevronDown,
+} from 'lucide-react';
+import { MovieFormat } from '@/types';
+
+export default function HomePage() {
+  const [selectedDate, setSelectedDate] = useState(() => new Date().toISOString().split('T')[0]);
+  const [selectedFormat, setSelectedFormat] = useState<string>('All');
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  const formats = ['All', 'IMAX 70mm', 'IMAX with Laser', 'Dolby Cinema', 'RealD 3D', '4DX'];
+
+  const filteredMovies = MOVIES.filter((m) => {
+    if (selectedFormat === 'All') return true;
+    return m.formats.includes(selectedFormat as MovieFormat);
+  });
+
+  const concerts = EVENTS.filter((e) => e.category === 'concert');
+  const otherEvents = EVENTS.filter((e) => e.category !== 'concert');
+
+  const faqs = [
+    {
+      q: 'How does BookByShow guarantee the lowest ticket price?',
+      a: 'BookByShow queries live ticketing APIs across AMC Theatres, Regal, Cinemark, Ticketmaster, Fandango, and SeatGeek simultaneously. We calculate the exact total price including all booking fees and point you to whichever seller has the lowest total checkout cost for your chosen seat.',
+    },
+    {
+      q: 'Are convenience fees included upfront in the search results?',
+      a: 'Yes, 100%. Unlike other ticketing platforms that obscure booking surcharges until the final payment screen, BookByShow breaks down Base Ticket + Convenience Fee = Total Verified Price upfront.',
+    },
+    {
+      q: 'Can I choose specific seats in IMAX 70mm or Dolby Cinema?',
+      a: 'Yes. Our interactive seat map lets you preview auditorium sightlines and available seats across recliner tiers, wheelchair spots, and prime center rows before locking in the price with the primary box office.',
+    },
+    {
+      q: 'Are tickets purchased through BookByShow authentic and verified?',
+      a: 'All outbound links and checkouts are completed directly with the official authorized primary box offices (e.g., AMC Direct, Ticketmaster, Fandango). Your tickets are 100% genuine, barcode-scannable, and backed by the venue guarantee.',
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-[#06080e] pb-16">
+      {/* 1. Spotlight Hero Carousel */}
+      <HeroBanner />
+
+      {/* 2. Interactive Quick Search Bar */}
+      <QuickSearchBar />
+
+      {/* Main Content Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 space-y-16">
+        {/* Date Selector Strip */}
+        <div className="p-4 rounded-2xl bg-[#0b0f19] border border-[#1e2638] flex flex-col md:flex-row items-center justify-between gap-4">
+          <DateRibbon selectedDate={selectedDate} onSelectDate={setSelectedDate} />
+
+          {/* Format pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto scrollbar-none pb-1 md:pb-0">
+            <span className="text-xs text-gray-500 font-semibold px-2 shrink-0">Screen:</span>
+            {formats.map((fmt) => (
+              <button
+                key={fmt}
+                onClick={() => setSelectedFormat(fmt)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 transition-all ${
+                  selectedFormat === fmt
+                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                    : 'bg-[#121826] text-gray-400 hover:text-white border border-[#1e2638]'
+                }`}
+              >
+                {fmt}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        {/* 3. Now Showing Blockbusters */}
+        <section>
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  Now Showing in Cinemas
+                </h2>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center gap-1">
+                  <Flame className="w-3 h-3" />
+                  Live Rates
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                Compare real-time showtimes and seating across AMC, Regal, and Cinemark
+              </p>
+            </div>
+
+            <Link
+              href="/movies"
+              className="text-xs sm:text-sm font-semibold text-rose-400 hover:text-rose-300 flex items-center gap-1 transition-colors"
+            >
+              <span>Explore All ({MOVIES.length})</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            {filteredMovies.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </div>
+        </section>
+
+        {/* 4. Aggregator Trust & Transparency Showcase */}
+        <AggregatorTrustBanner />
+
+        {/* 5. Trending Live Stadium Concerts */}
+        <section>
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  Stadium Tours & Concerts
+                </h2>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center gap-1">
+                  <Music className="w-3 h-3" />
+                  Live Nation & Ticketmaster
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                Direct resale comparison with zero unverified scalper markups
+              </p>
+            </div>
+
+            <Link
+              href="/events?category=concert"
+              className="text-xs sm:text-sm font-semibold text-purple-400 hover:text-purple-300 flex items-center gap-1 transition-colors"
+            >
+              <span>View All Concerts</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {concerts.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        </section>
+
+        {/* 6. Comedy Specials, Sports & Broadway */}
+        <section>
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  Comedy, Sports & Broadway
+                </h2>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                  <Sparkles className="w-3 h-3" />
+                  Top Rated
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                Radio City, Madison Square Garden, and Broadway box offices
+              </p>
+            </div>
+
+            <Link
+              href="/events"
+              className="text-xs sm:text-sm font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition-colors"
+            >
+              <span>Explore All Shows</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {otherEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        </section>
+
+        {/* 7. Nearby Top Rated Auditoriums */}
+        <TrendingCinemas />
+
+        {/* 8. Conversion FAQ Section */}
+        <section className="py-12 border-t border-[#1e2638]">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-10">
+              <div className="w-10 h-10 rounded-xl bg-rose-600/20 text-rose-400 flex items-center justify-center mx-auto mb-3 border border-rose-500/30">
+                <HelpCircle className="w-5 h-5" />
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                Everything you need to know about comparing tickets on BookByShow
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              {faqs.map((faq, idx) => {
+                const isOpen = openFaqIndex === idx;
+                return (
+                  <div
+                    key={idx}
+                    className="rounded-xl bg-[#0d121e] border border-[#1e2638] overflow-hidden transition-colors"
+                  >
+                    <button
+                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                      className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 text-white font-semibold text-sm hover:text-rose-400 transition-colors"
+                      aria-expanded={isOpen}
+                    >
+                      <span>{faq.q}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-gray-400 shrink-0 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180 text-rose-500' : ''
+                        }`}
+                      />
+                    </button>
+                    {isOpen && (
+                      <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-white/5 pt-3">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
