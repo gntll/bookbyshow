@@ -15,6 +15,7 @@ import {
   Download,
   Music,
 } from 'lucide-react';
+import { buildAffiliateOutboundUrl } from '@/config/affiliates';
 
 export default function EventDetailPage() {
   const params = useParams();
@@ -230,9 +231,9 @@ END:VCALENDAR`;
                     </div>
 
                     <a
-                      href={quote.directUrl}
+                      href={buildAffiliateOutboundUrl(quote.provider, quote.directUrl, { eventId: event.id })}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener noreferrer sponsored"
                       className={`px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
                         isBest
                           ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30'
@@ -247,6 +248,10 @@ END:VCALENDAR`;
               );
             })}
           </div>
+
+          <p className="mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-500 text-center sm:text-left">
+            <strong>Affiliate Disclosure:</strong> BookByShow is an independent comparison engine. We may receive affiliate compensation from primary ticketing providers when you book tickets through our verified referral links, at no extra cost to you.
+          </p>
         </section>
 
         {/* Seating Tiers */}

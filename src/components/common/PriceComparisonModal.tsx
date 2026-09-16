@@ -3,6 +3,7 @@
 import React from 'react';
 import { useApp } from '@/context/AppContext';
 import { X, ExternalLink, ShieldCheck, Armchair, Tag, AlertCircle } from 'lucide-react';
+import { buildAffiliateOutboundUrl } from '@/config/affiliates';
 
 export function PriceComparisonModal() {
   const { comparisonShowtime, closeComparisonModal, openSeatMapModal } = useApp();
@@ -132,9 +133,9 @@ export function PriceComparisonModal() {
                     </div>
 
                     <a
-                      href={quote.directUrl}
+                      href={buildAffiliateOutboundUrl(quote.provider, quote.directUrl, { showtimeId: showtime.id })}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener noreferrer sponsored"
                       className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                         isBest
                           ? 'bg-rose-600 hover:bg-rose-500 text-white shadow-md shadow-rose-600/30'
@@ -176,16 +177,21 @@ export function PriceComparisonModal() {
           </div>
         </div>
 
-        {/* Footer Trust Guarantee */}
-        <div className="p-4 border-t border-[#1e2638] bg-[#0a0d16] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
-          <div className="flex items-center gap-2 text-emerald-400 font-medium">
-            <ShieldCheck className="w-4 h-4 shrink-0" />
-            <span>100% Price Transparency — No surprise fees added at checkout</span>
+        {/* Footer Trust Guarantee & FTC Disclosure */}
+        <div className="p-4 border-t border-[#1e2638] bg-[#0a0d16] flex flex-col gap-2 text-xs text-gray-400">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-emerald-400 font-medium">
+              <ShieldCheck className="w-4 h-4 shrink-0" />
+              <span>100% Price Transparency — No surprise fees added at checkout</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-gray-500">
+              <AlertCircle className="w-3.5 h-3.5" />
+              <span>Official primary box office partners</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 text-gray-500">
-            <AlertCircle className="w-3.5 h-3.5" />
-            <span>Official partner links</span>
-          </div>
+          <p className="text-[10px] text-gray-500 text-center sm:text-left pt-1 border-t border-white/5">
+            <strong>Affiliate Disclosure:</strong> BookByShow is an independent comparison engine. We may earn a referral commission from authorized ticket providers when you complete a booking through our verified links, at no extra cost to you.
+          </p>
         </div>
       </div>
     </div>

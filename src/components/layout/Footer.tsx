@@ -171,15 +171,16 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Legal Disclaimer */}
+        {/* Legal Disclaimer & FTC Affiliate Disclosure */}
         <div className="pt-8 border-t border-[#141b2a] flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-gray-500">
-          <p>
-            BookByShow.com is an independent showtime and ticket price aggregator. All cinema trademarks, brand logos, and artwork are property of their respective owners.
+          <p className="max-w-3xl">
+            <strong>Affiliate & Legal Disclosure:</strong> BookByShow.com is an independent showtime and ticket price aggregator. We are supported by our users; when you buy tickets through affiliate links on our site, we may earn a referral commission from authorized ticket sellers at no extra cost to you. All trademarks, cinema logos, and promotional artwork belong to their respective copyright holders.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 shrink-0">
             <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
             <Link href="/terms" className="hover:underline">Terms of Service</Link>
-            <Link href="/affiliate" className="hover:underline">Partner Inquiries</Link>
+            <Link href="/affiliate-disclosure" className="hover:underline text-rose-400 font-medium">Affiliate Disclosure</Link>
+            <Link href="/deals" className="hover:underline">Partner Offers</Link>
           </div>
         </div>
       </div>

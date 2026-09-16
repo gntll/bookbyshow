@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useApp } from '@/context/AppContext';
 import { X, Check, Armchair, Shield, Sparkles } from 'lucide-react';
 import { Seat } from '@/types';
+import { buildAffiliateOutboundUrl } from '@/config/affiliates';
 
 // Generate mock seats for auditorium layout
 const generateAuditoriumSeats = (): Seat[] => {
@@ -80,7 +81,11 @@ export function InteractiveSeatMapModal() {
       // Find lowest quote
       const lowestQuote = [...showtime.quotes].sort((a, b) => a.total - b.total)[0];
       if (lowestQuote?.directUrl) {
-        window.open(lowestQuote.directUrl, '_blank');
+        const outboundUrl = buildAffiliateOutboundUrl(lowestQuote.provider, lowestQuote.directUrl, {
+          showtimeId: showtime.id,
+          medium: 'seatmap_lock',
+        });
+        window.open(outboundUrl, '_blank', 'noopener,noreferrer');
       }
       closeSeatMapModal();
       setIsLocked(false);
@@ -280,6 +285,12 @@ export function InteractiveSeatMapModal() {
               )}
             </button>
           </div>
+        </div>
+
+        {/* Affiliate Disclosure Footer */}
+        <div className="px-6 py-2 bg-[#090c14] border-t border-white/5 flex items-center justify-between text-[10px] text-gray-500">
+          <span>BookByShow compares verified rates across official US partners. When you book tickets, we may earn an affiliate commission.</span>
+          <span className="hidden sm:inline font-mono text-[9px] text-gray-600">FTC Compliant • No Extra Cost to You</span>
         </div>
       </div>
     </div>
