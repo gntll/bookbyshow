@@ -124,6 +124,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Impact.com Universal Tracking & Publisher Verification Tag */}
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7792432-7267-4f67-9f57-6687ff5764db1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');`,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-[#06080e] text-[#f3f4f6] selection:bg-rose-600 selection:text-white">
         <AppProvider>
