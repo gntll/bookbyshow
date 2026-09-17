@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
+  --background: #060709;
   --foreground: #fafafa;
-  --card: #121215;
-  --card-hover: #18181c;
-  --border: #27272a;
-  --border-subtle: #1c1c20;
+  --card: #0f1115;
+  --card-hover: #16181f;
+  --border: #22252c;
+  --border-subtle: #191b20;
   --muted: #71717a;
-  --primary-brand: #ffffff;
+  --primary-red: #e51821;
+  --primary-red-hover: #c9121a;
+  --primary-red-glow: rgba(229, 24, 33, 0.25);
 }
 
 @theme inline {
@@ -18,7 +20,8 @@
   --color-card-hover: var(--card-hover);
   --color-border: var(--border);
   --color-border-subtle: var(--border-subtle);
-  --color-brand: var(--primary-brand);
+  --color-cinema-red: var(--primary-red);
+  --color-cinema-red-hover: var(--primary-red-hover);
 }
 
 body {
@@ -27,20 +30,8 @@ body {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-}
-
-/* Surfaces */
-.surface-card {
-  background: #121215;
-  border: 1px solid #27272a;
-}
-
-.surface-card-hover {
-  transition: all 0.2s ease-in-out;
-}
-.surface-card-hover:hover {
-  background: #17171c;
-  border-color: #3f3f46;
+  background-image: radial-gradient(circle at 50% -10%, rgba(229, 24, 33, 0.07) 0%, transparent 60%);
+  background-attachment: fixed;
 }
 
 /* Custom Scrollbar */
@@ -49,28 +40,28 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #060709;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #272a33;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #e51821;
 }
 
 /* Format specific chips */
 .badge-imax {
-  background: #18181b;
+  background: #12141a;
   color: #fafafa;
-  border: 1px solid #3f3f46;
+  border: 1px solid #2e3340;
   font-weight: 700;
   letter-spacing: 0.05em;
 }
 
 .badge-dolby {
-  background: #18181b;
+  background: #12141a;
   color: #fafafa;
-  border: 1px solid #3f3f46;
+  border: 1px solid #2e3340;
   font-weight: 600;
 }

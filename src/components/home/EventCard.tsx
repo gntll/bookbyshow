@@ -11,21 +11,21 @@ export function EventCard({ event }: { event: Event }) {
   const isSaved = isItemInWatchlist(event.id);
 
   return (
-    <div className="group relative rounded-xl bg-[#121215] border border-neutral-800/80 overflow-hidden flex flex-col hover:border-neutral-600 transition-all duration-200 shadow-md">
+    <div className="group relative rounded-xl bg-[#0f1115] border border-neutral-800/80 overflow-hidden flex flex-col hover:border-[#e51821]/50 transition-all duration-200 shadow-lg">
       {/* Banner Image */}
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900">
         <img
           src={event.bannerUrl}
           alt={event.title}
-          className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-300"
+          className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-300"
           loading="lazy"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#121215] via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f1115] via-transparent to-black/30" />
 
         {/* Top Badges */}
         <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between z-10">
-          <span className="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] font-semibold uppercase tracking-wider text-neutral-200 border border-neutral-700">
+          <span className="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-neutral-200 border border-neutral-700">
             {event.category}
           </span>
 
@@ -44,13 +44,13 @@ export function EventCard({ event }: { event: Event }) {
             }}
             className={`p-1.5 rounded-full backdrop-blur-md transition-colors ${
               isSaved
-                ? 'bg-white text-black'
+                ? 'bg-[#e51821] text-white shadow-md'
                 : 'bg-black/60 text-neutral-300 hover:text-white hover:bg-black/80'
             }`}
             title={isSaved ? 'In Watchlist' : 'Add to Watchlist'}
             aria-label="Save event to watchlist"
           >
-            <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-black' : ''}`} />
+            <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-white' : ''}`} />
           </button>
         </div>
 
@@ -71,7 +71,7 @@ export function EventCard({ event }: { event: Event }) {
       <div className="p-3.5 flex-1 flex flex-col justify-between space-y-2.5">
         <div>
           <Link href={`/event/${event.slug}`}>
-            <h3 className="font-bold text-white text-sm line-clamp-1 group-hover:text-neutral-300 transition-colors">
+            <h3 className="font-bold text-white text-sm line-clamp-1 group-hover:text-red-400 transition-colors">
               {event.title}
             </h3>
           </Link>
@@ -81,7 +81,7 @@ export function EventCard({ event }: { event: Event }) {
 
           <div className="mt-2 space-y-1 text-xs text-neutral-400">
             <div className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-neutral-500" />
+              <Calendar className="w-3.5 h-3.5 text-[#e51821]" />
               <span>{event.date} • {event.time}</span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -104,7 +104,7 @@ export function EventCard({ event }: { event: Event }) {
 
           <Link
             href={`/event/${event.slug}`}
-            className="px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-white hover:text-black text-neutral-200 border border-neutral-700 text-xs font-medium flex items-center gap-1 transition-colors"
+            className="px-3.5 py-1.5 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-xs font-bold flex items-center gap-1 shadow-sm shadow-red-950/40 transition-colors"
           >
             <Ticket className="w-3 h-3" />
             <span>Compare</span>

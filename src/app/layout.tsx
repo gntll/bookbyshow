@@ -137,7 +137,7 @@ export default function RootLayout({
         {/* FlexOffers Publisher Verification Meta Tag */}
         <meta name="fo-verify" content="3597a55d-72a7-4af2-804b-6dd251c401b9" />
       </head>
-      <body className="min-h-full flex flex-col bg-[#09090b] text-[#fafafa] selection:bg-white selection:text-black">
+      <body className="min-h-full flex flex-col bg-[#060709] text-[#fafafa] selection:bg-[#e51821] selection:text-white">
         <AppProvider>
           <Navbar />
           <main className="flex-1">{children}</main>

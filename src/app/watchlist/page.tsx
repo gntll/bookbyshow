@@ -9,15 +9,15 @@ export default function WatchlistPage() {
   const { watchlist, toggleWatchlist } = useApp();
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-24">
+    <div className="min-h-screen bg-[#060709] pb-24">
       {/* Header */}
       <div className="border-b border-neutral-800 bg-neutral-950 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-2">
-            <span className="p-1 rounded-md bg-neutral-850 text-neutral-300 border border-neutral-700">
-              <Bookmark className="w-3.5 h-3.5" />
+            <span className="p-1 rounded-md bg-red-950/70 text-red-300 border border-red-500/40">
+              <Bookmark className="w-3.5 h-3.5 text-[#e51821]" />
             </span>
-            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#e51821]">
               Saved Listings
             </span>
           </div>
@@ -32,8 +32,8 @@ export default function WatchlistPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {watchlist.length === 0 ? (
-          <div className="py-20 text-center rounded-xl bg-[#121215] border border-neutral-800 max-w-md mx-auto p-8 space-y-4">
-            <div className="w-12 h-12 rounded-lg bg-neutral-800 border border-neutral-700 text-white flex items-center justify-center mx-auto">
+          <div className="py-20 text-center rounded-2xl bg-[#0e1015] border border-neutral-800 max-w-md mx-auto p-8 space-y-4 shadow-xl">
+            <div className="w-12 h-12 rounded-xl bg-red-950/60 border border-[#e51821]/40 text-[#e51821] flex items-center justify-center mx-auto">
               <Bookmark className="w-5 h-5" />
             </div>
             <h3 className="text-base font-bold text-white">Your Watchlist is Empty</h3>
@@ -43,7 +43,7 @@ export default function WatchlistPage() {
             <div className="pt-2 flex items-center justify-center gap-3">
               <Link
                 href="/movies"
-                className="px-4 py-2 rounded-lg bg-white text-black hover:bg-neutral-200 font-semibold text-xs transition-colors"
+                className="px-4 py-2 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-xs transition-colors"
               >
                 Explore Movies
               </Link>
@@ -60,7 +60,7 @@ export default function WatchlistPage() {
             {watchlist.map((item) => (
               <div
                 key={item.id}
-                className="p-4 rounded-xl bg-[#121215] border border-neutral-800 hover:border-neutral-700 transition-colors flex items-center gap-4 shadow-lg group"
+                className="p-4 rounded-xl bg-[#0e1015] border border-neutral-800 hover:border-[#e51821]/50 transition-colors flex items-center gap-4 shadow-lg group"
               >
                 <img
                   src={item.posterUrl}
@@ -73,20 +73,20 @@ export default function WatchlistPage() {
                     <div className="flex items-center gap-1 text-[10px] text-neutral-400 uppercase font-semibold">
                       {item.type === 'movie' ? (
                         <>
-                          <Film className="w-3 h-3 text-neutral-400" />
+                          <Film className="w-3 h-3 text-[#e51821]" />
                           <span>Movie</span>
                         </>
                       ) : (
                         <>
-                          <Music className="w-3 h-3 text-neutral-400" />
+                          <Music className="w-3 h-3 text-[#e51821]" />
                           <span>Event</span>
                         </>
                       )}
                     </div>
-                    <h4 className="font-bold text-white text-sm truncate mt-0.5 group-hover:text-neutral-300 transition-colors">
+                    <h4 className="font-bold text-white text-sm truncate mt-0.5 group-hover:text-red-400 transition-colors">
                       {item.title}
                     </h4>
-                    <span className="text-xs text-white font-semibold block mt-1">
+                    <span className="text-xs text-white font-bold block mt-1">
                       From ${item.lowestPrice.toFixed(2)}
                     </span>
                   </div>
@@ -94,7 +94,7 @@ export default function WatchlistPage() {
                   <div className="flex items-center justify-between gap-2 pt-1 border-t border-neutral-800">
                     <Link
                       href={item.type === 'movie' ? `/movie/${item.id}` : `/event/${item.id}`}
-                      className="text-xs font-semibold text-white hover:underline flex items-center gap-1"
+                      className="text-xs font-bold text-[#e51821] hover:underline flex items-center gap-1"
                     >
                       <span>Showtimes</span>
                       <ArrowRight className="w-3.5 h-3.5" />

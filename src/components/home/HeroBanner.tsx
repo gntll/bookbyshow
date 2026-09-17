@@ -39,8 +39,8 @@ export function HeroBanner() {
   const isSaved = isItemInWatchlist(current.id);
 
   return (
-    <div className="relative w-full overflow-hidden bg-[#09090b] min-h-[560px] lg:min-h-[620px] flex items-center border-b border-neutral-800">
-      {/* Background image with neutral dark gradient masks */}
+    <div className="relative w-full overflow-hidden bg-[#060709] min-h-[560px] lg:min-h-[620px] flex items-center border-b border-neutral-800/80">
+      {/* Background image with cinematic dark vignette */}
       <div className="absolute inset-0 z-0">
         <img
           key={current.id}
@@ -48,8 +48,9 @@ export function HeroBanner() {
           alt={current.title}
           className="w-full h-full object-cover object-center scale-105 transition-all duration-1000 opacity-25 filter brightness-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/90 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060709] via-[#060709]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060709] via-[#060709]/90 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(229,24,33,0.12),transparent_50%)]" />
       </div>
 
       {/* Content Container */}
@@ -57,17 +58,17 @@ export function HeroBanner() {
         <div className="max-w-2xl space-y-6">
           {/* Top badges */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-3 py-1 rounded-md bg-neutral-900 border border-neutral-700 text-xs font-semibold text-neutral-300 uppercase tracking-wider">
+            <span className="px-3 py-1 rounded-full bg-red-950/70 border border-[#e51821]/50 text-xs font-bold text-red-300 uppercase tracking-wider">
               Spotlight Premiere
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-xs font-medium text-neutral-300">
+            <span className="px-2.5 py-1 rounded-md bg-neutral-900/90 border border-neutral-800 text-xs font-medium text-neutral-300">
               {current.certificateRating}
             </span>
-            <span className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-xs font-medium text-neutral-200">
+            <span className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-neutral-900/90 border border-neutral-800 text-xs font-medium text-neutral-200">
               <Star className="w-3.5 h-3.5 fill-neutral-300 text-neutral-300" />
               {current.imdbScore} IMDb
             </span>
-            <span className="px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-xs font-medium text-neutral-300">
+            <span className="px-2.5 py-1 rounded-md bg-neutral-900/90 border border-neutral-800 text-xs font-medium text-neutral-300">
               RT {current.rtScore}%
             </span>
           </div>
@@ -100,7 +101,7 @@ export function HeroBanner() {
               {current.formats.slice(0, 3).map((fmt, idx) => (
                 <span
                   key={idx}
-                  className="px-2 py-0.5 rounded text-[11px] font-medium bg-neutral-900 border border-neutral-700 text-neutral-300"
+                  className="px-2 py-0.5 rounded text-[11px] font-semibold bg-neutral-900 border border-neutral-700 text-neutral-200"
                 >
                   {fmt}
                 </span>
@@ -108,21 +109,21 @@ export function HeroBanner() {
             </div>
           </div>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          {/* Action CTAs: Punchy AMC-style red pill button */}
+          <div className="flex flex-wrap items-center gap-3.5 pt-2">
             <Link
               href={`/movie/${current.slug}`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white hover:bg-neutral-200 text-black font-semibold text-xs transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-sm shadow-xl shadow-red-950/60 transition-transform hover:scale-102"
             >
-              <Ticket className="w-4 h-4 fill-black" />
+              <Ticket className="w-4 h-4 fill-white" />
               <span>Compare Showtimes (From ${current.lowestPrice.toFixed(2)})</span>
             </Link>
 
             <button
               onClick={() => openTrailerModal(current.trailerYoutubeId, current.title)}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 font-medium text-xs transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-neutral-900/90 hover:bg-neutral-800 border border-neutral-700 text-white font-semibold text-sm transition-colors"
             >
-              <Play className="w-3.5 h-3.5 fill-white text-white" />
+              <Play className="w-4 h-4 fill-white text-white" />
               <span>Watch Trailer</span>
             </button>
 
@@ -137,15 +138,15 @@ export function HeroBanner() {
                   lowestPrice: current.lowestPrice,
                 })
               }
-              className={`p-3 rounded-lg border transition-colors ${
+              className={`p-3.5 rounded-full border transition-colors ${
                 isSaved
-                  ? 'bg-white border-white text-black'
-                  : 'bg-neutral-900 border-neutral-700 text-neutral-400 hover:text-white'
+                  ? 'bg-[#e51821] border-[#e51821] text-white'
+                  : 'bg-neutral-900/90 border-neutral-700 text-neutral-400 hover:text-white'
               }`}
               title={isSaved ? 'In Watchlist' : 'Add to Watchlist'}
               aria-label="Save to watchlist"
             >
-              <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-black' : ''}`} />
+              <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-white' : ''}`} />
             </button>
           </div>
         </div>
@@ -158,8 +159,8 @@ export function HeroBanner() {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`h-1 rounded-full transition-all ${
-                currentIndex === idx ? 'w-6 bg-white' : 'w-2 bg-neutral-700'
+              className={`h-1.5 rounded-full transition-all ${
+                currentIndex === idx ? 'w-6 bg-[#e51821]' : 'w-2 bg-neutral-700'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />

@@ -12,16 +12,16 @@ export function CitySelectorModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="city-title"
     >
       <div
-        className="relative w-full max-w-xl bg-[#121215] border border-neutral-800 rounded-xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-xl bg-[#0e1015] border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6 border-b border-neutral-800 bg-neutral-900/60 flex items-center justify-between">
+        <div className="p-6 border-b border-neutral-800 bg-neutral-950/80 flex items-center justify-between">
           <div>
             <h3 id="city-title" className="text-xl font-bold text-white tracking-tight">
               Select Your Metro Area
@@ -46,10 +46,10 @@ export function CitySelectorModal() {
               const detected = CITIES[0];
               setCity(detected);
             }}
-            className="w-full p-3.5 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-neutral-700 flex items-center justify-between text-left transition-colors"
+            className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-[#e51821]/60 flex items-center justify-between text-left transition-colors"
           >
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-md bg-neutral-800 border border-neutral-700 flex items-center justify-center text-white">
+              <div className="w-8 h-8 rounded-lg bg-red-950/60 border border-[#e51821]/40 flex items-center justify-center text-[#e51821]">
                 <Navigation className="w-4 h-4" />
               </div>
               <div>
@@ -57,11 +57,11 @@ export function CitySelectorModal() {
                 <p className="text-[11px] text-neutral-400">Detect nearest cinemas via browser location</p>
               </div>
             </div>
-            <span className="text-xs font-semibold text-neutral-300">Use Location</span>
+            <span className="text-xs font-bold text-[#e51821]">Use Location</span>
           </button>
 
           <div>
-            <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider block mb-3">
+            <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider block mb-3">
               Supported Metro Markets
             </span>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -71,21 +71,21 @@ export function CitySelectorModal() {
                   <button
                     key={city.id}
                     onClick={() => setCity(city)}
-                    className={`p-3 rounded-lg border text-left transition-colors flex flex-col justify-between ${
+                    className={`p-3 rounded-xl border text-left transition-colors flex flex-col justify-between ${
                       isSelected
-                        ? 'bg-white border-white text-black'
-                        : 'bg-neutral-900 border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white'
+                        ? 'bg-neutral-900 border-[#e51821] text-white shadow-md shadow-red-950/20'
+                        : 'bg-neutral-950 border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-bold text-sm">{city.name}</span>
                       {isSelected ? (
-                        <Check className="w-4 h-4 text-black" />
+                        <Check className="w-4 h-4 text-[#e51821]" />
                       ) : (
                         <MapPin className="w-3.5 h-3.5 text-neutral-500" />
                       )}
                     </div>
-                    <span className={`text-[10px] ${isSelected ? 'text-neutral-700' : 'text-neutral-500'}`}>
+                    <span className={`text-[10px] ${isSelected ? 'text-red-300' : 'text-neutral-500'}`}>
                       {city.stateOrRegion}, {city.country}
                     </span>
                   </button>

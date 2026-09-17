@@ -39,20 +39,20 @@ export default function MoviesPage() {
   }, [searchQuery, selectedGenre, selectedFormat, selectedStatus, sortBy]);
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-24">
+    <div className="min-h-screen bg-[#060709] pb-24">
       {/* Page Header */}
       <div className="border-b border-neutral-800 bg-neutral-950 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-2">
-            <span className="p-1 rounded-md bg-neutral-850 text-neutral-300 border border-neutral-700">
-              <Film className="w-3.5 h-3.5" />
+            <span className="p-1 rounded-md bg-red-950/70 text-red-300 border border-red-500/40">
+              <Film className="w-3.5 h-3.5 text-[#e51821]" />
             </span>
-            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-              Box Office Aggregator
+            <span className="text-xs font-bold uppercase tracking-wider text-[#e51821]">
+              Ticket Price Aggregator
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            All Movies & Showtimes
+            Movies & Theatres Directory
           </h1>
           <p className="text-xs sm:text-sm text-neutral-400 mt-1 max-w-2xl">
             Compare showtimes, auditorium formats, and live ticket prices across AMC, Regal, Cinemark, and independent cinemas.
@@ -62,7 +62,7 @@ export default function MoviesPage() {
 
       {/* Filter and Search Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="p-4 rounded-xl bg-[#121215] border border-neutral-800 space-y-4 shadow-xl">
+        <div className="p-4 sm:p-5 rounded-2xl bg-[#0e1015] border border-neutral-800 space-y-4 shadow-xl">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
             {/* Search Input */}
             <div className="md:col-span-6 relative">
@@ -72,7 +72,7 @@ export default function MoviesPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Filter by title, director, or actor..."
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#e51821]"
               />
             </div>
 
@@ -81,7 +81,7 @@ export default function MoviesPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as 'trending' | 'rating' | 'price')}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-neutral-600"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#e51821]"
               >
                 <option value="trending">Sort: Trending First</option>
                 <option value="rating">Sort: Highest IMDb Rating</option>
@@ -94,7 +94,7 @@ export default function MoviesPage() {
               <select
                 value={selectedFormat}
                 onChange={(e) => setSelectedFormat(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-neutral-600"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#e51821]"
               >
                 {allFormats.map((f) => (
                   <option key={f} value={f}>
@@ -112,9 +112,9 @@ export default function MoviesPage() {
               <button
                 key={g}
                 onClick={() => setSelectedGenre(g)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium shrink-0 transition-colors ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold shrink-0 transition-colors ${
                   selectedGenre === g
-                    ? 'bg-white text-black font-semibold'
+                    ? 'bg-[#e51821] text-white shadow-sm'
                     : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
                 }`}
               >
@@ -123,7 +123,7 @@ export default function MoviesPage() {
             ))}
           </div>
 
-          {/* Release Status Chips - No Emojis! */}
+          {/* Release Status Chips */}
           <div className="flex items-center gap-1.5 overflow-x-auto pt-2 border-t border-neutral-800/80 scrollbar-none">
             <span className="text-xs text-neutral-500 font-medium px-2 shrink-0">Status:</span>
             {[
@@ -135,9 +135,9 @@ export default function MoviesPage() {
               <button
                 key={st.id}
                 onClick={() => setSelectedStatus(st.id as 'all' | 'now_showing' | 'advance_booking' | 'coming_soon')}
-                className={`px-3 py-1 rounded-lg text-xs font-medium shrink-0 transition-colors ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold shrink-0 transition-all ${
                   selectedStatus === st.id
-                    ? 'bg-white text-black font-semibold'
+                    ? 'bg-[#e51821] text-white shadow-sm'
                     : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
                 }`}
               >
@@ -156,7 +156,7 @@ export default function MoviesPage() {
           </div>
 
           {filtered.length === 0 ? (
-            <div className="py-20 text-center rounded-xl bg-[#121215] border border-neutral-800">
+            <div className="py-20 text-center rounded-2xl bg-[#0e1015] border border-neutral-800">
               <p className="text-white font-semibold text-base">No movies match your filters</p>
               <p className="text-xs text-neutral-400 mt-1">Try resetting the search query or selecting &lsquo;All&rsquo; formats.</p>
               <button
@@ -165,7 +165,7 @@ export default function MoviesPage() {
                   setSelectedGenre('All');
                   setSelectedFormat('All');
                 }}
-                className="mt-4 px-4 py-2 rounded-lg bg-white text-black text-xs font-semibold hover:bg-neutral-200 transition-colors"
+                className="mt-4 px-4 py-2 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-xs font-bold transition-colors"
               >
                 Reset Filters
               </button>

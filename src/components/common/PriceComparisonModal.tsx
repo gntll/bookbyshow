@@ -18,17 +18,17 @@ export function PriceComparisonModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="comparison-title"
     >
       <div
-        className="relative w-full max-w-2xl bg-[#121215] border border-neutral-800 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-2xl bg-[#0e1015] border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-6 border-b border-neutral-800 bg-neutral-900/60 relative">
+        <div className="p-6 border-b border-neutral-800 bg-neutral-950/80 relative">
           <button
             onClick={closeComparisonModal}
             className="absolute top-5 right-5 p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
@@ -38,7 +38,7 @@ export function PriceComparisonModal() {
           </button>
 
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-0.5 text-xs font-semibold rounded bg-neutral-800 text-neutral-300 border border-neutral-700 uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 text-xs font-bold rounded bg-red-950/70 text-red-300 border border-[#e51821]/40 uppercase tracking-wider">
               {showtime.format}
             </span>
             <span className="text-xs text-neutral-400 font-medium">
@@ -54,8 +54,8 @@ export function PriceComparisonModal() {
           </p>
 
           {Number(maxSavings) > 0 && (
-            <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-neutral-900 border border-neutral-700 text-neutral-200 text-xs font-medium">
-              <Tag className="w-3.5 h-3.5 text-neutral-400" />
+            <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-red-950/40 border border-[#e51821]/40 text-red-300 text-xs font-semibold">
+              <Tag className="w-3.5 h-3.5 text-[#e51821]" />
               <span>You save up to ${maxSavings} per ticket by comparing on BookByShow!</span>
             </div>
           )}
@@ -79,12 +79,14 @@ export function PriceComparisonModal() {
                   key={idx}
                   className={`p-4 rounded-xl border transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
                     isBest
-                      ? 'bg-neutral-900 border-neutral-600'
+                      ? 'bg-neutral-900 border-[#e51821]/70 shadow-md shadow-red-950/20'
                       : 'bg-neutral-950 border-neutral-800/80 hover:border-neutral-700'
                   }`}
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-neutral-800 border border-neutral-700 flex items-center justify-center font-bold text-xs text-white shrink-0">
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${
+                      isBest ? 'bg-[#e51821] text-white' : 'bg-neutral-800 text-neutral-200 border border-neutral-700'
+                    }`}>
                       {quote.provider.slice(0, 3).toUpperCase()}
                     </div>
 
@@ -92,7 +94,7 @@ export function PriceComparisonModal() {
                       <div className="flex items-center gap-2">
                         <span className="font-semibold text-white text-sm sm:text-base">{quote.provider}</span>
                         {isBest && (
-                          <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-white text-black">
+                          <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-[#e51821] text-white">
                             BEST RATE
                           </span>
                         )}
@@ -125,9 +127,9 @@ export function PriceComparisonModal() {
                       href={buildAffiliateOutboundUrl(quote.provider, quote.directUrl, { showtimeId: showtime.id })}
                       target="_blank"
                       rel="noopener noreferrer sponsored"
-                      className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-colors ${
+                      className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-colors ${
                         isBest
-                          ? 'bg-white text-black hover:bg-neutral-200'
+                          ? 'bg-[#e51821] hover:bg-[#c9121a] text-white shadow-md shadow-red-950/40'
                           : 'bg-neutral-800 hover:bg-neutral-700 text-white'
                       }`}
                     >
@@ -143,7 +145,7 @@ export function PriceComparisonModal() {
           {/* Seat Map Visual Shortcut */}
           <div className="p-4 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-neutral-800 border border-neutral-700 flex items-center justify-center text-white">
+              <div className="w-9 h-9 rounded-lg bg-red-950/60 border border-[#e51821]/40 flex items-center justify-center text-[#e51821]">
                 <Armchair className="w-4 h-4" />
               </div>
               <div>
@@ -170,7 +172,7 @@ export function PriceComparisonModal() {
         <div className="p-4 border-t border-neutral-800 bg-neutral-950 flex flex-col gap-2 text-xs text-neutral-400">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-neutral-300 font-medium">
-              <ShieldCheck className="w-4 h-4 shrink-0 text-white" />
+              <ShieldCheck className="w-4 h-4 shrink-0 text-[#e51821]" />
               <span>100% Price Transparency — No surprise fees added at checkout</span>
             </div>
             <div className="flex items-center gap-1.5 text-neutral-500">

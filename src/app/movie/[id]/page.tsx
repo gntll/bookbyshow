@@ -36,7 +36,7 @@ export default function MovieDetailPage() {
         </p>
         <Link
           href="/movies"
-          className="px-5 py-2.5 rounded-lg bg-white text-black hover:bg-neutral-200 text-sm font-semibold transition-colors"
+          className="px-5 py-2.5 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-sm font-bold transition-colors"
         >
           Browse All Now Showing
         </Link>
@@ -45,7 +45,6 @@ export default function MovieDetailPage() {
   }
 
   const isSaved = isItemInWatchlist(movie.id);
-
   const movieShowtimes = getShowtimesForMovie(movie.id);
 
   const cinemasWithShowtimes = CINEMAS.map((cinema) => {
@@ -58,32 +57,32 @@ export default function MovieDetailPage() {
   }).filter((g) => g.times.length > 0);
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-24">
+    <div className="min-h-screen bg-[#060709] pb-24">
       {/* Top Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <Link
           href="/movies"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
+          <ArrowLeft className="w-3.5 h-3.5 text-[#e51821]" />
           <span>Back to All Movies</span>
         </Link>
       </div>
 
       {/* Cinematic Backdrop Hero */}
-      <div className="relative w-full overflow-hidden min-h-[440px] flex items-center bg-[#09090b] border-b border-neutral-800">
+      <div className="relative w-full overflow-hidden min-h-[440px] flex items-center bg-[#060709] border-b border-neutral-800">
         <img
           src={movie.backdropUrl}
           alt={movie.title}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-20 filter brightness-75 scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/90 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060709] via-[#060709]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060709] via-[#060709]/90 to-transparent" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
           <div className="flex flex-col md:flex-row items-start gap-8">
             {/* Poster Thumbnail */}
-            <div className="w-44 sm:w-52 aspect-[2/3] rounded-xl overflow-hidden shadow-2xl border border-neutral-800 shrink-0 relative group">
+            <div className="w-44 sm:w-52 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-neutral-800 shrink-0 relative group">
               <img
                 src={movie.posterUrl}
                 alt={movie.title}
@@ -93,8 +92,8 @@ export default function MovieDetailPage() {
                 onClick={() => openTrailerModal(movie.trailerYoutubeId, movie.title)}
                 className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"
               >
-                <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-lg">
-                  <Play className="w-5 h-5 fill-black ml-0.5" />
+                <div className="w-12 h-12 rounded-full bg-[#e51821] text-white flex items-center justify-center shadow-xl">
+                  <Play className="w-5 h-5 fill-white ml-0.5" />
                 </div>
               </button>
             </div>
@@ -102,7 +101,7 @@ export default function MovieDetailPage() {
             {/* Info details */}
             <div className="flex-1 space-y-4">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded bg-neutral-900 text-neutral-300 border border-neutral-700 text-xs font-semibold uppercase">
+                <span className="px-2.5 py-0.5 rounded bg-red-950/70 text-red-300 border border-[#e51821]/50 text-xs font-bold uppercase">
                   Now In Theatres
                 </span>
                 <span className="px-2.5 py-0.5 rounded bg-neutral-900 text-neutral-300 text-xs font-medium border border-neutral-800">
@@ -117,7 +116,7 @@ export default function MovieDetailPage() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
                 {movie.title}
               </h1>
               <p className="text-sm sm:text-base text-neutral-400 italic font-normal">
@@ -148,7 +147,7 @@ export default function MovieDetailPage() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
                   onClick={() => openTrailerModal(movie.trailerYoutubeId, movie.title)}
-                  className="px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white font-medium text-xs flex items-center gap-2 transition-colors"
+                  className="px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white font-semibold text-xs flex items-center gap-2 transition-colors"
                 >
                   <Play className="w-3.5 h-3.5 fill-white" />
                   <span>Watch Trailer</span>
@@ -173,13 +172,13 @@ export default function MovieDetailPage() {
                       lowestPrice: movie.lowestPrice,
                     })
                   }
-                  className={`px-4 py-2 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-colors ${
+                  className={`px-4 py-2 rounded-lg border text-xs font-semibold flex items-center gap-1.5 transition-colors ${
                     isSaved
-                      ? 'bg-white border-white text-black'
+                      ? 'bg-[#e51821] border-[#e51821] text-white'
                       : 'bg-neutral-900 border-neutral-800 text-neutral-300 hover:text-white'
                   }`}
                 >
-                  <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-black' : ''}`} />
+                  <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-white' : ''}`} />
                   <span>{isSaved ? 'Saved to Watchlist' : 'Add to Watchlist'}</span>
                 </button>
               </div>
@@ -194,7 +193,7 @@ export default function MovieDetailPage() {
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
               <span>Showtimes & Seating Availability</span>
-              <span className="px-2 py-0.5 rounded-md text-xs font-medium bg-neutral-900 text-neutral-300 border border-neutral-800">
+              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-red-950/70 text-red-300 border border-[#e51821]/40">
                 Live Quotes
               </span>
             </h2>
@@ -209,9 +208,9 @@ export default function MovieDetailPage() {
               <button
                 key={fmt}
                 onClick={() => setSelectedFormat(fmt)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors shrink-0 ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors shrink-0 ${
                   selectedFormat === fmt
-                    ? 'bg-white text-black font-semibold'
+                    ? 'bg-[#e51821] text-white shadow-md'
                     : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
                 }`}
               >
@@ -223,7 +222,7 @@ export default function MovieDetailPage() {
 
         {/* Cinemas list */}
         {cinemasWithShowtimes.length === 0 ? (
-          <div className="p-12 rounded-xl bg-[#121215] border border-neutral-800 text-center text-neutral-400">
+          <div className="p-12 rounded-2xl bg-[#0e1015] border border-neutral-800 text-center text-neutral-400">
             <Armchair className="w-10 h-10 text-neutral-600 mx-auto mb-3" />
             <p className="text-sm font-semibold text-white">No showtimes found for {selectedFormat}</p>
             <p className="text-xs text-neutral-500 mt-1">Try switching format filters or selecting another date.</p>
@@ -233,13 +232,13 @@ export default function MovieDetailPage() {
             {cinemasWithShowtimes.map(({ cinema, times }) => (
               <div
                 key={cinema.id}
-                className="p-6 rounded-xl bg-[#121215] border border-neutral-800 shadow-xl space-y-4"
+                className="p-6 rounded-2xl bg-[#0e1015] border border-neutral-800 shadow-xl space-y-4"
               >
                 {/* Cinema header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-neutral-800">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#e51821]">
                         {cinema.chain}
                       </span>
                       <h3 className="font-bold text-white text-base sm:text-lg">
@@ -247,7 +246,7 @@ export default function MovieDetailPage() {
                       </h3>
                     </div>
                     <p className="text-xs text-neutral-400 flex items-center gap-1 mt-0.5">
-                      <MapPin className="w-3.5 h-3.5 text-neutral-500" />
+                      <MapPin className="w-3.5 h-3.5 text-[#e51821]" />
                       <span>{cinema.address} • {cinema.distanceMiles} miles away</span>
                     </p>
                   </div>
@@ -273,16 +272,16 @@ export default function MovieDetailPage() {
                     return (
                       <div
                         key={st.id}
-                        className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 hover:border-neutral-700 transition-colors flex flex-col justify-between group"
+                        className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 hover:border-[#e51821]/50 transition-colors flex flex-col justify-between group"
                       >
                         <div>
                           <div className="flex items-center justify-between mb-1.5">
-                            <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-neutral-900 text-neutral-300 border border-neutral-800">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-neutral-900 text-neutral-300 border border-neutral-800">
                               {st.format}
                             </span>
                             <span
                               className={`text-[10px] font-medium ${
-                                isAlmostSoldOut ? 'text-neutral-400 font-semibold' : 'text-neutral-400'
+                                isAlmostSoldOut ? 'text-red-400 font-semibold' : 'text-neutral-400'
                               }`}
                             >
                               {st.availableSeatCount} seats left
@@ -290,7 +289,7 @@ export default function MovieDetailPage() {
                           </div>
 
                           <div className="flex items-baseline gap-2 mt-1">
-                            <span className="text-xl font-bold text-white group-hover:text-neutral-300 transition-colors">
+                            <span className="text-xl font-bold text-white group-hover:text-red-400 transition-colors">
                               {st.time}
                             </span>
                             <span className="text-xs text-neutral-500 truncate max-w-[140px]">
@@ -306,7 +305,7 @@ export default function MovieDetailPage() {
                         <div className="mt-4 pt-3 border-t border-neutral-800 flex items-center gap-2">
                           <button
                             onClick={() => openComparisonModal(st, movie)}
-                            className="flex-1 py-2 px-3 rounded-lg bg-white hover:bg-neutral-200 text-black font-semibold text-xs flex items-center justify-center gap-1 transition-colors"
+                            className="flex-1 py-2 px-3 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-xs flex items-center justify-center gap-1 shadow-md shadow-red-950/40 transition-colors"
                           >
                             <span>Compare Rates</span>
                             <ChevronRight className="w-3.5 h-3.5" />

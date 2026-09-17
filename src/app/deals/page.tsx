@@ -52,15 +52,15 @@ export default function DealsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-24">
+    <div className="min-h-screen bg-[#060709] pb-24">
       {/* Header */}
       <div className="border-b border-neutral-800 bg-neutral-950 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-2">
-            <span className="p-1 rounded-md bg-neutral-850 text-neutral-300 border border-neutral-700">
-              <Tag className="w-3.5 h-3.5" />
+            <span className="p-1 rounded-md bg-red-950/70 text-red-300 border border-red-500/40">
+              <Tag className="w-3.5 h-3.5 text-[#e51821]" />
             </span>
-            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#e51821]">
               Verified Discount Aggregator
             </span>
           </div>
@@ -78,14 +78,14 @@ export default function DealsPage() {
           {deals.map((deal) => (
             <div
               key={deal.id}
-              className="p-6 rounded-xl bg-[#121215] border border-neutral-800 hover:border-neutral-700 transition-colors flex flex-col justify-between space-y-4 shadow-lg"
+              className="p-6 rounded-2xl bg-[#0e1015] border border-neutral-800 hover:border-[#e51821]/50 transition-colors flex flex-col justify-between space-y-4 shadow-xl"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="px-2.5 py-0.5 rounded text-xs font-medium bg-neutral-900 text-neutral-300 border border-neutral-800">
+                  <span className="px-2.5 py-0.5 rounded text-xs font-semibold bg-neutral-900 text-neutral-300 border border-neutral-800">
                     {deal.category}
                   </span>
-                  <span className="text-xs font-bold text-white">
+                  <span className="text-xs font-bold text-[#e51821]">
                     {deal.savings}
                   </span>
                 </div>
@@ -98,7 +98,7 @@ export default function DealsPage() {
 
               <div className="pt-4 border-t border-neutral-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                  <code className="px-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-700 text-white font-mono text-xs font-bold">
+                  <code className="px-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-700 text-[#e51821] font-mono text-xs font-bold">
                     {deal.code}
                   </code>
                   <button
@@ -107,7 +107,7 @@ export default function DealsPage() {
                     title="Copy promo code"
                   >
                     {copiedCode === deal.code ? (
-                      <Check className="w-4 h-4 text-white" />
+                      <Check className="w-4 h-4 text-[#e51821]" />
                     ) : (
                       <Copy className="w-4 h-4" />
                     )}

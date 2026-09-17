@@ -31,15 +31,15 @@ export default function EventsPage() {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-24">
+    <div className="min-h-screen bg-[#060709] pb-24">
       {/* Page Header */}
       <div className="border-b border-neutral-800 bg-neutral-950 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-2">
-            <span className="p-1 rounded-md bg-neutral-850 text-neutral-300 border border-neutral-700">
-              <Music className="w-3.5 h-3.5" />
+            <span className="p-1 rounded-md bg-red-950/70 text-red-300 border border-red-500/40">
+              <Music className="w-3.5 h-3.5 text-[#e51821]" />
             </span>
-            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#e51821]">
               Live Concert & Tour Aggregator
             </span>
           </div>
@@ -54,7 +54,7 @@ export default function EventsPage() {
 
       {/* Filter Tabs & Search */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="p-4 rounded-xl bg-[#121215] border border-neutral-800 space-y-4 shadow-xl">
+        <div className="p-4 rounded-2xl bg-[#0e1015] border border-neutral-800 space-y-4 shadow-xl">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative">
               <Search className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -63,7 +63,7 @@ export default function EventsPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by artist, venue, team, or city..."
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl pl-10 pr-4 py-2 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#e51821]"
               />
             </div>
           </div>
@@ -74,9 +74,9 @@ export default function EventsPage() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-medium shrink-0 transition-colors ${
+                className={`px-4 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-colors ${
                   selectedCategory === cat.id
-                    ? 'bg-white text-black font-semibold'
+                    ? 'bg-[#e51821] text-white shadow-md shadow-red-950/40'
                     : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
                 }`}
               >

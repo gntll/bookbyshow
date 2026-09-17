@@ -37,16 +37,16 @@ export default function CinemasPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-24">
+    <div className="min-h-screen bg-[#060709] pb-24">
       {/* Header */}
       <div className="border-b border-neutral-800 bg-neutral-950 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="p-1 rounded-md bg-neutral-850 text-neutral-300 border border-neutral-700">
-                <Film className="w-3.5 h-3.5" />
+              <span className="p-1 rounded-md bg-red-950/70 text-red-300 border border-red-500/40">
+                <Film className="w-3.5 h-3.5 text-[#e51821]" />
               </span>
-              <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#e51821]">
                 Auditorium Directory
               </span>
             </div>
@@ -60,9 +60,9 @@ export default function CinemasPage() {
 
           <button
             onClick={() => setIsCityModalOpen(true)}
-            className="self-start md:self-auto px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-xs font-semibold text-neutral-300 hover:text-white flex items-center gap-2 transition-colors"
+            className="self-start md:self-auto px-4 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-[#e51821]/50 text-xs font-semibold text-neutral-300 hover:text-white flex items-center gap-2 transition-colors"
           >
-            <MapPin className="w-3.5 h-3.5 text-neutral-400" />
+            <MapPin className="w-3.5 h-3.5 text-[#e51821]" />
             <span>Switch Metro: {currentCity.name}</span>
           </button>
         </div>
@@ -70,7 +70,7 @@ export default function CinemasPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Search & Amenities Filter */}
-        <div className="p-4 rounded-xl bg-[#121215] border border-neutral-800 space-y-3 mb-8">
+        <div className="p-4 rounded-2xl bg-[#0e1015] border border-neutral-800 space-y-3 mb-8 shadow-xl">
           <div className="relative">
             <Search className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
@@ -78,7 +78,7 @@ export default function CinemasPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search cinema chains, amenities, or street address..."
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#e51821]"
             />
           </div>
 
@@ -88,9 +88,9 @@ export default function CinemasPage() {
               <button
                 key={a}
                 onClick={() => setSelectedAmenity(a)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium shrink-0 transition-colors ${
+                className={`px-3 py-1 rounded-lg text-xs font-semibold shrink-0 transition-colors ${
                   selectedAmenity === a
-                    ? 'bg-white text-black font-semibold'
+                    ? 'bg-[#e51821] text-white shadow-sm'
                     : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
                 }`}
               >
@@ -105,9 +105,9 @@ export default function CinemasPage() {
           {filtered.map((cinema) => (
             <div
               key={cinema.id}
-              className="rounded-xl bg-[#121215] border border-neutral-800 overflow-hidden flex flex-col sm:flex-row gap-4 p-5 hover:border-neutral-700 transition-colors shadow-lg"
+              className="rounded-2xl bg-[#0e1015] border border-neutral-800 overflow-hidden flex flex-col sm:flex-row gap-4 p-5 hover:border-[#e51821]/40 transition-colors shadow-lg"
             >
-              <div className="w-full sm:w-48 aspect-video sm:aspect-square rounded-lg overflow-hidden bg-neutral-900 shrink-0 relative">
+              <div className="w-full sm:w-48 aspect-video sm:aspect-square rounded-xl overflow-hidden bg-neutral-900 shrink-0 relative">
                 <img
                   src={cinema.photoUrl}
                   alt={cinema.name}
@@ -122,7 +122,7 @@ export default function CinemasPage() {
               <div className="flex-1 flex flex-col justify-between space-y-3">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#e51821]">
                       {cinema.chain}
                     </span>
                     <span className="text-[11px] text-neutral-500">
@@ -141,7 +141,7 @@ export default function CinemasPage() {
                     {cinema.amenities.map((a, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded text-[10px] bg-neutral-900 text-neutral-300 border border-neutral-800"
+                        className="px-2 py-0.5 rounded text-[10px] font-medium bg-neutral-900 text-neutral-300 border border-neutral-800"
                       >
                         {a}
                       </span>
@@ -153,7 +153,7 @@ export default function CinemasPage() {
                   <span className="text-neutral-500 text-[11px]">
                     {cinema.screens.length} Screen Types
                   </span>
-                  <span className="text-white font-medium">
+                  <span className="text-[#e51821] font-semibold">
                     Showtimes active
                   </span>
                 </div>

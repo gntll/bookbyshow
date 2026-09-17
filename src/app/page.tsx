@@ -52,7 +52,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-16">
+    <div className="min-h-screen bg-[#060709] pb-16">
       {/* 1. Spotlight Hero Carousel */}
       <HeroBanner />
 
@@ -62,19 +62,19 @@ export default function HomePage() {
       {/* Main Content Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 space-y-16">
         {/* Date Selector Strip */}
-        <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="p-4 rounded-2xl bg-[#0e1015] border border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
           <DateRibbon selectedDate={selectedDate} onSelectDate={setSelectedDate} />
 
-          {/* Format pills */}
+          {/* Format pills: Cinema Red Active */}
           <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto scrollbar-none pb-1 md:pb-0">
             <span className="text-xs text-neutral-500 font-medium px-2 shrink-0">Screen:</span>
             {formats.map((fmt) => (
               <button
                 key={fmt}
                 onClick={() => setSelectedFormat(fmt)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium shrink-0 transition-colors ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold shrink-0 transition-all ${
                   selectedFormat === fmt
-                    ? 'bg-white text-black font-semibold'
+                    ? 'bg-[#e51821] text-white shadow-md shadow-red-950/40'
                     : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
                 }`}
               >
@@ -84,16 +84,16 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* 3. Now Showing Blockbusters */}
+        {/* 3. Now Showing Blockbusters: AMC-style title */}
         <section>
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6 pb-2 border-b border-neutral-800/60">
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  Now Showing in Cinemas
+              <div className="flex items-center gap-3">
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  Movies at Theatres
                 </h2>
-                <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-neutral-900 text-neutral-300 border border-neutral-800">
-                  Live Showtimes
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-950/70 text-red-300 border border-[#e51821]/40">
+                  Live Rates
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-neutral-400 mt-1">
@@ -103,7 +103,7 @@ export default function HomePage() {
 
             <Link
               href="/movies"
-              className="text-xs sm:text-sm font-semibold text-neutral-300 hover:text-white flex items-center gap-1 transition-colors"
+              className="text-xs sm:text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
             >
               <span>Explore All ({MOVIES.length})</span>
               <ArrowRight className="w-4 h-4" />
@@ -122,13 +122,13 @@ export default function HomePage() {
 
         {/* 5. Trending Live Stadium Concerts */}
         <section>
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6 pb-2 border-b border-neutral-800/60">
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <div className="flex items-center gap-3">
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                   Stadium Tours & Concerts
                 </h2>
-                <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-neutral-900 text-neutral-300 border border-neutral-800">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-neutral-900 text-neutral-300 border border-neutral-800">
                   Live Nation & Ticketmaster
                 </span>
               </div>
@@ -139,7 +139,7 @@ export default function HomePage() {
 
             <Link
               href="/events?category=concert"
-              className="text-xs sm:text-sm font-semibold text-neutral-300 hover:text-white flex items-center gap-1 transition-colors"
+              className="text-xs sm:text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
             >
               <span>View All Concerts</span>
               <ArrowRight className="w-4 h-4" />
@@ -155,13 +155,13 @@ export default function HomePage() {
 
         {/* 6. Comedy Specials, Sports & Broadway */}
         <section>
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6 pb-2 border-b border-neutral-800/60">
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <div className="flex items-center gap-3">
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                   Comedy, Sports & Broadway
                 </h2>
-                <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-neutral-900 text-neutral-300 border border-neutral-800">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-neutral-900 text-neutral-300 border border-neutral-800">
                   Top Rated
                 </span>
               </div>
@@ -172,7 +172,7 @@ export default function HomePage() {
 
             <Link
               href="/events"
-              className="text-xs sm:text-sm font-semibold text-neutral-300 hover:text-white flex items-center gap-1 transition-colors"
+              className="text-xs sm:text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
             >
               <span>Explore All Shows</span>
               <ArrowRight className="w-4 h-4" />
@@ -193,7 +193,7 @@ export default function HomePage() {
         <section className="py-12 border-t border-neutral-800">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-10">
-              <div className="w-10 h-10 rounded-lg bg-neutral-800 text-white flex items-center justify-center mx-auto mb-3 border border-neutral-700">
+              <div className="w-11 h-11 rounded-xl bg-red-950/60 text-[#e51821] flex items-center justify-center mx-auto mb-3 border border-[#e51821]/40">
                 <HelpCircle className="w-5 h-5" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -210,22 +210,22 @@ export default function HomePage() {
                 return (
                   <div
                     key={idx}
-                    className="rounded-xl bg-[#121215] border border-neutral-800 overflow-hidden transition-colors"
+                    className="rounded-xl bg-[#0f1115] border border-neutral-800 overflow-hidden transition-colors"
                   >
                     <button
                       onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                      className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 text-white font-medium text-sm hover:text-neutral-300 transition-colors"
+                      className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 text-white font-medium text-sm hover:text-red-400 transition-colors"
                       aria-expanded={isOpen}
                     >
                       <span>{faq.q}</span>
                       <ChevronDown
                         className={`w-4 h-4 text-neutral-400 shrink-0 transition-transform duration-200 ${
-                          isOpen ? 'rotate-180 text-white' : ''
+                          isOpen ? 'rotate-180 text-[#e51821]' : ''
                         }`}
                       />
                     </button>
                     {isOpen && (
-                      <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-neutral-300 leading-relaxed border-t border-neutral-800 pt-3">
+                      <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-neutral-300 leading-relaxed border-t border-neutral-800/80 pt-3">
                         {faq.a}
                       </div>
                     )}

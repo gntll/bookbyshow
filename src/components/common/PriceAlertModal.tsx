@@ -26,16 +26,16 @@ export function PriceAlertModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="alert-title"
     >
       <div
-        className="relative w-full max-w-md bg-[#121215] border border-neutral-800 rounded-xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-md bg-[#0e1015] border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6 border-b border-neutral-800 bg-neutral-900/60 relative">
+        <div className="p-6 border-b border-neutral-800 bg-neutral-950/80 relative">
           <button
             onClick={closeAlertModal}
             className="absolute top-5 right-5 p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
@@ -44,8 +44,8 @@ export function PriceAlertModal() {
             <X className="w-5 h-5" />
           </button>
 
-          <div className="w-9 h-9 rounded-lg bg-neutral-800 border border-neutral-700 flex items-center justify-center text-white mb-3">
-            <Bell className="w-4 h-4" />
+          <div className="w-10 h-10 rounded-xl bg-red-950/60 border border-[#e51821]/50 flex items-center justify-center text-[#e51821] mb-3">
+            <Bell className="w-5 h-5" />
           </div>
 
           <h3 id="alert-title" className="text-xl font-bold text-white tracking-tight">
@@ -58,7 +58,7 @@ export function PriceAlertModal() {
 
         {isSuccess ? (
           <div className="p-8 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center mx-auto font-bold">
+            <div className="w-12 h-12 rounded-full bg-[#e51821] text-white flex items-center justify-center mx-auto font-bold">
               <Check className="w-6 h-6" />
             </div>
             <h4 className="text-lg font-bold text-white">Alert Activated</h4>
@@ -71,7 +71,7 @@ export function PriceAlertModal() {
             <div>
               <div className="flex items-center justify-between text-xs text-neutral-300 mb-1.5 font-medium">
                 <span>Alert me when total price drops below:</span>
-                <span className="text-white font-bold text-sm">${targetPrice}</span>
+                <span className="text-[#e51821] font-bold text-sm">${targetPrice}</span>
               </div>
               <input
                 type="range"
@@ -79,7 +79,7 @@ export function PriceAlertModal() {
                 max={Math.ceil(alertTarget.currentLowest * 1.5)}
                 value={targetPrice}
                 onChange={(e) => setTargetPrice(Number(e.target.value))}
-                className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-white"
+                className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#e51821]"
               />
               <div className="flex justify-between text-[10px] text-neutral-500 mt-1">
                 <span>$10</span>
@@ -101,14 +101,14 @@ export function PriceAlertModal() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600 transition-colors"
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#e51821] transition-colors"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-2.5 bg-white hover:bg-neutral-200 text-black font-semibold text-xs rounded-lg transition-colors"
+              className="w-full py-2.5 bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-xs rounded-lg transition-colors"
             >
               Activate Price Drop Alert
             </button>
