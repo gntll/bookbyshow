@@ -9,10 +9,8 @@ import {
   Ticket,
   Star,
   Clock,
-  Sparkles,
   ChevronLeft,
   ChevronRight,
-  ShieldCheck,
   Bookmark,
 } from 'lucide-react';
 
@@ -23,7 +21,6 @@ export function HeroBanner() {
 
   const current = spotlightMovies[currentIndex] || spotlightMovies[0];
 
-  // Auto rotate banner every 8 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % spotlightMovies.length);
@@ -42,19 +39,17 @@ export function HeroBanner() {
   const isSaved = isItemInWatchlist(current.id);
 
   return (
-    <div className="relative w-full overflow-hidden bg-[#06080e] min-h-[580px] lg:min-h-[660px] flex items-center">
-      {/* Background Cinematic Image with Gradients */}
+    <div className="relative w-full overflow-hidden bg-[#09090b] min-h-[560px] lg:min-h-[620px] flex items-center border-b border-neutral-800">
+      {/* Background image with neutral dark gradient masks */}
       <div className="absolute inset-0 z-0">
         <img
           key={current.id}
           src={current.backdropUrl}
           alt={current.title}
-          className="w-full h-full object-cover object-center scale-105 transition-all duration-1000 opacity-35 filter brightness-90"
+          className="w-full h-full object-cover object-center scale-105 transition-all duration-1000 opacity-25 filter brightness-90"
         />
-        {/* Layered vignette overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#06080e] via-[#06080e]/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#06080e] via-[#06080e]/80 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(225,29,72,0.15),transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/90 to-transparent" />
       </div>
 
       {/* Content Container */}
@@ -62,51 +57,50 @@ export function HeroBanner() {
         <div className="max-w-2xl space-y-6">
           {/* Top badges */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-rose-600/20 text-rose-400 border border-rose-500/40 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+            <span className="px-3 py-1 rounded-md bg-neutral-900 border border-neutral-700 text-xs font-semibold text-neutral-300 uppercase tracking-wider">
               Spotlight Premiere
             </span>
-            <span className="px-2.5 py-1 rounded-full bg-[#121826] border border-[#1e2638] text-xs font-semibold text-gray-300">
+            <span className="px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-xs font-medium text-neutral-300">
               {current.certificateRating}
             </span>
-            <span className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#121826] border border-[#1e2638] text-xs font-semibold text-amber-400">
-              <Star className="w-3.5 h-3.5 fill-amber-400" />
+            <span className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-xs font-medium text-neutral-200">
+              <Star className="w-3.5 h-3.5 fill-neutral-300 text-neutral-300" />
               {current.imdbScore} IMDb
             </span>
-            <span className="px-2.5 py-1 rounded-full bg-red-950/40 border border-red-500/40 text-xs font-semibold text-red-400">
-              🍅 {current.rtScore}% Rotten Tomatoes
+            <span className="px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-xs font-medium text-neutral-300">
+              RT {current.rtScore}%
             </span>
           </div>
 
-          {/* Title */}
+          {/* Title & Tagline */}
           <div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
               {current.title}
             </h1>
-            <p className="text-base sm:text-lg text-rose-300 font-medium italic mt-2">
+            <p className="text-sm sm:text-base text-neutral-400 font-normal italic mt-2">
               &ldquo;{current.tagline}&rdquo;
             </p>
           </div>
 
           {/* Synopsis */}
-          <p className="text-sm sm:text-base text-gray-300 line-clamp-3 leading-relaxed max-w-xl">
+          <p className="text-sm text-neutral-300 line-clamp-3 leading-relaxed max-w-xl">
             {current.synopsis}
           </p>
 
           {/* Formats and metadata */}
-          <div className="flex flex-wrap items-center gap-3 text-xs text-gray-300">
-            <div className="flex items-center gap-1 text-gray-400">
-              <Clock className="w-4 h-4" />
+          <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-400">
+            <div className="flex items-center gap-1">
+              <Clock className="w-4 h-4 text-neutral-500" />
               <span>{Math.floor(current.runtimeMinutes / 60)}h {current.runtimeMinutes % 60}m</span>
             </div>
             <span>•</span>
-            <span className="text-gray-400">{current.genre.join(', ')}</span>
+            <span>{current.genre.join(', ')}</span>
             <span>•</span>
             <div className="flex flex-wrap gap-1.5">
               {current.formats.slice(0, 3).map((fmt, idx) => (
                 <span
                   key={idx}
-                  className="px-2 py-0.5 rounded text-[11px] font-bold bg-[#141c2c] border border-cyan-500/40 text-cyan-300"
+                  className="px-2 py-0.5 rounded text-[11px] font-medium bg-neutral-900 border border-neutral-700 text-neutral-300"
                 >
                   {fmt}
                 </span>
@@ -115,20 +109,20 @@ export function HeroBanner() {
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3.5 pt-2">
+          <div className="flex flex-wrap items-center gap-3 pt-2">
             <Link
               href={`/movie/${current.slug}`}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-rose-600 hover:from-rose-500 hover:to-rose-400 text-white font-bold text-sm shadow-xl shadow-rose-600/30 transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white hover:bg-neutral-200 text-black font-semibold text-xs transition-colors"
             >
-              <Ticket className="w-4 h-4" />
+              <Ticket className="w-4 h-4 fill-black" />
               <span>Compare Showtimes (From ${current.lowestPrice.toFixed(2)})</span>
             </Link>
 
             <button
               onClick={() => openTrailerModal(current.trailerYoutubeId, current.title)}
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-[#121826]/90 hover:bg-[#182032] border border-[#1e2638] text-white font-semibold text-sm transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 font-medium text-xs transition-colors"
             >
-              <Play className="w-4 h-4 fill-white text-white" />
+              <Play className="w-3.5 h-3.5 fill-white text-white" />
               <span>Watch Trailer</span>
             </button>
 
@@ -143,43 +137,29 @@ export function HeroBanner() {
                   lowestPrice: current.lowestPrice,
                 })
               }
-              className={`p-3.5 rounded-xl border transition-all ${
+              className={`p-3 rounded-lg border transition-colors ${
                 isSaved
-                  ? 'bg-rose-600/20 border-rose-500 text-rose-400'
-                  : 'bg-[#121826]/90 border-[#1e2638] text-gray-400 hover:text-white'
+                  ? 'bg-white border-white text-black'
+                  : 'bg-neutral-900 border-neutral-700 text-neutral-400 hover:text-white'
               }`}
               title={isSaved ? 'In Watchlist' : 'Add to Watchlist'}
               aria-label="Save to watchlist"
             >
-              <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-rose-500' : ''}`} />
+              <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-black' : ''}`} />
             </button>
-          </div>
-
-          {/* Aggregator guarantee pill */}
-          <div className="pt-2 flex items-center gap-2 text-xs text-gray-400">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Comparing AMC, Regal, Cinemark & Fandango in real time</span>
           </div>
         </div>
       </div>
 
-      {/* Slide Controls */}
-      <div className="hidden sm:flex absolute right-8 bottom-8 z-20 items-center gap-3">
-        <button
-          onClick={handlePrev}
-          className="p-2.5 rounded-full bg-[#121826]/80 hover:bg-white/10 border border-[#1e2638] text-gray-400 hover:text-white transition-colors"
-          aria-label="Previous movie"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-
-        <div className="flex items-center gap-1.5">
+      {/* Slide Indicators & Arrows */}
+      <div className="absolute bottom-6 right-4 sm:right-8 z-20 flex items-center gap-3">
+        <div className="flex items-center gap-1.5 mr-2">
           {spotlightMovies.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`h-2 rounded-full transition-all ${
-                idx === currentIndex ? 'w-7 bg-rose-500' : 'w-2 bg-gray-700 hover:bg-gray-500'
+              className={`h-1 rounded-full transition-all ${
+                currentIndex === idx ? 'w-6 bg-white' : 'w-2 bg-neutral-700'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
@@ -187,11 +167,18 @@ export function HeroBanner() {
         </div>
 
         <button
-          onClick={handleNext}
-          className="p-2.5 rounded-full bg-[#121826]/80 hover:bg-white/10 border border-[#1e2638] text-gray-400 hover:text-white transition-colors"
-          aria-label="Next movie"
+          onClick={handlePrev}
+          className="p-2 rounded-lg bg-neutral-900/80 border border-neutral-800 text-neutral-300 hover:text-white transition-colors"
+          aria-label="Previous slide"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <button
+          onClick={handleNext}
+          className="p-2 rounded-lg bg-neutral-900/80 border border-neutral-800 text-neutral-300 hover:text-white transition-colors"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-4 h-4" />
         </button>
       </div>
     </div>

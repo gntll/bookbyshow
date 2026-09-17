@@ -20,48 +20,48 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-[#1e2638] bg-[#04060b] text-gray-400 pt-16 pb-24 md:pb-12 text-sm">
+    <footer className="border-t border-neutral-800 bg-[#09090b] text-neutral-400 pt-16 pb-24 md:pb-12 text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Trust Banner */}
-        <div className="p-8 rounded-2xl bg-gradient-to-r from-[#0c111e] via-[#12192a] to-[#0c111e] border border-[#1e2638] mb-16 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-8 rounded-xl bg-neutral-900/60 border border-neutral-800 mb-16 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-6 h-6" />
+            <div className="w-10 h-10 rounded-lg bg-neutral-800 border border-neutral-700 text-white flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-white font-bold text-lg">The BookByShow Fair Price Guarantee</h3>
-              <p className="text-xs text-gray-400 mt-1 max-w-xl">
+              <h3 className="text-white font-bold text-base">The BookByShow Fair Price Standard</h3>
+              <p className="text-xs text-neutral-400 mt-0.5 max-w-xl">
                 We compare prices across every major box office and primary ticket seller in real time. We display exact convenience fees upfront with zero hidden surcharges.
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-xs">
-            <div className="flex items-center gap-1.5 text-gray-300">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <div className="flex items-center gap-1.5 text-neutral-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-neutral-400" />
               <span>Real-time Seats</span>
             </div>
-            <div className="flex items-center gap-1.5 text-gray-300">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>Official Outbound Handoff</span>
+            <div className="flex items-center gap-1.5 text-neutral-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-neutral-400" />
+              <span>Direct Primary Handoff</span>
             </div>
-            <div className="flex items-center gap-1.5 text-gray-300">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>SSL 256-Bit Encrypted</span>
+            <div className="flex items-center gap-1.5 text-neutral-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-neutral-400" />
+              <span>Encrypted Outbound</span>
             </div>
           </div>
         </div>
 
         {/* Aggregator Network Badges */}
-        <div className="mb-14 pb-12 border-b border-[#1a2130]">
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest text-center mb-6">
-            Comparing Live Showtimes & Tickets Across 20+ Primary Platforms
+        <div className="mb-14 pb-12 border-b border-neutral-800/80">
+          <p className="text-xs font-semibold text-neutral-500 uppercase tracking-widest text-center mb-6">
+            Comparing Live Showtimes & Tickets Across 20+ Primary Box Offices
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
             {partners.map((p, idx) => (
               <div
                 key={idx}
-                className="px-3.5 py-1.5 rounded-lg bg-[#0e1320] border border-[#1e2638] text-xs font-semibold text-gray-300 hover:text-white transition-colors"
+                className="px-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-xs font-medium text-neutral-300"
               >
                 {p}
               </div>
@@ -73,24 +73,24 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-rose-600 flex items-center justify-center text-white">
-                <Ticket className="w-4 h-4 -rotate-12" />
+              <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center text-black font-bold">
+                <Ticket className="w-3.5 h-3.5 -rotate-12 fill-black" />
               </div>
-              <span className="text-lg font-bold text-white tracking-tight">
-                BookBy<span className="text-rose-500">Show</span>
+              <span className="text-base font-bold text-white tracking-tight">
+                BookByShow
               </span>
             </div>
-            <p className="text-xs text-gray-400 leading-relaxed mb-4">
-              BookByShow.com is the world’s premier live entertainment and cinema aggregator. We help millions find the closest cinema, best seating sightlines, and lowest verified ticket rates.
+            <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+              BookByShow.com is an independent entertainment and cinema price comparison engine. We help moviegoers find the closest auditorium, optimal sightlines, and lowest verified total rates.
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-neutral-500">
               &copy; {new Date().getFullYear()} BookByShow Inc. All rights reserved.
             </p>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Popular Formats
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
+              Auditorium Formats
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
@@ -127,7 +127,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
               Major Metros
             </h4>
             <ul className="space-y-2 text-xs">
@@ -142,11 +142,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Stay Ahead of Drops
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
+              Rate Drop Alerts
             </h4>
-            <p className="text-xs text-gray-400 mb-3">
-              Get notified for 70mm IMAX ticket drops, stadium tour pre-sales, and exclusive matinee flash discounts.
+            <p className="text-xs text-neutral-400 mb-3">
+              Get notified for 70mm IMAX seat releases, stadium tour pre-sales, and verified matinee discount rates.
             </p>
             <form
               onSubmit={(e) => {
@@ -159,28 +159,28 @@ export function Footer() {
                 type="email"
                 required
                 placeholder="Enter your email"
-                className="w-full bg-[#0e1320] border border-[#1e2638] rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-rose-500"
+                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600"
               />
               <button
                 type="submit"
-                className="w-full py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-600/30 transition-colors"
+                className="w-full py-2 bg-white hover:bg-neutral-200 text-black font-semibold text-xs rounded-lg transition-colors"
               >
-                Join Free VIP Alerts
+                Join Free Alerts
               </button>
             </form>
           </div>
         </div>
 
         {/* Legal Disclaimer & FTC Affiliate Disclosure */}
-        <div className="pt-8 border-t border-[#141b2a] flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-gray-500">
+        <div className="pt-8 border-t border-neutral-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-neutral-500">
           <p className="max-w-3xl">
             <strong>Affiliate & Legal Disclosure:</strong> BookByShow.com is an independent showtime and ticket price aggregator. We are supported by our users; when you buy tickets through affiliate links on our site, we may earn a referral commission from authorized ticket sellers at no extra cost to you. All trademarks, cinema logos, and promotional artwork belong to their respective copyright holders.
           </p>
           <div className="flex items-center gap-4 shrink-0">
-            <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
-            <Link href="/terms" className="hover:underline">Terms of Service</Link>
-            <Link href="/affiliate-disclosure" className="hover:underline text-rose-400 font-medium">Affiliate Disclosure</Link>
-            <Link href="/deals" className="hover:underline">Partner Offers</Link>
+            <Link href="/privacy" className="hover:underline text-neutral-400">Privacy Policy</Link>
+            <Link href="/terms" className="hover:underline text-neutral-400">Terms of Service</Link>
+            <Link href="/affiliate-disclosure" className="hover:underline text-neutral-300 font-medium">Affiliate Disclosure</Link>
+            <Link href="/deals" className="hover:underline text-neutral-400">Partner Offers</Link>
           </div>
         </div>
       </div>

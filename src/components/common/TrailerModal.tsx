@@ -17,16 +17,16 @@ export function TrailerModal() {
       aria-labelledby="trailer-title"
     >
       <div
-        className="relative w-full max-w-4xl bg-black border border-[#1e2638] rounded-2xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl bg-[#121215] border border-neutral-800 rounded-xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between p-4 bg-[#0a0d16] border-b border-[#1e2638]">
-          <h3 id="trailer-title" className="text-base font-bold text-white tracking-wide">
+        <div className="flex items-center justify-between p-4 bg-neutral-950 border-b border-neutral-800">
+          <h3 id="trailer-title" className="text-sm font-semibold text-white tracking-wide">
             {activeTrailer.title} — Official Trailer
           </h3>
           <button
             onClick={closeTrailerModal}
-            className="p-1.5 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
             aria-label="Close trailer"
           >
             <X className="w-5 h-5" />

@@ -9,7 +9,6 @@ interface DateRibbonProps {
 }
 
 export function DateRibbon({ selectedDate, onSelectDate }: DateRibbonProps) {
-  // Generate next 7 days
   const days = Array.from({ length: 7 }).map((_, i) => {
     const d = new Date();
     d.setDate(d.getDate() + i);
@@ -28,9 +27,9 @@ export function DateRibbon({ selectedDate, onSelectDate }: DateRibbonProps) {
   });
 
   return (
-    <div className="flex items-center gap-2 overflow-x-auto py-2 scrollbar-none">
-      <div className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-gray-400 shrink-0">
-        <Calendar className="w-4 h-4 text-rose-500" />
+    <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
+      <div className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-neutral-400 shrink-0">
+        <Calendar className="w-3.5 h-3.5 text-neutral-500" />
         <span>Date:</span>
       </div>
 
@@ -40,16 +39,16 @@ export function DateRibbon({ selectedDate, onSelectDate }: DateRibbonProps) {
           <button
             key={item.iso}
             onClick={() => onSelectDate(item.iso)}
-            className={`flex flex-col items-center justify-center px-4 py-2 rounded-xl text-center transition-all shrink-0 min-w-[85px] border ${
+            className={`flex flex-col items-center justify-center px-3.5 py-1.5 rounded-lg text-center transition-colors shrink-0 min-w-[80px] border ${
               isSelected
-                ? 'bg-rose-600 border-rose-500 text-white shadow-lg shadow-rose-600/30 scale-105'
-                : 'bg-[#0f1422] border-[#1e2638] hover:border-gray-500 text-gray-300 hover:text-white'
+                ? 'bg-white border-white text-black font-semibold'
+                : 'bg-neutral-900 border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white'
             }`}
           >
-            <span className="text-[11px] font-bold uppercase tracking-wider">
+            <span className="text-[10px] uppercase tracking-wider font-semibold">
               {item.dayName}
             </span>
-            <span className="text-xs font-medium mt-0.5 opacity-90">
+            <span className="text-xs font-normal mt-0.5">
               {item.monthDay}
             </span>
           </button>

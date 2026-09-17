@@ -10,8 +10,6 @@ import {
   Search,
   Bookmark,
   ChevronDown,
-  Sparkles,
-  Flame,
 } from 'lucide-react';
 
 export function Navbar() {
@@ -22,32 +20,31 @@ export function Navbar() {
     { label: 'Movies', href: '/movies' },
     { label: 'Live Events', href: '/events' },
     { label: 'Cinemas', href: '/cinemas' },
-    { label: 'Deals & Offers', href: '/deals', badge: 'Hot' },
+    { label: 'Deals & Offers', href: '/deals' },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#1e2638] bg-[#06080e]/85 backdrop-blur-xl transition-all">
-      {/* Top micro-announcement banner */}
-      <div className="bg-gradient-to-r from-rose-950/60 via-purple-950/60 to-indigo-950/60 border-b border-white/5 py-1 px-4 text-center text-xs text-gray-300 flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+    <header className="sticky top-0 z-40 w-full border-b border-neutral-800 bg-[#09090b]/90 backdrop-blur-md transition-all">
+      {/* Discreet institutional comparison notice */}
+      <div className="bg-neutral-950 border-b border-neutral-800/80 py-1.5 px-4 text-center text-xs text-neutral-400">
         <span>
-          <strong className="text-white font-semibold">100% Price Transparency:</strong> Zero hidden convenience fees compared across AMC, Regal, Cinemark & Ticketmaster.
+          <strong className="text-neutral-200 font-semibold">Independent Price Engine:</strong> Real-time verified box office rates compared side-by-side with full surcharge transparency.
         </span>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Logo & City Selector */}
         <div className="flex items-center gap-4 sm:gap-6">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-rose-600/30 group-hover:scale-105 transition-transform">
-              <Ticket className="w-5 h-5 -rotate-12" />
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-black font-black text-sm tracking-tighter">
+              <Ticket className="w-4 h-4 -rotate-12 fill-black" />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-tight text-white flex items-center">
-                BookBy<span className="text-rose-500">Show</span>
+              <span className="font-bold text-lg tracking-tight text-white flex items-center">
+                BookByShow
               </span>
-              <span className="text-[9px] uppercase tracking-widest text-gray-400 font-medium">
-                Compare & Book
+              <span className="text-[10px] tracking-wider text-neutral-400 font-medium uppercase -mt-0.5">
+                US Box Office
               </span>
             </div>
           </Link>
@@ -55,12 +52,12 @@ export function Navbar() {
           {/* City switcher pill */}
           <button
             onClick={() => setIsCityModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#121826] border border-[#1e2638] hover:border-rose-500/50 text-xs font-semibold text-gray-300 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-xs font-medium text-neutral-300 hover:text-white transition-colors"
             title="Change Location"
           >
-            <MapPin className="w-3.5 h-3.5 text-rose-500" />
-            <span className="max-w-[100px] truncate">{currentCity.name}</span>
-            <ChevronDown className="w-3 h-3 text-gray-500" />
+            <MapPin className="w-3.5 h-3.5 text-neutral-400" />
+            <span className="max-w-[110px] truncate">{currentCity.name}</span>
+            <ChevronDown className="w-3 h-3 text-neutral-500" />
           </button>
         </div>
 
@@ -72,19 +69,13 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                   isActive
-                    ? 'text-white bg-white/10'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    ? 'text-white bg-neutral-800'
+                    : 'text-neutral-400 hover:text-white hover:bg-neutral-900'
                 }`}
               >
-                <span>{link.label}</span>
-                {link.badge && (
-                  <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-0.5">
-                    <Flame className="w-2.5 h-2.5" />
-                    {link.badge}
-                  </span>
-                )}
+                {link.label}
               </Link>
             );
           })}
@@ -95,12 +86,12 @@ export function Navbar() {
           {/* Quick Search trigger */}
           <button
             onClick={() => setIsSearchModalOpen(true)}
-            className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#121826] border border-[#1e2638] hover:border-gray-500 text-gray-400 hover:text-white text-xs transition-all"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-400 hover:text-white text-xs transition-all"
             title="Search (Cmd + K)"
           >
-            <Search className="w-4 h-4" />
-            <span className="hidden lg:inline">Search movies, events...</span>
-            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-black/40 text-gray-400 rounded border border-gray-700">
+            <Search className="w-3.5 h-3.5" />
+            <span className="hidden lg:inline">Search movies, venues...</span>
+            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-neutral-800 text-neutral-400 rounded border border-neutral-700">
               ⌘K
             </kbd>
           </button>
@@ -108,12 +99,12 @@ export function Navbar() {
           {/* Watchlist */}
           <Link
             href="/watchlist"
-            className="relative p-2.5 rounded-xl bg-[#121826] border border-[#1e2638] hover:border-rose-500/50 text-gray-300 hover:text-white transition-colors"
+            className="relative p-2 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white transition-colors"
             title="Saved Watchlist"
           >
             <Bookmark className="w-4 h-4" />
             {watchlist.length > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-600 text-white text-[10px] font-extrabold flex items-center justify-center shadow-md shadow-rose-600/50">
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white text-black text-[10px] font-bold flex items-center justify-center">
                 {watchlist.length}
               </span>
             )}
@@ -122,11 +113,11 @@ export function Navbar() {
           {/* Join VIP / Sign In CTA */}
           <button
             onClick={() => {
-              alert('Welcome to BookByShow VIP! Compare showtimes and save on convenience fees with zero subscription cost.');
+              alert('BookByShow VIP is active. Real-time surcharge calculations and alerts enabled.');
             }}
-            className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white text-xs font-bold shadow-md shadow-rose-600/30 transition-all hover:scale-[1.02]"
+            className="hidden sm:flex items-center px-4 py-1.5 rounded-lg bg-white hover:bg-neutral-200 text-black text-xs font-semibold transition-colors"
           >
-            <span>VIP Access</span>
+            <span>Rate Alerts</span>
           </button>
         </div>
       </div>
