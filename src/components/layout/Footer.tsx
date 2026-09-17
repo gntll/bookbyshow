@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Ticket, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { CITIES } from '@/data/mockData';
 
 export function Footer() {
@@ -55,7 +55,7 @@ export function Footer() {
         {/* Aggregator Network Badges */}
         <div className="mb-14 pb-12 border-b border-neutral-800/80">
           <p className="text-xs font-semibold text-neutral-500 uppercase tracking-widest text-center mb-6">
-            Comparing Live Showtimes & Tickets Across 20+ Primary Box Offices
+            Comparing Live Showtimes & Tickets Across 20+ Primary Platforms
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
             {partners.map((p, idx) => (
@@ -72,16 +72,15 @@ export function Footer() {
         {/* 4-column Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center text-black font-bold">
-                <Ticket className="w-3.5 h-3.5 -rotate-12 fill-black" />
-              </div>
-              <span className="text-base font-bold text-white tracking-tight">
-                BookByShow
-              </span>
-            </div>
+            <Link href="/" className="inline-block mb-4" aria-label="BookByShow Home">
+              <img
+                src="/logo-transparent.png"
+                alt="BookByShow"
+                className="h-8 w-auto object-contain"
+              />
+            </Link>
             <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-              BookByShow.com is an independent entertainment and cinema price comparison engine. We help moviegoers find the closest auditorium, optimal sightlines, and lowest verified total rates.
+              BookByShow.com is an independent entertainment and ticket price comparison engine. We help fans find the closest auditorium, optimal sightlines, and lowest verified total rates.
             </p>
             <p className="text-xs text-neutral-500">
               &copy; {new Date().getFullYear()} BookByShow Inc. All rights reserved.

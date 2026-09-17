@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
 import {
-  Ticket,
   MapPin,
   Search,
   Bookmark,
@@ -24,29 +23,23 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-neutral-800 bg-[#09090b]/90 backdrop-blur-md transition-all">
+    <header className="sticky top-0 z-40 w-full border-b border-neutral-800 bg-[#09090b]/95 backdrop-blur-md transition-all">
       {/* Discreet institutional comparison notice */}
       <div className="bg-neutral-950 border-b border-neutral-800/80 py-1.5 px-4 text-center text-xs text-neutral-400">
         <span>
-          <strong className="text-neutral-200 font-semibold">Independent Price Engine:</strong> Real-time verified box office rates compared side-by-side with full surcharge transparency.
+          <strong className="text-neutral-200 font-semibold">Independent Price Engine:</strong> Real-time verified rates compared side-by-side with full surcharge transparency.
         </span>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Logo & City Selector */}
         <div className="flex items-center gap-4 sm:gap-6">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-black font-black text-sm tracking-tighter">
-              <Ticket className="w-4 h-4 -rotate-12 fill-black" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-lg tracking-tight text-white flex items-center">
-                BookByShow
-              </span>
-              <span className="text-[10px] tracking-wider text-neutral-400 font-medium uppercase -mt-0.5">
-                US Box Office
-              </span>
-            </div>
+          <Link href="/" className="flex items-center group py-1" aria-label="BookByShow Home">
+            <img
+              src="/logo-transparent.png"
+              alt="BookByShow"
+              className="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90"
+            />
           </Link>
 
           {/* City switcher pill */}
@@ -110,10 +103,10 @@ export function Navbar() {
             )}
           </Link>
 
-          {/* Join VIP / Sign In CTA */}
+          {/* Rate Alerts CTA */}
           <button
             onClick={() => {
-              alert('BookByShow VIP is active. Real-time surcharge calculations and alerts enabled.');
+              alert('BookByShow rate engine is active. Real-time surcharge calculations and alerts enabled.');
             }}
             className="hidden sm:flex items-center px-4 py-1.5 rounded-lg bg-white hover:bg-neutral-200 text-black text-xs font-semibold transition-colors"
           >
