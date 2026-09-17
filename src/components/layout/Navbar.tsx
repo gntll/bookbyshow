@@ -22,7 +22,8 @@ export function Navbar() {
     { label: 'Movies', href: '/movies' },
     { label: 'Live Events', href: '/events' },
     { label: 'Cinemas', href: '/cinemas' },
-    { label: 'Deals & Offers', href: '/deals' },
+    { label: 'Guides', href: '/guides' },
+    { label: 'Deals', href: '/deals' },
   ];
 
   return (
