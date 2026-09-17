@@ -88,6 +88,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'fo-verify': '3597a55d-72a7-4af2-804b-6dd251c401b9',
+  },
 };
 
 export const viewport: Viewport = {
@@ -131,6 +134,8 @@ export default function RootLayout({
             __html: `(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7792432-7267-4f67-9f57-6687ff5764db1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');`,
           }}
         />
+        {/* FlexOffers Publisher Verification Meta Tag */}
+        <meta name="fo-verify" content="3597a55d-72a7-4af2-804b-6dd251c401b9" />
       </head>
       <body className="min-h-full flex flex-col bg-[#06080e] text-[#f3f4f6] selection:bg-rose-600 selection:text-white">
         <AppProvider>
