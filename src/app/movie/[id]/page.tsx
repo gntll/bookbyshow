@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
-import { MOVIES, CINEMAS, SHOWTIMES } from '@/data/mockData';
+import { MOVIES, CINEMAS, getShowtimesForMovie } from '@/data/mockData';
 import {
   Star,
   Clock,
@@ -47,7 +47,7 @@ export default function MovieDetailPage() {
   const isSaved = isItemInWatchlist(movie.id);
 
   // Filter showtimes for this movie
-  const movieShowtimes = SHOWTIMES.filter((s) => s.movieId === movie.id);
+  const movieShowtimes = getShowtimesForMovie(movie.id);
 
   // Group showtimes by Cinema
   const cinemasWithShowtimes = CINEMAS.map((cinema) => {

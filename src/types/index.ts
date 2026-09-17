@@ -1,4 +1,4 @@
-export type MovieFormat = 'IMAX 70mm' | 'IMAX with Laser' | 'Dolby Cinema' | 'RealD 3D' | 'Digital Standard' | '4DX' | 'ScreenX';
+export type MovieFormat = 'IMAX 70mm' | 'IMAX with Laser' | 'Dolby Cinema' | 'RealD 3D' | 'Digital Standard' | '4DX' | 'ScreenX' | '70mm Film' | 'Cinemark XD';
 
 export type EventCategory = 'concert' | 'comedy' | 'sports' | 'theatre' | 'festival';
 
@@ -63,6 +63,8 @@ export interface Movie {
   isTrending: boolean;
   isSpotlight: boolean;
   languages: string[];
+  status?: 'now_showing' | 'coming_soon' | 'advance_booking';
+  releaseStatusLabel?: string;
 }
 
 export interface Event {
@@ -96,7 +98,7 @@ export interface Event {
 export interface Cinema {
   id: string;
   name: string;
-  chain: 'AMC' | 'Regal' | 'Cinemark' | 'Alamo Drafthouse' | 'PVR INOX' | 'Odeon' | 'Independent';
+  chain: 'AMC' | 'Regal' | 'Cinemark' | 'Alamo Drafthouse' | 'PVR INOX' | 'Odeon' | 'Independent' | 'AMC Theatres' | 'Regal Cinemas';
   address: string;
   city: string;
   distanceMiles: number;

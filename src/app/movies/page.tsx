@@ -10,6 +10,7 @@ export default function MoviesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedFormat, setSelectedFormat] = useState('All');
+  const [selectedStatus, setSelectedStatus] = useState<'all' | 'now_showing' | 'advance_booking' | 'coming_soon'>('all');
   const [sortBy, setSortBy] = useState<'trending' | 'rating' | 'price'>('trending');
 
   const allGenres = ['All', 'Sci-Fi', 'Action', 'Drama', 'Adventure', 'Musical', 'Horror', 'Comedy'];
@@ -24,14 +25,18 @@ export default function MoviesPage() {
 
       const matchesGenre = selectedGenre === 'All' || m.genre.includes(selectedGenre);
       const matchesFormat = selectedFormat === 'All' || m.formats.includes(selectedFormat as MovieFormat);
+      const matchesStatus =
+        selectedStatus === 'all' ||
+        (selectedStatus === 'now_showing' && (m.status === 'now_showing' || !m.status)) ||
+        m.status === selectedStatus;
 
-      return matchesSearch && matchesGenre && matchesFormat;
+      return matchesSearch && matchesGenre && matchesFormat && matchesStatus;
     }).sort((a, b) => {
       if (sortBy === 'rating') return b.imdbScore - a.imdbScore;
       if (sortBy === 'price') return a.lowestPrice - b.lowestPrice;
       return (b.isTrending ? 1 : 0) - (a.isTrending ? 1 : 0);
     });
-  }, [searchQuery, selectedGenre, selectedFormat, sortBy]);
+  }, [searchQuery, selectedGenre, selectedFormat, selectedStatus, sortBy]);
 
   return (
     <div className="min-h-screen bg-[#06080e] pb-24">
@@ -114,6 +119,29 @@ export default function MoviesPage() {
                 }`}
               >
                 {g}
+              </button>
+            ))}
+          </div>
+
+          {/* Release Status Chips */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pt-2 border-t border-white/5 scrollbar-none">
+            <span className="text-xs text-gray-500 font-semibold px-2 shrink-0">Status:</span>
+            {[
+              { id: 'all', label: 'All Releases' },
+              { id: 'now_showing', label: '🔥 In Theaters Now' },
+              { id: 'advance_booking', label: '🎟️ Advance Booking / Pre-Sale' },
+              { id: 'coming_soon', label: '⏳ Upcoming 2025' },
+            ].map((st) => (
+              <button
+                key={st.id}
+                onClick={() => setSelectedStatus(st.id as 'all' | 'now_showing' | 'advance_booking' | 'coming_soon')}
+                className={`px-3 py-1 rounded-xl text-xs font-semibold shrink-0 transition-all ${
+                  selectedStatus === st.id
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm'
+                    : 'bg-[#141b2a] text-gray-400 hover:text-white border border-[#1e2638]'
+                }`}
+              >
+                {st.label}
               </button>
             ))}
           </div>

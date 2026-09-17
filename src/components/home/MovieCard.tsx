@@ -24,11 +24,24 @@ export function MovieCard({ movie }: { movie: Movie }) {
         {/* Gradient Scrim */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0d121e] via-transparent to-black/40" />
 
-        {/* Top Badges: Certificate & Watchlist */}
+        {/* Top Badges: Certificate, Status & Watchlist */}
         <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
-          <span className="px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white uppercase">
-            {movie.certificateRating}
-          </span>
+          <div className="flex items-center gap-1.5">
+            <span className="px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white uppercase">
+              {movie.certificateRating}
+            </span>
+            {movie.releaseStatusLabel && (
+              <span className={`px-2 py-0.5 rounded-md backdrop-blur-md border text-[10px] font-bold ${
+                movie.status === 'advance_booking'
+                  ? 'bg-amber-500/90 text-black border-amber-300 shadow-sm'
+                  : movie.status === 'coming_soon'
+                  ? 'bg-purple-600/90 text-white border-purple-400 shadow-sm'
+                  : 'bg-emerald-500/90 text-black border-emerald-300 shadow-sm'
+              }`}>
+                {movie.releaseStatusLabel}
+              </span>
+            )}
+          </div>
 
           <button
             onClick={(e) => {
