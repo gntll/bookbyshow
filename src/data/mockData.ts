@@ -462,7 +462,7 @@ export const EVENTS: Event[] = [
         fee: 28.50,
         total: 153.50,
         isLowest: true,
-        directUrl: 'https://ticketmaster.com',
+        directUrl: 'https://www.ticketmaster.com/oasis-tickets/artist/735787',
         badge: 'Official Primary Box Office',
       },
       {
@@ -516,7 +516,7 @@ export const EVENTS: Event[] = [
         fee: 18.00,
         total: 107.00,
         isLowest: true,
-        directUrl: 'https://ticketmaster.com',
+        directUrl: 'https://www.ticketmaster.com/coldplay-tickets/artist/806404',
         badge: 'Lowest Face Value',
       },
       {
@@ -559,7 +559,7 @@ export const EVENTS: Event[] = [
         fee: 28.50,
         total: 183.50,
         isLowest: true,
-        directUrl: 'https://ticketmaster.com',
+        directUrl: 'https://www.ticketmaster.com/taylor-swift-tickets/artist/1094215',
         badge: 'Official Primary Partner',
       },
       {
@@ -612,7 +612,7 @@ export const EVENTS: Event[] = [
         fee: 16.50,
         total: 101.50,
         isLowest: true,
-        directUrl: 'https://ticketmaster.com',
+        directUrl: 'https://www.ticketmaster.com/hans-zimmer-tickets/artist/1131102',
         badge: 'Best Symphony Seats',
       },
       {
@@ -655,7 +655,7 @@ export const EVENTS: Event[] = [
         fee: 28.00,
         total: 227.00,
         isLowest: true,
-        directUrl: 'https://ticketmaster.com',
+        directUrl: 'https://www.ticketmaster.com/formula-1-united-states-grand-prix-austin-texas-10-17-2025/event/3A00609CE8784E11',
         badge: 'Official 3-Day Pass',
       },
       {
@@ -698,7 +698,7 @@ export const EVENTS: Event[] = [
         fee: 19.50,
         total: 138.50,
         isLowest: true,
-        directUrl: 'https://ticketmaster.com',
+        directUrl: 'https://www.ticketmaster.com/hamilton-ny-tickets/artist/2096362',
         badge: 'Orchestra & Mezzanine',
       },
       {

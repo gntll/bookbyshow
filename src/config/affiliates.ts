@@ -81,37 +81,25 @@ export const AFFILIATE_CONFIG: Record<string, AffiliatePartnerConfig> = {
   Ticketmaster: {
     name: 'Ticketmaster',
     network: 'Impact',
-    affiliateId: process.env.NEXT_PUBLIC_AFFILIATE_TICKETMASTER_ID || 'bookbyshow-tm',
-    defaultBaseUrl: 'https://www.ticketmaster.com',
+    affiliateId: process.env.NEXT_PUBLIC_AFFILIATE_TICKETMASTER_ID || '7792432',
+    defaultBaseUrl: 'https://ticketmaster.evyy.net/c/7792432/264167/4272',
     buildUrl: (targetUrl, options) => {
       const destUrl = targetUrl || 'https://www.ticketmaster.com';
-      const impactBase = process.env.NEXT_PUBLIC_IMPACT_TICKETMASTER_URL;
+      const impactBase =
+        process.env.NEXT_PUBLIC_IMPACT_TICKETMASTER_URL ||
+        'https://ticketmaster.evyy.net/c/7792432/264167/4272';
 
-      // If user configured an Impact Ticketmaster tracking link (e.g. https://ticketmaster.evyy.net/c/XXXXX/YYYYY/ZZZZ)
-      if (impactBase) {
-        try {
-          const tracker = new URL(impactBase);
-          tracker.searchParams.set('u', destUrl);
-          const subId = options?.subId || (options?.eventId ? `event_${options.eventId}` : 'bookbyshow_web');
-          tracker.searchParams.set('subId1', subId);
-          if (options?.campaign) tracker.searchParams.set('subId2', options.campaign);
-          return tracker.toString();
-        } catch {
-          // fallback to standard URL
-        }
-      }
-
-      // Default: Clean destination URL with UTM tags
-      // Note: The Impact Universal Tracking Tag on BookByShow automatically transforms these links via impactStat('transformLinks')
       try {
-        const url = new URL(destUrl);
-        url.searchParams.set('utm_source', 'bookbyshow');
-        url.searchParams.set('utm_medium', 'affiliate');
-        url.searchParams.set('utm_campaign', 'live_events');
-        if (options?.eventId) url.searchParams.set('utm_content', options.eventId);
-        return url.toString();
+        const tracker = new URL(impactBase);
+        tracker.searchParams.set('u', destUrl);
+        const subId =
+          options?.subId ||
+          (options?.eventId ? `event_${options.eventId}` : 'bookbyshow_web');
+        tracker.searchParams.set('subId1', subId);
+        if (options?.campaign) tracker.searchParams.set('subId2', options.campaign);
+        return tracker.toString();
       } catch {
-        return destUrl;
+        return `https://ticketmaster.evyy.net/c/7792432/264167/4272?u=${encodeURIComponent(destUrl)}`;
       }
     },
   },
