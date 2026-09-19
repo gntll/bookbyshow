@@ -11,6 +11,7 @@ import { TrailerModal } from '@/components/common/TrailerModal';
 import { PriceAlertModal } from '@/components/common/PriceAlertModal';
 import { CitySelectorModal } from '@/components/common/CitySelectorModal';
 import { GlobalSearchModal } from '@/components/search/GlobalSearchModal';
+import { CookieConsent } from '@/components/common/CookieConsent';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -151,6 +152,7 @@ export default function RootLayout({
           <PriceAlertModal />
           <CitySelectorModal />
           <GlobalSearchModal />
+          <CookieConsent />
         </AppProvider>
       </body>
     </html>

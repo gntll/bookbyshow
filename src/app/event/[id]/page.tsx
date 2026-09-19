@@ -34,7 +34,7 @@ export default function EventDetailPage() {
         </p>
         <Link
           href="/events"
-          className="px-5 py-2.5 rounded-lg bg-white text-black hover:bg-neutral-200 text-sm font-semibold transition-colors"
+          className="px-5 py-2.5 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white shadow-md shadow-red-950/40 text-sm font-semibold transition-colors"
         >
           Browse All Events
         </Link>
@@ -218,10 +218,10 @@ export default function EventDetailPage() {
                   <a
                     href={buildAffiliateOutboundUrl(quote.provider, quote.directUrl)}
                     target="_blank"
-                    rel="noopener noreferrer sponsored"
+                    rel="noopener noreferrer sponsored nofollow"
                     className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       isBest
-                        ? 'bg-white text-black hover:bg-neutral-200'
+                        ? 'bg-[#e51821] hover:bg-[#c9121a] text-white shadow-md shadow-red-950/40'
                         : 'bg-neutral-800 text-white hover:bg-neutral-700'
                     }`}
                   >

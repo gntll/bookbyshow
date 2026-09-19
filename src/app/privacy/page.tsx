@@ -63,13 +63,41 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="text-base font-bold text-white">4. Contact Us</h2>
+          <section id="do-not-sell" className="space-y-3 pt-4 border-t border-neutral-800">
+            <h2 className="text-base font-bold text-white flex items-center gap-2">
+              <Lock className="w-4 h-4 text-[#e51821]" />
+              4. California Privacy Rights (CCPA / CPRA)
+            </h2>
             <p className="text-xs sm:text-sm">
-              If you have questions regarding this Privacy Policy, please reach out to{' '}
-              <a href="mailto:privacy@bookbyshow.com" className="text-white hover:underline">
+              Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), California residents are guaranteed specific privacy protections:
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-xs sm:text-sm text-neutral-400 ml-2">
+              <li><strong>No Sale of Personal Information:</strong> BookByShow does not sell, rent, or monetize your personal data with third parties.</li>
+              <li><strong>Right to Know & Delete:</strong> You may request disclosure or permanent deletion of any stored contact preferences.</li>
+              <li><strong>Non-Discrimination:</strong> We never alter pricing or deny service for exercising your statutory privacy choices.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-3 pt-4 border-t border-neutral-800">
+            <h2 className="text-base font-bold text-white flex items-center gap-2">
+              <Eye className="w-4 h-4 text-[#e51821]" />
+              5. European Union & UK GDPR Rights (Articles 15–22)
+            </h2>
+            <p className="text-xs sm:text-sm">
+              EEA and UK residents have guaranteed data subject rights, including the Right of Access (Art. 15), Right to Erasure / &quot;Right to be Forgotten&quot; (Art. 17), Right to Rectification (Art. 16), and Right to Restrict Processing (Art. 18).
+            </p>
+          </section>
+
+          <section className="space-y-2 pt-4 border-t border-neutral-800">
+            <h2 className="text-base font-bold text-white flex items-center gap-2">
+              <Server className="w-4 h-4 text-[#e51821]" />
+              6. Data Protection Officer & Privacy Inquiries
+            </h2>
+            <p className="text-xs sm:text-sm">
+              To exercise your privacy rights or request data erasure, contact our compliance desk at{' '}
+              <a href="mailto:privacy@bookbyshow.com" className="text-[#e51821] hover:underline font-semibold">
                 privacy@bookbyshow.com
-              </a>.
+              </a>. All verified statutory requests are processed within thirty (30) days.
             </p>
           </section>
         </div>

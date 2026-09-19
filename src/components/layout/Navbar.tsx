@@ -42,8 +42,8 @@ export function Navbar() {
           </div>
           <button
             onClick={() => setShowPromoBanner(false)}
-            className="text-white/80 hover:text-white p-0.5 rounded transition-colors"
-            aria-label="Dismiss banner"
+            className="text-white/80 hover:text-white p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Dismiss announcement banner"
           >
             <X className="w-3.5 h-3.5" />
           </button>
