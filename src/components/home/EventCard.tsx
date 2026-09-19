@@ -25,9 +25,16 @@ export function EventCard({ event }: { event: Event }) {
 
         {/* Top Badges */}
         <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between z-10">
-          <span className="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-neutral-200 border border-neutral-700">
-            {event.category}
-          </span>
+          <div className="flex items-center gap-1.5">
+            <span className="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-neutral-200 border border-neutral-700">
+              {event.category}
+            </span>
+            {event.quotes.some((q) => q.provider === 'Ticketmaster') && (
+              <span className="px-1.5 py-0.5 rounded bg-blue-950/85 backdrop-blur-md text-[9px] font-bold text-blue-300 border border-blue-500/40">
+                Ticketmaster
+              </span>
+            )}
+          </div>
 
           <button
             onClick={(e) => {

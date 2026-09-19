@@ -11,15 +11,24 @@ export default function EventsPage() {
 
   const categories = [
     { id: 'all', label: 'All Live Events' },
+    { id: 'ticketmaster', label: 'Ticketmaster Primary' },
     { id: 'concert', label: 'Concerts & Stadium Tours' },
-    { id: 'comedy', label: 'Standup Comedy' },
     { id: 'sports', label: 'Live Sports' },
     { id: 'theatre', label: 'Broadway & Theatre' },
+    { id: 'comedy', label: 'Standup Comedy' },
   ];
 
   const filtered = useMemo(() => {
     return EVENTS.filter((e) => {
-      const matchesCategory = selectedCategory === 'all' || e.category === selectedCategory;
+      let matchesCategory = false;
+      if (selectedCategory === 'all') {
+        matchesCategory = true;
+      } else if (selectedCategory === 'ticketmaster') {
+        matchesCategory = e.quotes.some((q) => q.provider === 'Ticketmaster');
+      } else {
+        matchesCategory = e.category === selectedCategory;
+      }
+
       const matchesSearch =
         e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         e.artistOrHost.toLowerCase().includes(searchQuery.toLowerCase()) ||
