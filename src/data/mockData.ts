@@ -462,7 +462,7 @@ export const EVENTS: Event[] = [
         fee: 28.50,
         total: 153.50,
         isLowest: true,
-        directUrl: 'https://www.ticketmaster.com/oasis-tickets/artist/767954',
+        directUrl: 'https://www.ticketmaster.com/search?q=Oasis',
         badge: 'Official Primary Box Office',
       },
       {
@@ -516,7 +516,7 @@ export const EVENTS: Event[] = [
         fee: 18.00,
         total: 107.00,
         isLowest: true,
-        directUrl: 'https://www.ticketmaster.com/coldplay-tickets/artist/806497',
+        directUrl: 'https://www.ticketmaster.com/search?q=Coldplay',
         badge: 'Lowest Face Value',
       },
       {
@@ -559,7 +559,7 @@ export const EVENTS: Event[] = [
         fee: 28.50,
         total: 183.50,
         isLowest: true,
-        directUrl: 'https://www.ticketmaster.com/taylor-swift-tickets/artist/1094264',
+        directUrl: 'https://www.ticketmaster.com/search?q=Taylor+Swift',
         badge: 'Official Primary Partner',
       },
       {
@@ -612,7 +612,7 @@ export const EVENTS: Event[] = [
         fee: 16.50,
         total: 101.50,
         isLowest: true,
-        directUrl: 'https://www.ticketmaster.com/hans-zimmer-tickets/artist/1460334',
+        directUrl: 'https://www.ticketmaster.com/search?q=Hans+Zimmer',
         badge: 'Best Symphony Seats',
       },
       {
@@ -698,7 +698,7 @@ export const EVENTS: Event[] = [
         fee: 19.50,
         total: 138.50,
         isLowest: true,
-        directUrl: 'https://www.ticketmaster.com/hamilton-tickets/artist/2186718',
+        directUrl: 'https://www.ticketmaster.com/search?q=Hamilton',
         badge: 'Orchestra & Mezzanine',
       },
       {

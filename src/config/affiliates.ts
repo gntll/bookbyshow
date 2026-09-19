@@ -84,7 +84,18 @@ export const AFFILIATE_CONFIG: Record<string, AffiliatePartnerConfig> = {
     affiliateId: process.env.NEXT_PUBLIC_AFFILIATE_TICKETMASTER_ID || '7792432',
     defaultBaseUrl: 'https://ticketmaster.evyy.net/c/7792432/264167/4272',
     buildUrl: (targetUrl, options) => {
-      const destUrl = targetUrl || 'https://www.ticketmaster.com';
+      let destUrl = targetUrl || 'https://www.ticketmaster.com';
+
+      // Defensive auto-correction: Legacy or dead artist slugs (e.g. /artist/123) 404 on Ticketmaster US.
+      // Automatically convert them to guaranteed-live Ticketmaster search URLs.
+      if (destUrl.includes('/artist/')) {
+        const match = destUrl.match(/ticketmaster\.com\/([^\/]+)-tickets\/artist\//i);
+        if (match && match[1]) {
+          const artistQuery = match[1].replace(/-/g, ' ');
+          destUrl = `https://www.ticketmaster.com/search?q=${encodeURIComponent(artistQuery)}`;
+        }
+      }
+
       const impactBase =
         process.env.NEXT_PUBLIC_IMPACT_TICKETMASTER_URL ||
         'https://ticketmaster.evyy.net/c/7792432/264167/4272';
@@ -162,15 +173,7 @@ export function buildAffiliateOutboundUrl(
   }
 
   try {
-    const result = config.buildUrl(rawUrl, options);
-    if (options?.medium || options?.campaign || options?.subId) {
-      const parsed = new URL(result);
-      if (options.medium) parsed.searchParams.set('utm_medium', options.medium);
-      if (options.campaign) parsed.searchParams.set('utm_campaign', options.campaign);
-      if (options.subId) parsed.searchParams.set('subId', options.subId);
-      return parsed.toString();
-    }
-    return result;
+    return config.buildUrl(rawUrl, options);
   } catch {
     return rawUrl;
   }
