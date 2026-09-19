@@ -51,7 +51,7 @@ export function normalizeTicketmasterEvent(raw: any): Event {
       fee: Math.round(minPrice * 0.22 * 100) / 100,
       total: Math.round((minPrice * 1.34) * 100) / 100,
       isLowest: false,
-      directUrl: 'https://seatgeek.com',
+      directUrl: `https://seatgeek.com/search?search=${encodeURIComponent(raw.name)}`,
       badge: 'Verified Resale',
     },
     {
@@ -60,7 +60,7 @@ export function normalizeTicketmasterEvent(raw: any): Event {
       fee: Math.round(minPrice * 0.24 * 100) / 100,
       total: Math.round((minPrice * 1.39) * 100) / 100,
       isLowest: false,
-      directUrl: 'https://stubhub.com',
+      directUrl: `https://www.stubhub.com/secure/search?q=${encodeURIComponent(raw.name)}`,
       badge: 'FanProtect Guarantee',
     },
   ];

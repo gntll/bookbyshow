@@ -119,23 +119,64 @@ export const AFFILIATE_CONFIG: Record<string, AffiliatePartnerConfig> = {
     network: 'Partnerize',
     affiliateId: process.env.NEXT_PUBLIC_AFFILIATE_STUBHUB_ID || 'bookbyshow-sh',
     defaultBaseUrl: 'https://www.stubhub.com',
-    buildUrl: (targetUrl) => {
-      const url = new URL(targetUrl || 'https://www.stubhub.com');
-      url.searchParams.set('utm_source', 'bookbyshow');
-      url.searchParams.set('utm_medium', 'affiliate');
-      return url.toString();
+    buildUrl: (targetUrl, options) => {
+      const destUrl = targetUrl || 'https://www.stubhub.com';
+      const partnerizeBase = process.env.NEXT_PUBLIC_PARTNERIZE_STUBHUB_URL;
+
+      if (partnerizeBase) {
+        try {
+          const cleanedBase = partnerizeBase.replace(/\/destination:.*$/, '');
+          return `${cleanedBase}/destination:${encodeURIComponent(destUrl)}`;
+        } catch {
+          return `${partnerizeBase}?destination=${encodeURIComponent(destUrl)}`;
+        }
+      }
+
+      try {
+        const url = new URL(destUrl);
+        url.searchParams.set('utm_source', 'bookbyshow');
+        url.searchParams.set('utm_medium', 'affiliate');
+        if (options?.eventId) url.searchParams.set('utm_campaign', options.eventId);
+        return url.toString();
+      } catch {
+        return destUrl;
+      }
     },
   },
   SeatGeek: {
     name: 'SeatGeek',
     network: 'Impact',
-    affiliateId: process.env.NEXT_PUBLIC_AFFILIATE_SEATGEEK_ID || 'bookbyshow-sg',
+    affiliateId: process.env.NEXT_PUBLIC_AFFILIATE_SEATGEEK_ID || '7792432',
     defaultBaseUrl: 'https://seatgeek.com',
-    buildUrl: (targetUrl) => {
-      const url = new URL(targetUrl || 'https://seatgeek.com');
-      url.searchParams.set('aid', 'bookbyshow');
-      url.searchParams.set('utm_source', 'bookbyshow');
-      return url.toString();
+    buildUrl: (targetUrl, options) => {
+      const destUrl = targetUrl || 'https://seatgeek.com';
+      const impactBase = process.env.NEXT_PUBLIC_IMPACT_SEATGEEK_URL;
+
+      if (impactBase) {
+        try {
+          const tracker = new URL(impactBase);
+          tracker.searchParams.set('u', destUrl);
+          const subId =
+            options?.subId ||
+            (options?.eventId ? `event_${options.eventId}` : 'bookbyshow_web');
+          tracker.searchParams.set('subId1', subId);
+          if (options?.campaign) tracker.searchParams.set('subId2', options.campaign);
+          return tracker.toString();
+        } catch {
+          return `${impactBase}?u=${encodeURIComponent(destUrl)}`;
+        }
+      }
+
+      try {
+        const url = new URL(destUrl);
+        url.searchParams.set('aid', process.env.NEXT_PUBLIC_AFFILIATE_SEATGEEK_ID || 'bookbyshow');
+        url.searchParams.set('utm_source', 'bookbyshow');
+        url.searchParams.set('utm_medium', 'affiliate');
+        if (options?.eventId) url.searchParams.set('utm_campaign', options.eventId);
+        return url.toString();
+      } catch {
+        return destUrl;
+      }
     },
   },
   'Atom Tickets': {
