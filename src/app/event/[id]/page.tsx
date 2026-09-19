@@ -216,7 +216,11 @@ export default function EventDetailPage() {
                   </div>
 
                   <a
-                    href={buildAffiliateOutboundUrl(quote.provider, quote.directUrl)}
+                    href={buildAffiliateOutboundUrl(quote.provider, quote.directUrl, {
+                      eventId: event.id,
+                      subId: `event_${event.id}`,
+                      campaign: 'event_detail',
+                    })}
                     target="_blank"
                     rel="noopener noreferrer sponsored nofollow"
                     className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-colors ${
