@@ -17,8 +17,8 @@ export const env = {
   hasTmdb: !!process.env.TMDB_API_KEY,
 
   // AdSense Monetization
-  adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || '',
-  hasAdSense: !!process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID,
+  adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-8603573631283451',
+  hasAdSense: true,
 
   // Price Drop Email Delivery
   resendApiKey: process.env.RESEND_API_KEY || '',

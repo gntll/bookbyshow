@@ -20,7 +20,7 @@ export function AdBanner({
   className = '',
 }: AdBannerProps) {
   const adRef = useRef<HTMLModElement>(null);
-  const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-8603573631283451';
   const isProduction = process.env.NODE_ENV === 'production';
   const hasLoadedRef = useRef(false);
 
