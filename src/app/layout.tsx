@@ -106,7 +106,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
+  const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+
+  const websiteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'BookByShow',
@@ -118,15 +120,46 @@ export default function RootLayout({
     },
   };
 
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'BookByShow',
+    url: 'https://bookbyshow.com',
+    logo: 'https://bookbyshow.com/icon.svg',
+    sameAs: [
+      'https://twitter.com/bookbyshow',
+      'https://facebook.com/bookbyshow',
+      'https://instagram.com/bookbyshow',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: 'support@bookbyshow.com',
+      contactType: 'customer support',
+      availableLanguage: 'English',
+    },
+  };
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <head>
+        {/* Google AdSense Publisher Tag */}
+        {adsenseClientId && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
+            crossOrigin="anonymous"
+          />
+        )}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {/* Impact.com Universal Tracking & Publisher Verification Tag */}
         <script

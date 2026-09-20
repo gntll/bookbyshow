@@ -100,6 +100,45 @@ export default function PrivacyPage() {
               </a>. All verified statutory requests are processed within thirty (30) days.
             </p>
           </section>
+
+          <section className="space-y-3 pt-4 border-t border-neutral-800">
+            <h2 className="text-base font-bold text-white flex items-center gap-2">
+              <Cookie className="w-4 h-4 text-[#e51821]" />
+              7. Google AdSense & Third-Party Advertising Disclosures
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-300">
+              BookByShow partners with third-party advertising networks, including Google AdSense, to display relevant advertisements across our entertainment catalog.
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-xs sm:text-sm text-neutral-400 ml-2">
+              <li>
+                <strong>Third-Party Vendor Cookies:</strong> Third-party vendors, including Google, use cookies to serve ads based on your prior visits to BookByShow and other sites across the Internet.
+              </li>
+              <li>
+                <strong>Google Advertising Cookies:</strong> Google&apos;s use of advertising cookies (such as DoubleClick) enables it and its certified advertising partners to serve targeted ads based on your visits to our platform and/or other sites on the web.
+              </li>
+              <li>
+                <strong>Opt-Out of Personalized Advertising:</strong> You may opt out of personalized advertising by visiting{' '}
+                <a
+                  href="https://www.google.com/settings/ads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#e51821] hover:underline font-semibold inline-flex items-center gap-0.5"
+                >
+                  Google Ads Settings
+                </a>
+                . Alternatively, you can opt out of a third-party vendor&apos;s use of cookies for personalized advertising by visiting{' '}
+                <a
+                  href="https://www.aboutads.info/choices/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#e51821] hover:underline font-semibold inline-flex items-center gap-0.5"
+                >
+                  AboutAds.info
+                </a>{' '}
+                or the Network Advertising Initiative.
+              </li>
+            </ul>
+          </section>
         </div>
 
         <div className="text-center pt-4 text-xs text-neutral-500 flex items-center justify-center gap-4">

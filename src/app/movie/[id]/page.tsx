@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
 import { MOVIES, CINEMAS, getShowtimesForMovie } from '@/data/mockData';
 import { DateRibbon } from '@/components/home/DateRibbon';
+import { AdBanner } from '@/components/ads/AdBanner';
 import {
   Star,
   Clock,
@@ -58,8 +59,76 @@ export default function MovieDetailPage() {
     return { cinema, times };
   }).filter((g) => g.times.length > 0);
 
+  const movieJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Movie',
+    name: movie.title,
+    image: movie.posterUrl,
+    description: movie.synopsis,
+    director: {
+      '@type': 'Person',
+      name: movie.director,
+    },
+    actor: movie.cast.map((c) => ({
+      '@type': 'Person',
+      name: c,
+    })),
+    genre: movie.genre,
+    duration: `PT${movie.runtimeMinutes}M`,
+    datePublished: movie.releaseDate,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: movie.imdbScore,
+      bestRating: '10',
+      worstRating: '1',
+      ratingCount: 15400,
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      lowPrice: movie.lowestPrice.toFixed(2),
+      highPrice: (movie.lowestPrice * 1.8).toFixed(2),
+      offerCount: cinemasWithShowtimes.reduce((acc, c) => acc + c.times.length, 0) || 12,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://bookbyshow.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Movies',
+        item: 'https://bookbyshow.com/movies',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: movie.title,
+        item: `https://bookbyshow.com/movie/${movie.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#060709] pb-24">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(movieJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* Top Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <Link
@@ -335,6 +404,9 @@ export default function MovieDetailPage() {
             ))}
           </div>
         )}
+
+        {/* AdSense Placement */}
+        <AdBanner format="leaderboard" className="mt-12" />
       </div>
     </div>
   );

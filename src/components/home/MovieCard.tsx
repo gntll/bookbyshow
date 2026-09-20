@@ -120,7 +120,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
         {/* Price & Compare Button: Bold cinema red CTA */}
         <div className="pt-2 border-t border-neutral-800 flex items-center justify-between gap-2">
           <div>
-            <span className="text-[9px] uppercase text-neutral-500 font-semibold block leading-tight">
+            <span className="text-[10px] uppercase text-neutral-400 font-semibold block leading-tight">
               Lowest Rate
             </span>
             <span className="text-xs font-bold text-white">
@@ -130,7 +130,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
 
           <Link
             href={`/movie/${movie.slug}`}
-            className="px-3.5 py-1.5 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-xs font-bold flex items-center gap-1 shadow-sm shadow-red-950/40 transition-colors"
+            className="px-3.5 py-2 min-h-[36px] rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-xs font-bold inline-flex items-center gap-1 shadow-sm shadow-red-950/40 transition-colors focus:outline-none focus:ring-2 focus:ring-[#e51821] focus:ring-offset-2 focus:ring-offset-neutral-900"
           >
             <Ticket className="w-3 h-3" />
             <span>Compare</span>

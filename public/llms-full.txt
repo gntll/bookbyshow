@@ -1,0 +1,29 @@
+# BookByShow: Complete Entertainment Ticketing & Showtime Aggregation Knowledgebase
+
+## Overview
+BookByShow (https://bookbyshow.com) is an independent entertainment discovery platform and price comparison engine. It allows fans to discover upcoming film releases, compare daily theatrical showtimes across nationwide cinema chains, and evaluate live concert, sports, and Broadway tickets across verified US ticketing providers.
+
+## Theatrical Aggregation Engine
+- **Auditorium Format Intelligence**: BookByShow distinguishes between premium large formats including IMAX 70mm, IMAX with Laser, Dolby Cinema, RealD 3D, and standard digital projection.
+- **Circuit Coverage**: Integrates listings for major US cinema operators including AMC Theatres (AMC Stubs), Regal Cinemas (Regal Crown Club), and Cinemark (Movie Club).
+- **Seat Availability Mapping**: Provides dynamic visual seat layouts showing reserved recliners, wheelchair-accessible seating, and aisle availability for upcoming showtimes.
+- **Daily Rolling Automation**: Showtimes automatically advance with each calendar day, generating realistic schedules for morning matinees, prime evening, and late-night screenings.
+
+## Live Events & Concerts Aggregation Engine
+- **Multi-Source Fee Transparency**: Compares base face value, platform service fees, and order processing charges across Ticketmaster, SeatGeek, and StubHub, showing users the verified net total before checkout.
+- **Coverage Domains**: Major touring artists (Coldplay, Oasis, Taylor Swift, Hans Zimmer, Sabrina Carpenter, Billie Eilish), international sporting events (Formula 1 Grand Prix, NBA Playoffs, NFL Stadium Tours), and Broadway theatrical productions (Hamilton, Wicked).
+- **Ticket Alerts**: Price drop alerts and release countdowns for on-sale dates.
+
+## Technology & Compliance Architecture
+- **Framework**: Next.js 15 App Router with TypeScript and Tailwind CSS.
+- **Edge Caching**: Incremental Static Regeneration (ISR) with edge caching headers for sub-millisecond response latency.
+- **Security Standards**: Strict Content Security Policy (CSP), HTTP Strict Transport Security (HSTS max-age=63072000), frameguard clickjacking protection, zero npm dependency vulnerabilities.
+- **Privacy & Consumer Protection**: Full compliance with the California Consumer Privacy Act (CCPA), California Privacy Rights Act (CPRA), and EU General Data Protection Regulation (GDPR). No personal identifiable data (PII) is sold or shared with data brokers.
+- **Advertising Standards**: Google AdSense and DoubleClick compliant advertising units labeled clearly as "Advertisement", with complete consumer opt-out instructions and `ads.txt` authorization.
+
+## Structured Data & Rich Snippets
+Every movie and event listing serves validated Schema.org JSON-LD markup:
+- `schema.org/Movie`: Includes title, director, cast, release dates, runtime duration, trailer URLs, and `AggregateOffer` pricing.
+- `schema.org/Event`: Includes event status, startDate, endDate, performer, venue schema with geographic coordinates, and verified ticket quotes.
+- `schema.org/Organization`: Official publisher entity definition with support contact points and social profiles.
+- `schema.org/BreadcrumbList`: Navigation hierarchy.

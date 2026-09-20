@@ -16,6 +16,7 @@ import {
   Music,
 } from 'lucide-react';
 import { buildAffiliateOutboundUrl } from '@/config/affiliates';
+import { AdBanner } from '@/components/ads/AdBanner';
 
 export default function EventDetailPage() {
   const params = useParams();
@@ -34,7 +35,7 @@ export default function EventDetailPage() {
         </p>
         <Link
           href="/events"
-          className="px-5 py-2.5 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white shadow-md shadow-red-950/40 text-sm font-semibold transition-colors"
+          className="px-5 py-2.5 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white shadow-md shadow-red-950/40 text-sm font-semibold transition-colors min-h-[44px] inline-flex items-center"
         >
           Browse All Events
         </Link>
@@ -44,6 +45,66 @@ export default function EventDetailPage() {
 
   const isSaved = isItemInWatchlist(event.id);
   const lowestTotal = Math.min(...event.quotes.map((q) => q.total));
+  const highestTotal = Math.max(...event.quotes.map((q) => q.total));
+
+  const eventJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.title,
+    startDate: `${event.date}T${event.time}:00`,
+    endDate: `${event.date}T23:00:00`,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: event.venueName,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: event.venueCity,
+        addressCountry: 'US',
+      },
+    },
+    image: [event.bannerUrl],
+    description: event.description,
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      lowPrice: lowestTotal.toFixed(2),
+      highPrice: highestTotal.toFixed(2),
+      offerCount: event.quotes.length,
+      url: `https://bookbyshow.com/event/${event.slug}`,
+      availability: 'https://schema.org/InStock',
+    },
+    performer: {
+      '@type': 'PerformingGroup',
+      name: event.artistOrHost,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://bookbyshow.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Events',
+        item: 'https://bookbyshow.com/events',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: event.title,
+        item: `https://bookbyshow.com/event/${event.slug}`,
+      },
+    ],
+  };
 
   const downloadCalendarFile = () => {
     const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//BookByShow//Ticket Aggregator//EN\nBEGIN:VEVENT\nSUMMARY:${event.title}\nDESCRIPTION:${event.description.replace(/\n/g, ' ')}\nLOCATION:${event.venueName}, ${event.venueCity}\nDTSTART:${event.date.replace(/-/g, '')}T${event.time.replace(':', '')}00Z\nSTATUS:CONFIRMED\nEND:VEVENT\nEND:VCALENDAR`;
@@ -58,7 +119,17 @@ export default function EventDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-24">
+    <div className="min-h-screen bg-[#060709] pb-24">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* Top Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <Link
@@ -71,13 +142,13 @@ export default function EventDetailPage() {
       </div>
 
       {/* Banner Hero */}
-      <div className="relative w-full overflow-hidden min-h-[400px] flex items-center bg-[#09090b] border-b border-neutral-800">
+      <div className="relative w-full overflow-hidden min-h-[400px] flex items-center bg-[#060709] border-b border-neutral-800">
         <img
           src={event.bannerUrl}
           alt={event.title}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-20 filter brightness-75 scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060709] via-[#060709]/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/90 to-transparent" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
@@ -237,6 +308,9 @@ export default function EventDetailPage() {
             );
           })}
         </div>
+
+        {/* AdSense Placement */}
+        <AdBanner format="leaderboard" className="mt-12" />
       </div>
     </div>
   );

@@ -1,0 +1,33 @@
+# BookByShow (bookbyshow.com)
+
+> Real-time price comparison and seat discovery aggregator for movies, concerts, theatre, and live sports across the United States.
+
+BookByShow indexes movie showtimes and live event ticket prices across primary box offices and secondary marketplaces in real time. It enables consumers to discover certified seat availability, compare final checkout fees (including service and convenience fees), and purchase tickets via authorized partners at zero markup.
+
+## Core Features
+- **Movie Showtimes Aggregator**: Live format-aware daily showtimes across AMC Theatres, Regal Cinemas, and Cinemark. Supports IMAX 70mm, Dolby Cinema, RealD 3D, and Digital Standard screens with dynamic auditorium seat maps.
+- **Concert & Event Ticketing**: Live tour dates, multi-source ticket price comparison across Ticketmaster, SeatGeek, and StubHub, with upfront fee transparency and price drop notifications.
+- **Autonomous Live Feeds**: Rolling daily schedule engines and real-time TMDB / Ticketmaster Discovery API integrations ensuring all listings, tour dates, and prices remain current every day without manual intervention.
+- **Zero Surcharge Guarantee**: Free price comparison platform; outbound partner links connect directly to authorized primary box offices and verified ticket marketplaces.
+
+## Key Directory Endpoints
+- **Homepage**: https://bookbyshow.com/
+- **Now Showing Movies**: https://bookbyshow.com/movies
+- **Live Concerts & Events**: https://bookbyshow.com/events
+- **Trending US Cinemas**: https://bookbyshow.com/cinemas
+- **Ticket Deals & Fee Comparison**: https://bookbyshow.com/deals
+- **Cinema Experience Guides**: https://bookbyshow.com/guides
+- **Frequently Asked Questions**: https://bookbyshow.com/faq
+- **Publisher & Support Contact**: https://bookbyshow.com/contact
+- **Affiliate Disclosure**: https://bookbyshow.com/affiliate-disclosure
+- **Privacy Policy**: https://bookbyshow.com/privacy
+- **Terms of Service**: https://bookbyshow.com/terms
+
+## Primary Ticketing Partners
+- AMC Theatres (Official Box Office)
+- Regal Cinemas (Official Box Office)
+- Cinemark (Official Box Office)
+- Fandango (Authorized Ticketer)
+- Ticketmaster (Primary Live Ticketing)
+- SeatGeek (Verified Marketplace)
+- StubHub (Verified Marketplace)

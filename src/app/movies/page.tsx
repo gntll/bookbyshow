@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { MOVIES } from '@/data/mockData';
 import { MovieCard } from '@/components/home/MovieCard';
+import { AdBanner } from '@/components/ads/AdBanner';
 import { Search, Film } from 'lucide-react';
 import { Movie, MovieFormat } from '@/types';
 
@@ -191,6 +192,9 @@ export default function MoviesPage() {
               ))}
             </div>
           )}
+
+          {/* AdSense Placement */}
+          <AdBanner format="leaderboard" className="mt-12" />
         </div>
       </div>
     </div>

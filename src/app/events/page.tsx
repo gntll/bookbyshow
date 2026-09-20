@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { EVENTS } from '@/data/mockData';
 import { EventCard } from '@/components/home/EventCard';
+import { AdBanner } from '@/components/ads/AdBanner';
 import { Music, Search } from 'lucide-react';
 import { Event } from '@/types';
 
@@ -123,6 +124,9 @@ export default function EventsPage() {
               <EventCard key={event.id} event={event} />
             ))}
           </div>
+
+          {/* AdSense Placement */}
+          <AdBanner format="leaderboard" className="mt-12" />
         </div>
       </div>
     </div>

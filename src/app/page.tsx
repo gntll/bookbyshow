@@ -9,6 +9,7 @@ import { MovieCard } from '@/components/home/MovieCard';
 import { EventCard } from '@/components/home/EventCard';
 import { AggregatorTrustBanner } from '@/components/home/AggregatorTrustBanner';
 import { TrendingCinemas } from '@/components/home/TrendingCinemas';
+import { AdBanner } from '@/components/ads/AdBanner';
 import { MOVIES, EVENTS } from '@/data/mockData';
 import {
   ArrowRight,
@@ -138,6 +139,9 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+        {/* AdSense Leaderboard Placement */}
+        <AdBanner format="leaderboard" className="my-4" />
 
         {/* 4. Aggregator Trust & Transparency Showcase */}
         <AggregatorTrustBanner />
