@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop',
+        url: '/api/og?title=BookByShow%20Entertainment%20Aggregator&subtitle=Compare%20Showtimes%2C%20Seats%20%26%20Prices%20Across%20AMC%2C%20Regal%2C%20Cinemark%20%26%20Ticketmaster&badge=100%25%20Transparency',
         width: 1200,
         height: 630,
         alt: 'BookByShow Entertainment Aggregator',
@@ -82,6 +82,9 @@ export const metadata: Metadata = {
     description:
       'Compare ticket prices and fees across AMC, Regal, Cinemark, and Ticketmaster.',
     creator: '@bookbyshow',
+    images: [
+      '/api/og?title=BookByShow%20Entertainment%20Aggregator&subtitle=Compare%20Showtimes%2C%20Seats%20%26%20Prices%20Across%20AMC%2C%20Regal%2C%20Cinemark%20%26%20Ticketmaster&badge=100%25%20Transparency',
+    ],
   },
   robots: {
     index: true,

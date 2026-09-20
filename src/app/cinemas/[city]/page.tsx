@@ -37,6 +37,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://bookbyshow.com/cinemas/${market.slug}`,
       siteName: 'BookByShow',
       type: 'website',
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(`Cinemas in ${market.name}`)}&badge=${encodeURIComponent(`${market.cinemaCount}+ Theatres`)}&type=cinema`,
+          width: 1200,
+          height: 630,
+          alt: `Cinemas in ${market.name}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [
+        `/api/og?title=${encodeURIComponent(`Cinemas in ${market.name}`)}&badge=${encodeURIComponent(`${market.cinemaCount}+ Theatres`)}&type=cinema`,
+      ],
     },
   };
 }

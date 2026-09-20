@@ -1,0 +1,33 @@
+name: Daily Price Alerts Check
+
+on:
+  schedule:
+    # Runs daily at 14:00 UTC (10:00 AM EDT / 7:00 AM PDT)
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-alerts:
+    name: Evaluate Price Alerts & Dispatch Notifications
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Price Alerts Check Endpoint
+        run: |
+          echo "Triggering BookByShow price alerts evaluation..."
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://bookbyshow.com/api/alerts/check")
+          
+          BODY=$(echo "$RESPONSE" | sed -e '$d')
+          STATUS=$(echo "$RESPONSE" | tail -n1 | cut -d':' -f2)
+
+          echo "Status: $STATUS"
+          echo "Response: $BODY"
+
+          if [ "$STATUS" -ne 200 ]; then
+            echo "Alert check returned non-200 status code: $STATUS"
+            # In case the site is still deploying or cold-starting, fallback to GET check
+            FALLBACK=$(curl -s "https://bookbyshow.com/api/alerts/check?action=evaluate")
+            echo "Fallback response: $FALLBACK"
+          fi

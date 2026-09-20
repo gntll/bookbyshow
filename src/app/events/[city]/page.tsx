@@ -38,6 +38,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://bookbyshow.com/events/${market.slug}`,
       siteName: 'BookByShow',
       type: 'website',
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(`Live Events in ${market.name}`)}&badge=${encodeURIComponent(`${market.name} Shows`)}&type=event`,
+          width: 1200,
+          height: 630,
+          alt: `Live Events in ${market.name}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [
+        `/api/og?title=${encodeURIComponent(`Live Events in ${market.name}`)}&badge=${encodeURIComponent(`${market.name} Shows`)}&type=event`,
+      ],
     },
   };
 }
