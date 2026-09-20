@@ -11,11 +11,12 @@ import {
   ChevronDown,
   X,
   Tag,
+  Sparkles,
 } from 'lucide-react';
 
 export function Navbar() {
   const pathname = usePathname();
-  const { currentCity, setIsCityModalOpen, setIsSearchModalOpen, watchlist } = useApp();
+  const { currentCity, setIsCityModalOpen, setIsSearchModalOpen, watchlist, openShowScout } = useApp();
   const [showPromoBanner, setShowPromoBanner] = useState(true);
 
   const navLinks = [
@@ -126,14 +127,14 @@ export function Navbar() {
             )}
           </Link>
 
-          {/* Cinema Red Rate Alerts CTA */}
+          {/* Ask AI Concierge CTA */}
           <button
-            onClick={() => {
-              alert('BookByShow rate engine is active. Real-time surcharge calculations and alerts enabled.');
-            }}
-            className="hidden sm:flex items-center px-4 py-1.5 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-xs font-bold shadow-md shadow-red-950/40 transition-colors"
+            onClick={() => openShowScout()}
+            className="flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-red-600 to-[#e51821] hover:from-red-500 hover:to-red-600 text-white text-xs font-bold shadow-md shadow-red-950/40 border border-red-500/40 transition-all focus:outline-none focus:ring-2 focus:ring-[#e51821] focus:ring-offset-2 focus:ring-offset-neutral-900"
+            title="Ask ShowScout AI Concierge"
           >
-            <span>Rate Alerts</span>
+            <Sparkles className="w-3.5 h-3.5 text-yellow-300 animate-pulse" />
+            <span className="hidden sm:inline">Ask AI</span>
           </button>
         </div>
       </div>

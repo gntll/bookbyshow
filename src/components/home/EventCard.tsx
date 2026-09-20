@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
 import { Event } from '@/types';
 import { Calendar, MapPin, Bookmark, Ticket } from 'lucide-react';
+import { PricePredictorBadge } from '@/components/ai/PricePredictorBadge';
 
 export function EventCard({ event }: { event: Event }) {
   const { toggleWatchlist, isItemInWatchlist } = useApp();
@@ -95,6 +96,10 @@ export function EventCard({ event }: { event: Event }) {
               <MapPin className="w-3.5 h-3.5 text-neutral-500" />
               <span className="truncate">{event.venueName}, {event.venueCity}</span>
             </div>
+          </div>
+
+          <div className="pt-2">
+            <PricePredictorBadge event={event} variant="compact" />
           </div>
         </div>
 

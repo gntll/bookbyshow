@@ -34,6 +34,8 @@ export function getAutoUpdatedHeadlineEvents(): Event[] {
   });
 }
 
+export const getAutoUpdatedEvents = getAutoUpdatedHeadlineEvents;
+
 /**
  * Fetches all active events: pulls from live Ticketmaster API if key is present,
  * and merges with auto-advancing headline tours.

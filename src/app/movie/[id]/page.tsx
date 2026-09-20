@@ -7,6 +7,7 @@ import { useApp } from '@/context/AppContext';
 import { MOVIES, CINEMAS, getShowtimesForMovie } from '@/data/mockData';
 import { DateRibbon } from '@/components/home/DateRibbon';
 import { AdBanner } from '@/components/ads/AdBanner';
+import { CriticConsensus } from '@/components/ai/CriticConsensus';
 import {
   Star,
   Clock,
@@ -18,12 +19,22 @@ import {
   ArrowLeft,
   ChevronRight,
   Film,
+  Sparkles,
 } from 'lucide-react';
 
 export default function MovieDetailPage() {
   const params = useParams();
   const slug = params?.id as string;
-  const { openComparisonModal, openSeatMapModal, openTrailerModal, openAlertModal, toggleWatchlist, isItemInWatchlist } = useApp();
+  const {
+    openComparisonModal,
+    openSeatMapModal,
+    openTrailerModal,
+    openAlertModal,
+    openSeatAdvisor,
+    openEveningPlanner,
+    toggleWatchlist,
+    isItemInWatchlist,
+  } = useApp();
 
   const movie = MOVIES.find((m) => m.slug === slug || m.id === slug);
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
@@ -252,44 +263,79 @@ export default function MovieDetailPage() {
                   <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-white' : ''}`} />
                   <span>{isSaved ? 'Saved to Watchlist' : 'Add to Watchlist'}</span>
                 </button>
+
+                  {/* AI Date Night & Evening Planner CTA */}
+                  <button
+                    onClick={() =>
+                      openEveningPlanner({
+                        title: movie.title,
+                        venueName: 'AMC Empire 25',
+                        city: 'New York',
+                        time: '7:30 PM',
+                      })
+                    }
+                    className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-red-950/40 transition-colors"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+                    <span>Plan Date Night</span>
+                  </button>
+
+                  {/* AI Seat Advisor CTA */}
+                  <button
+                    onClick={() =>
+                      openSeatAdvisor(
+                        selectedFormat === 'All' ? movie.formats[0] || 'Dolby Cinema' : selectedFormat,
+                        'AMC Theatres'
+                      )
+                    }
+                    className="px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                  >
+                    <Armchair className="w-3.5 h-3.5 text-[#e51821]" />
+                    <span>Seat Advisor</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Showtimes & Multi-Cinema Price Matrix */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-              <span>Showtimes & Seating Availability</span>
-              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-red-950/70 text-red-300 border border-[#e51821]/40">
-                Live Quotes
-              </span>
-            </h2>
-            <p className="text-xs text-neutral-400 mt-1">
-              Select any showtime to compare AMC, Fandango, and Regal prices side-by-side
-            </p>
-          </div>
+      {/* Main Content Area */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8">
+        {/* AI Critic & Audience Consensus Breakdown */}
+        <CriticConsensus movie={movie} />
 
-          {/* Format filter pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
-            {['All', ...movie.formats].map((fmt) => (
-              <button
-                key={fmt}
-                onClick={() => setSelectedFormat(fmt)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors shrink-0 ${
-                  selectedFormat === fmt
-                    ? 'bg-[#e51821] text-white shadow-md'
-                    : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
-                }`}
-              >
-                {fmt}
-              </button>
-            ))}
+        {/* Showtimes & Multi-Cinema Price Matrix */}
+        <div>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                <span>Showtimes & Seating Availability</span>
+                <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-red-950/70 text-red-300 border border-[#e51821]/40">
+                  Live Quotes
+                </span>
+              </h2>
+              <p className="text-xs text-neutral-400 mt-1">
+                Select any showtime to compare AMC, Fandango, and Regal prices side-by-side
+              </p>
+            </div>
+
+            {/* Format filter pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+              {['All', ...movie.formats].map((fmt) => (
+                <button
+                  key={fmt}
+                  onClick={() => setSelectedFormat(fmt)}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors shrink-0 ${
+                    selectedFormat === fmt
+                      ? 'bg-[#e51821] text-white shadow-md'
+                      : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
+                  }`}
+                >
+                  {fmt}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
         {/* Date Selector Strip */}
         <div className="mb-6 p-4 rounded-2xl bg-[#0e1015] border border-neutral-800 shadow-md">
@@ -404,6 +450,7 @@ export default function MovieDetailPage() {
             ))}
           </div>
         )}
+        </div>
 
         {/* AdSense Placement */}
         <AdBanner format="leaderboard" className="mt-12" />

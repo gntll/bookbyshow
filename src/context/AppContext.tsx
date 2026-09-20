@@ -30,8 +30,25 @@ interface AppContextType {
 
   // Price alert modal state
   alertTarget: { title: string; currentLowest: number } | null;
-  openAlertModal: (title: string, currentLowest: number) => void;
+  openAlertModal: (title: string, currentLowest?: number) => void;
   closeAlertModal: () => void;
+
+  // ShowScout AI modal state
+  isShowScoutOpen: boolean;
+  openShowScout: (initialQuery?: string) => void;
+  closeShowScout: () => void;
+
+  // Seat Advisor modal state
+  isSeatAdvisorOpen: boolean;
+  seatAdvisorData: { format: string; cinemaName: string } | null;
+  openSeatAdvisor: (format: string, cinemaName: string) => void;
+  closeSeatAdvisor: () => void;
+
+  // Evening Planner modal state
+  isEveningPlannerOpen: boolean;
+  eveningPlannerItem: { title: string; venueName?: string; city?: string; time?: string } | null;
+  openEveningPlanner: (item: { title: string; venueName?: string; city?: string; time?: string }) => void;
+  closeEveningPlanner: () => void;
 
   // Watchlist
   watchlist: WatchlistItem[];
@@ -72,6 +89,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const [activeTrailer, setActiveTrailer] = useState<{ youtubeId: string; title: string } | null>(null);
   const [alertTarget, setAlertTarget] = useState<{ title: string; currentLowest: number } | null>(null);
+
+  // ShowScout AI state
+  const [isShowScoutOpen, setIsShowScoutOpen] = useState(false);
+
+  // Seat Advisor AI state
+  const [isSeatAdvisorOpen, setIsSeatAdvisorOpen] = useState(false);
+  const [seatAdvisorData, setSeatAdvisorData] = useState<{ format: string; cinemaName: string } | null>(null);
+
+  // Evening Planner AI state
+  const [isEveningPlannerOpen, setIsEveningPlannerOpen] = useState(false);
+  const [eveningPlannerItem, setEveningPlannerItem] = useState<{ title: string; venueName?: string; city?: string; time?: string } | null>(null);
 
   const [watchlist, setWatchlist] = useState<WatchlistItem[]>(() => {
     if (typeof window !== 'undefined') {
@@ -127,12 +155,40 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setActiveTrailer(null);
   };
 
-  const openAlertModal = (title: string, currentLowest: number) => {
-    setAlertTarget({ title, currentLowest });
+  const openAlertModal = (title: string, currentLowest?: number) => {
+    setAlertTarget({ title, currentLowest: currentLowest || 0 });
   };
 
   const closeAlertModal = () => {
     setAlertTarget(null);
+  };
+
+  const openShowScout = () => {
+    setIsShowScoutOpen(true);
+  };
+
+  const closeShowScout = () => {
+    setIsShowScoutOpen(false);
+  };
+
+  const openSeatAdvisor = (format: string, cinemaName: string) => {
+    setSeatAdvisorData({ format, cinemaName });
+    setIsSeatAdvisorOpen(true);
+  };
+
+  const closeSeatAdvisor = () => {
+    setIsSeatAdvisorOpen(false);
+    setSeatAdvisorData(null);
+  };
+
+  const openEveningPlanner = (item: { title: string; venueName?: string; city?: string; time?: string }) => {
+    setEveningPlannerItem(item);
+    setIsEveningPlannerOpen(true);
+  };
+
+  const closeEveningPlanner = () => {
+    setIsEveningPlannerOpen(false);
+    setEveningPlannerItem(null);
   };
 
   const toggleWatchlist = (item: Omit<WatchlistItem, 'addedAt'>) => {
@@ -169,6 +225,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setActiveTrailer(null);
         setAlertTarget(null);
         setIsCityModalOpen(false);
+        setIsShowScoutOpen(false);
+        setIsSeatAdvisorOpen(false);
+        setIsEveningPlannerOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -196,6 +255,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         alertTarget,
         openAlertModal,
         closeAlertModal,
+        isShowScoutOpen,
+        openShowScout,
+        closeShowScout,
+        isSeatAdvisorOpen,
+        seatAdvisorData,
+        openSeatAdvisor,
+        closeSeatAdvisor,
+        isEveningPlannerOpen,
+        eveningPlannerItem,
+        openEveningPlanner,
+        closeEveningPlanner,
         watchlist,
         toggleWatchlist,
         isItemInWatchlist,

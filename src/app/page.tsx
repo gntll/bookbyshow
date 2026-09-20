@@ -10,6 +10,7 @@ import { EventCard } from '@/components/home/EventCard';
 import { AggregatorTrustBanner } from '@/components/home/AggregatorTrustBanner';
 import { TrendingCinemas } from '@/components/home/TrendingCinemas';
 import { AdBanner } from '@/components/ads/AdBanner';
+import { VibeMatcher } from '@/components/ai/VibeMatcher';
 import { MOVIES, EVENTS } from '@/data/mockData';
 import {
   ArrowRight,
@@ -106,6 +107,9 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+
+        {/* AI Vibe Matcher & Mood Discovery */}
+        <VibeMatcher />
 
         {/* 3. Now Showing Blockbusters: AMC-style title */}
         <section>

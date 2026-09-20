@@ -14,14 +14,16 @@ import {
   Bell,
   Download,
   Music,
+  Sparkles,
 } from 'lucide-react';
 import { buildAffiliateOutboundUrl } from '@/config/affiliates';
 import { AdBanner } from '@/components/ads/AdBanner';
+import { PricePredictorBadge } from '@/components/ai/PricePredictorBadge';
 
 export default function EventDetailPage() {
   const params = useParams();
   const slug = params?.id as string;
-  const { openAlertModal, toggleWatchlist, isItemInWatchlist } = useApp();
+  const { openAlertModal, toggleWatchlist, isItemInWatchlist, openEveningPlanner } = useApp();
 
   const event = EVENTS.find((e) => e.slug === slug || e.id === slug);
 
@@ -223,23 +225,44 @@ export default function EventDetailPage() {
                 <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-black' : ''}`} />
                 <span>{isSaved ? 'Saved in Watchlist' : 'Add to Watchlist'}</span>
               </button>
+
+              {/* AI Date Night / Evening Planner CTA */}
+              <button
+                onClick={() =>
+                  openEveningPlanner({
+                    title: event.title,
+                    venueName: event.venueName,
+                    city: event.venueCity,
+                    time: event.time,
+                  })
+                }
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-red-950/40 transition-colors"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+                <span>Plan Evening</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Ticket Marketplace Comparison */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-              Verified Marketplace Pricing
-            </h2>
-            <p className="text-xs sm:text-sm text-neutral-400 mt-1">
-              Compare rates across primary sellers and verified resale exchanges
-            </p>
+      {/* Main Content Area */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8">
+        {/* AI 'Buy Now vs. Wait' Price Trajectory & Velocity Predictor */}
+        <PricePredictorBadge event={event} variant="detailed" />
+
+        {/* Ticket Marketplace Comparison */}
+        <div>
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                Verified Marketplace Pricing
+              </h2>
+              <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+                Compare rates across primary sellers and verified resale exchanges
+              </p>
+            </div>
           </div>
-        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {event.quotes.map((quote, idx) => {
@@ -307,6 +330,7 @@ export default function EventDetailPage() {
               </div>
             );
           })}
+        </div>
         </div>
 
         {/* AdSense Placement */}

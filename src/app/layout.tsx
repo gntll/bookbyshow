@@ -12,6 +12,10 @@ import { PriceAlertModal } from '@/components/common/PriceAlertModal';
 import { CitySelectorModal } from '@/components/common/CitySelectorModal';
 import { GlobalSearchModal } from '@/components/search/GlobalSearchModal';
 import { CookieConsent } from '@/components/common/CookieConsent';
+import { ShowScoutModal } from '@/components/ai/ShowScoutModal';
+import { ShowScoutFloatingButton } from '@/components/ai/ShowScoutFloatingButton';
+import { SeatAdvisorModal } from '@/components/ai/SeatAdvisorModal';
+import { EveningPlannerModal } from '@/components/ai/EveningPlannerModal';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -186,6 +190,12 @@ export default function RootLayout({
           <CitySelectorModal />
           <GlobalSearchModal />
           <CookieConsent />
+
+          {/* AI Modals & Floating Concierge */}
+          <ShowScoutModal />
+          <SeatAdvisorModal />
+          <EveningPlannerModal />
+          <ShowScoutFloatingButton />
         </AppProvider>
       </body>
     </html>
