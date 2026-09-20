@@ -60,24 +60,24 @@ export default function AffiliateDisclosurePage() {
                 <div>
                   <div className="flex items-center justify-between">
                     <h3 className="font-bold text-white text-base">{partner.name}</h3>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-neutral-900 text-neutral-300 border border-neutral-700">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-semibold bg-neutral-900 text-neutral-200 border border-neutral-700">
                       {partner.network}
                     </span>
                   </div>
-                  <p className="text-xs text-neutral-400 mt-2">
+                  <p className="text-sm text-neutral-300 mt-2">
                     Official authorized ticketing provider for theaters and live entertainment venues.
                   </p>
                 </div>
-                <div className="mt-3 pt-3 border-t border-neutral-800 flex items-center justify-between text-xs">
-                  <span className="text-neutral-500">Official URL:</span>
+                <div className="mt-3 pt-3 border-t border-neutral-800 flex items-center justify-between text-sm">
+                  <span className="text-neutral-400">Official URL:</span>
                   <a
                     href={partner.defaultBaseUrl}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
-                    className="text-white hover:underline flex items-center gap-1 font-mono text-[11px]"
+                    className="text-white hover:underline flex items-center gap-1 font-mono text-xs"
                   >
                     <span>{partner.defaultBaseUrl.replace('https://', '')}</span>
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>

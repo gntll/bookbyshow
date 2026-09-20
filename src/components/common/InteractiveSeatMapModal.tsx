@@ -107,15 +107,15 @@ export function InteractiveSeatMapModal() {
               <span className="px-2.5 py-0.5 text-xs font-bold rounded bg-red-950/70 text-red-300 border border-[#e51821]/40">
                 {showtime.format}
               </span>
-              <span className="text-xs text-neutral-400 font-medium">
+              <span className="text-sm text-neutral-300 font-medium">
                 {showtime.time} • {showtime.date}
               </span>
             </div>
             <h2 id="seatmap-title" className="text-lg sm:text-2xl font-bold text-white tracking-tight">
               {movie?.title || 'Auditorium Seating'}
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-400">
-              {cinemaName} • <span className="text-neutral-300">{showtime.screenName}</span>
+            <p className="text-sm text-neutral-300">
+              {cinemaName} • <span className="text-neutral-200 font-medium">{showtime.screenName}</span>
             </p>
           </div>
 
@@ -129,21 +129,21 @@ export function InteractiveSeatMapModal() {
         </div>
 
         {/* Legend */}
-        <div className="px-4 py-2.5 bg-neutral-950 border-b border-neutral-800 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-neutral-300">
+        <div className="px-4 py-2.5 bg-neutral-950 border-b border-neutral-800 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-neutral-200 font-medium">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-neutral-800 border border-neutral-700 inline-block" />
+            <span className="w-3.5 h-3.5 rounded bg-neutral-800 border border-neutral-700 inline-block" />
             <span>Standard ($15.50)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-neutral-700 border border-neutral-600 inline-block" />
+            <span className="w-3.5 h-3.5 rounded bg-neutral-700 border border-neutral-600 inline-block" />
             <span>Prime Center ($19.99)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-neutral-600 border border-neutral-500 inline-block" />
+            <span className="w-3.5 h-3.5 rounded bg-neutral-600 border border-neutral-500 inline-block" />
             <span>Luxury Recliner ($22.99)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-[#e51821] inline-block" />
+            <span className="w-3.5 h-3.5 rounded bg-[#e51821] inline-block" />
             <span className="text-white font-bold">Selected</span>
           </div>
           <div className="flex items-center gap-1.5">
@@ -159,7 +159,7 @@ export function InteractiveSeatMapModal() {
             <div className="relative h-6 w-full overflow-hidden">
               <div className="absolute inset-x-8 top-0 h-8 border-t-2 border-[#e51821]/70 rounded-[100%] shadow-[0_2px_15px_rgba(229,24,33,0.3)]" />
             </div>
-            <p className="text-[10px] tracking-[0.25em] text-[#e51821] uppercase font-bold">
+            <p className="text-xs tracking-[0.2em] text-[#e51821] uppercase font-bold">
               Auditorium Screen
             </p>
           </div>
@@ -197,7 +197,7 @@ export function InteractiveSeatMapModal() {
                           key={seat.id}
                           disabled={isReserved}
                           onClick={() => toggleSeatSelection(seat)}
-                          className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-[10px] font-medium border flex items-center justify-center transition-colors ${colorClasses}`}
+                          className={`w-7 h-7 sm:w-8 sm:h-8 rounded text-xs font-semibold border flex items-center justify-center transition-colors ${colorClasses}`}
                           title={`${seat.row}${seat.number} - ${seat.tier} ($${seat.price.toFixed(2)})`}
                           aria-label={`Seat ${seat.row}${seat.number}, ${seat.tier}, price $${seat.price.toFixed(2)}, ${seat.status}`}
                         >
@@ -222,7 +222,7 @@ export function InteractiveSeatMapModal() {
             {selectedSeats.length > 0 ? (
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-neutral-400">Selected Seats:</span>
+                  <span className="text-sm font-medium text-neutral-300">Selected Seats:</span>
                   <div className="flex flex-wrap gap-1">
                     {selectedSeats.map((s) => (
                       <span
@@ -234,16 +234,16 @@ export function InteractiveSeatMapModal() {
                     ))}
                   </div>
                 </div>
-                <div className="text-base font-bold text-white mt-1">
+                <div className="text-lg font-black text-white mt-1">
                   Total: <span className="text-[#e51821]">${subtotal.toFixed(2)}</span>
-                  <span className="text-xs text-neutral-400 font-normal ml-2">
+                  <span className="text-sm text-neutral-400 font-normal ml-2">
                     ({selectedSeats.length} {selectedSeats.length === 1 ? 'ticket' : 'tickets'})
                   </span>
                 </div>
               </div>
             ) : (
-              <div className="flex items-center gap-2 text-xs text-neutral-400">
-                <Armchair className="w-4 h-4 text-neutral-500" />
+              <div className="flex items-center gap-2 text-sm text-neutral-300">
+                <Armchair className="w-4 h-4 text-neutral-400" />
                 <span>Select available seats to reserve</span>
               </div>
             )}
@@ -255,7 +255,7 @@ export function InteractiveSeatMapModal() {
                 closeSeatMapModal();
                 openComparisonModal(showtime, movie);
               }}
-              className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-neutral-700 hover:border-neutral-500 text-neutral-300 hover:text-white text-xs font-semibold transition-colors"
+              className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-neutral-700 hover:border-neutral-500 text-neutral-300 hover:text-white text-sm font-semibold transition-colors"
             >
               Compare All Providers
             </button>
@@ -263,7 +263,7 @@ export function InteractiveSeatMapModal() {
             <button
               disabled={selectedSeats.length === 0 || isLocked}
               onClick={handleLockSeats}
-              className={`flex-1 sm:flex-none px-6 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-colors ${
+              className={`flex-1 sm:flex-none px-6 py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-colors ${
                 selectedSeats.length > 0
                   ? 'bg-[#e51821] hover:bg-[#c9121a] text-white shadow-lg shadow-red-950/50'
                   : 'bg-neutral-800 text-neutral-500 cursor-not-allowed'
@@ -271,12 +271,12 @@ export function InteractiveSeatMapModal() {
             >
               {isLocked ? (
                 <>
-                  <Lock className="w-3.5 h-3.5" />
+                  <Lock className="w-4 h-4" />
                   <span>Locking Best Rate...</span>
                 </>
               ) : (
                 <>
-                  <Shield className="w-3.5 h-3.5" />
+                  <Shield className="w-4 h-4" />
                   <span>Lock In Lowest Rate</span>
                 </>
               )}
@@ -285,9 +285,9 @@ export function InteractiveSeatMapModal() {
         </div>
 
         {/* Affiliate Disclosure Footer */}
-        <div className="px-6 py-2 bg-neutral-950 border-t border-neutral-800/80 flex items-center justify-between text-[10px] text-neutral-500">
+        <div className="px-6 py-2.5 bg-neutral-950 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-400">
           <span>BookByShow compares verified rates across official US partners. When you book tickets, we may earn an affiliate commission.</span>
-          <span className="hidden sm:inline font-mono text-[9px] text-neutral-500">FTC Compliant • No Extra Cost</span>
+          <span className="hidden sm:inline font-mono text-xs text-neutral-400">FTC Compliant • No Extra Cost</span>
         </div>
       </div>
     </div>

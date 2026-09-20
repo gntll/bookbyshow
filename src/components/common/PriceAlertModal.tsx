@@ -51,8 +51,8 @@ export function PriceAlertModal() {
           <h3 id="alert-title" className="text-xl font-bold text-white tracking-tight">
             Create Price Drop Alert
           </h3>
-          <p className="text-xs text-neutral-400 mt-0.5">
-            Tracking: <span className="text-white font-medium">{alertTarget.title}</span>
+          <p className="text-sm text-neutral-300 mt-0.5">
+            Tracking: <span className="text-white font-semibold">{alertTarget.title}</span>
           </p>
         </div>
 
@@ -62,16 +62,16 @@ export function PriceAlertModal() {
               <Check className="w-6 h-6" />
             </div>
             <h4 className="text-lg font-bold text-white">Alert Activated</h4>
-            <p className="text-xs text-neutral-400 max-w-xs mx-auto">
+            <p className="text-sm text-neutral-300 max-w-xs mx-auto">
               We will notify <span className="text-white font-medium">{email}</span> if the verified total drops below ${targetPrice}.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 space-y-4">
             <div>
-              <div className="flex items-center justify-between text-xs text-neutral-300 mb-1.5 font-medium">
+              <div className="flex items-center justify-between text-sm text-neutral-200 mb-1.5 font-medium">
                 <span>Alert me when total price drops below:</span>
-                <span className="text-[#e51821] font-bold text-sm">${targetPrice}</span>
+                <span className="text-[#e51821] font-black text-base">${targetPrice}</span>
               </div>
               <input
                 type="range"
@@ -79,9 +79,9 @@ export function PriceAlertModal() {
                 max={Math.ceil(alertTarget.currentLowest * 1.5)}
                 value={targetPrice}
                 onChange={(e) => setTargetPrice(Number(e.target.value))}
-                className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#e51821]"
+                className="w-full h-2 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#e51821]"
               />
-              <div className="flex justify-between text-[10px] text-neutral-500 mt-1">
+              <div className="flex justify-between text-xs text-neutral-400 mt-1">
                 <span>$10</span>
                 <span>Current lowest: ${alertTarget.currentLowest.toFixed(2)}</span>
                 <span>${Math.ceil(alertTarget.currentLowest * 1.5)}</span>
@@ -89,11 +89,11 @@ export function PriceAlertModal() {
             </div>
 
             <div>
-              <label htmlFor="alert-email" className="block text-xs text-neutral-300 font-medium mb-1.5">
+              <label htmlFor="alert-email" className="block text-sm text-neutral-200 font-medium mb-1.5">
                 Your Email Address
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   id="alert-email"
                   type="email"
@@ -101,14 +101,14 @@ export function PriceAlertModal() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#e51821] transition-colors"
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder-neutral-400 focus:outline-none focus:border-[#e51821] transition-colors"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-2.5 bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-xs rounded-lg transition-colors"
+              className="w-full py-3 bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-sm rounded-lg transition-colors shadow-md shadow-red-950/40"
             >
               Activate Price Drop Alert
             </button>

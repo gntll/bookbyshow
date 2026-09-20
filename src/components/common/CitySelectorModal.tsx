@@ -26,7 +26,7 @@ export function CitySelectorModal() {
             <h3 id="city-title" className="text-xl font-bold text-white tracking-tight">
               Select Your Metro Area
             </h3>
-            <p className="text-xs text-neutral-400 mt-0.5">
+            <p className="text-sm text-neutral-300 mt-0.5">
               Personalize showtimes, regional venues, and local cinema schedules
             </p>
           </div>
@@ -49,15 +49,15 @@ export function CitySelectorModal() {
             className="w-full p-3.5 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-[#e51821]/60 flex items-center justify-between text-left transition-colors"
           >
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-red-950/60 border border-[#e51821]/40 flex items-center justify-center text-[#e51821]">
-                <Navigation className="w-4 h-4" />
+              <div className="w-10 h-10 rounded-lg bg-red-950/60 border border-[#e51821]/40 flex items-center justify-center text-[#e51821]">
+                <Navigation className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-white">Auto-Detect Current Location</p>
-                <p className="text-[11px] text-neutral-400">Detect nearest cinemas via browser location</p>
+                <p className="text-base font-bold text-white">Auto-Detect Current Location</p>
+                <p className="text-sm text-neutral-300">Detect nearest cinemas via browser location</p>
               </div>
             </div>
-            <span className="text-xs font-bold text-[#e51821]">Use Location</span>
+            <span className="text-sm font-bold text-[#e51821]">Use Location</span>
           </button>
 
           <div>
@@ -78,14 +78,14 @@ export function CitySelectorModal() {
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-bold text-sm">{city.name}</span>
+                      <span className="font-bold text-base">{city.name}</span>
                       {isSelected ? (
                         <Check className="w-4 h-4 text-[#e51821]" />
                       ) : (
-                        <MapPin className="w-3.5 h-3.5 text-neutral-500" />
+                        <MapPin className="w-4 h-4 text-neutral-500" />
                       )}
                     </div>
-                    <span className={`text-[10px] ${isSelected ? 'text-red-300' : 'text-neutral-500'}`}>
+                    <span className={`text-xs font-medium ${isSelected ? 'text-red-300' : 'text-neutral-400'}`}>
                       {city.stateOrRegion}, {city.country}
                     </span>
                   </button>

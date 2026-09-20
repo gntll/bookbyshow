@@ -32,31 +32,31 @@ export default function ContactPage() {
                 <span>Department Inquiries</span>
               </h2>
 
-              <div className="space-y-3 text-xs">
+              <div className="space-y-3.5 text-sm">
                 <div>
-                  <p className="text-neutral-500 font-semibold uppercase tracking-wider text-[10px]">Affiliate & Network Reviews</p>
-                  <a href="mailto:partners@bookbyshow.com" className="text-white hover:text-[#e51821] font-medium transition-colors">
+                  <p className="text-neutral-400 font-semibold uppercase tracking-wider text-xs">Affiliate & Network Reviews</p>
+                  <a href="mailto:partners@bookbyshow.com" className="text-white hover:text-[#e51821] font-medium text-sm transition-colors">
                     partners@bookbyshow.com
                   </a>
                 </div>
 
                 <div>
-                  <p className="text-neutral-500 font-semibold uppercase tracking-wider text-[10px]">General Support & Feedback</p>
-                  <a href="mailto:support@bookbyshow.com" className="text-white hover:text-[#e51821] font-medium transition-colors">
+                  <p className="text-neutral-400 font-semibold uppercase tracking-wider text-xs">General Support & Feedback</p>
+                  <a href="mailto:support@bookbyshow.com" className="text-white hover:text-[#e51821] font-medium text-sm transition-colors">
                     support@bookbyshow.com
                   </a>
                 </div>
 
                 <div>
-                  <p className="text-neutral-500 font-semibold uppercase tracking-wider text-[10px]">Legal & Compliance</p>
-                  <a href="mailto:compliance@bookbyshow.com" className="text-white hover:text-[#e51821] font-medium transition-colors">
+                  <p className="text-neutral-400 font-semibold uppercase tracking-wider text-xs">Legal & Compliance</p>
+                  <a href="mailto:compliance@bookbyshow.com" className="text-white hover:text-[#e51821] font-medium text-sm transition-colors">
                     compliance@bookbyshow.com
                   </a>
                 </div>
 
                 <div>
-                  <p className="text-neutral-500 font-semibold uppercase tracking-wider text-[10px]">Press & Media Inquiries</p>
-                  <a href="mailto:press@bookbyshow.com" className="text-white hover:text-[#e51821] font-medium transition-colors">
+                  <p className="text-neutral-400 font-semibold uppercase tracking-wider text-xs">Press & Media Inquiries</p>
+                  <a href="mailto:press@bookbyshow.com" className="text-white hover:text-[#e51821] font-medium text-sm transition-colors">
                     press@bookbyshow.com
                   </a>
                 </div>

@@ -84,14 +84,14 @@ export function HeroBanner() {
           </div>
 
           {/* Synopsis */}
-          <p className="text-sm text-neutral-300 line-clamp-3 leading-relaxed max-w-xl">
+          <p className="text-sm sm:text-base text-neutral-200 line-clamp-3 leading-relaxed max-w-xl">
             {current.synopsis}
           </p>
 
           {/* Formats and metadata */}
-          <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-400">
-            <div className="flex items-center gap-1">
-              <Clock className="w-4 h-4 text-neutral-500" />
+          <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-300">
+            <div className="flex items-center gap-1.5">
+              <Clock className="w-4 h-4 text-neutral-400" />
               <span>{Math.floor(current.runtimeMinutes / 60)}h {current.runtimeMinutes % 60}m</span>
             </div>
             <span>•</span>
@@ -101,7 +101,7 @@ export function HeroBanner() {
               {current.formats.slice(0, 3).map((fmt, idx) => (
                 <span
                   key={idx}
-                  className="px-2 py-0.5 rounded text-[11px] font-semibold bg-neutral-900 border border-neutral-700 text-neutral-200"
+                  className="px-2.5 py-0.5 rounded text-xs font-semibold bg-neutral-900 border border-neutral-700 text-neutral-200"
                 >
                   {fmt}
                 </span>

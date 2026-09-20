@@ -69,59 +69,59 @@ export function SeatAdvisorModal() {
         <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800/80 flex flex-col items-center justify-center text-center space-y-3">
           {/* Curved Screen */}
           <div className="w-3/4 h-2.5 rounded-full bg-gradient-to-r from-red-600 via-neutral-200 to-red-600 shadow-lg shadow-red-900/30" />
-          <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-wider">
+          <span className="text-xs uppercase font-bold text-neutral-400 tracking-wider">
             Curved Giant Screen (Front)
           </span>
 
           {/* Seat Grid Visual */}
-          <div className="w-full max-w-xs space-y-1.5 pt-2">
-            <div className="text-[10px] text-neutral-400 font-mono flex justify-between px-4">
+          <div className="w-full max-w-xs space-y-2 pt-2">
+            <div className="text-xs text-neutral-400 font-mono flex justify-between px-4">
               <span>Row A–C</span>
               <span className="text-neutral-400 font-bold">Avoid (Too Steep)</span>
             </div>
-            <div className="h-4 rounded bg-neutral-900/80 border border-neutral-800 flex items-center justify-center text-[10px] text-neutral-400">
+            <div className="h-5 rounded bg-neutral-900/80 border border-neutral-800 flex items-center justify-center text-xs text-neutral-400 font-medium">
               Front Rows (Eye Fatigue Zone)
             </div>
 
-            <div className="text-[10px] text-emerald-400 font-mono flex justify-between px-4 pt-1 font-bold">
+            <div className="text-xs text-emerald-400 font-mono flex justify-between px-4 pt-1 font-bold">
               <span>{rec.optimalRows}</span>
               <span className="flex items-center gap-1 text-emerald-400">
-                <CheckCircle2 className="w-3 h-3" />
+                <CheckCircle2 className="w-3.5 h-3.5" />
                 Optimal Zone
               </span>
             </div>
-            <div className="h-6 rounded bg-emerald-950/80 border border-emerald-500/60 flex items-center justify-center text-[11px] font-bold text-emerald-200 shadow-sm shadow-emerald-950/40">
+            <div className="h-7 rounded bg-emerald-950/80 border border-emerald-500/60 flex items-center justify-center text-xs font-bold text-emerald-200 shadow-sm shadow-emerald-950/40">
               {rec.optimalSeats} (Acoustic Sweet Spot)
             </div>
 
-            <div className="text-[10px] text-neutral-400 font-mono flex justify-between px-4 pt-1">
+            <div className="text-xs text-neutral-400 font-mono flex justify-between px-4 pt-1">
               <span>Rear Rows</span>
               <span>Acceptable</span>
             </div>
-            <div className="h-4 rounded bg-neutral-900/80 border border-neutral-800 flex items-center justify-center text-[10px] text-neutral-400">
+            <div className="h-5 rounded bg-neutral-900/80 border border-neutral-800 flex items-center justify-center text-xs text-neutral-400 font-medium">
               Upper Recliners (Further Back)
             </div>
           </div>
         </div>
 
         {/* Two-Column Guidance Breakdown */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-          <div className="p-3 rounded-xl bg-neutral-900/60 border border-neutral-800 space-y-1.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm">
+          <div className="p-3.5 rounded-xl bg-neutral-900/60 border border-neutral-800 space-y-1.5">
             <div className="flex items-center gap-1.5 text-white font-bold">
               <Eye className="w-4 h-4 text-cyan-400" />
               <span>Field of View</span>
             </div>
-            <p className="text-neutral-300 text-[11px] leading-relaxed">
+            <p className="text-neutral-200 text-xs sm:text-sm leading-relaxed">
               {rec.fieldOfViewAngle}
             </p>
           </div>
 
-          <div className="p-3 rounded-xl bg-neutral-900/60 border border-neutral-800 space-y-1.5">
+          <div className="p-3.5 rounded-xl bg-neutral-900/60 border border-neutral-800 space-y-1.5">
             <div className="flex items-center gap-1.5 text-white font-bold">
               <Volume2 className="w-4 h-4 text-emerald-400" />
               <span>Acoustic Convergence</span>
             </div>
-            <p className="text-neutral-300 text-[11px] leading-relaxed">
+            <p className="text-neutral-200 text-xs sm:text-sm leading-relaxed">
               {rec.acousticSweetSpot}
             </p>
           </div>
@@ -129,11 +129,11 @@ export function SeatAdvisorModal() {
 
         {/* Detailed AI Engineering Notes */}
         <div className="space-y-2">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#e51821]" />
+          <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-300 flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-[#e51821]" />
             <span>Format Calibration Details</span>
           </h4>
-          <ul className="space-y-2 text-xs text-neutral-300">
+          <ul className="space-y-2 text-sm text-neutral-200">
             {rec.experienceNotes.map((note, idx) => (
               <li key={idx} className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#e51821] mt-1.5 shrink-0" />
@@ -144,17 +144,17 @@ export function SeatAdvisorModal() {
         </div>
 
         {/* Warning Note */}
-        <div className="p-3 rounded-xl bg-yellow-950/30 border border-yellow-500/40 text-xs text-yellow-200/90 flex items-start gap-2.5">
+        <div className="p-3.5 rounded-xl bg-yellow-950/30 border border-yellow-500/40 text-sm text-yellow-200 flex items-start gap-2.5">
           <AlertTriangle className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />
           <div>
-            <strong className="text-yellow-200">Rows to Avoid:</strong>{' '}
+            <strong className="text-yellow-100">Rows to Avoid:</strong>{' '}
             <span>{rec.avoidRows}</span>
           </div>
         </div>
 
         <button
           onClick={closeSeatAdvisor}
-          className="w-full py-2.5 rounded-xl bg-[#e51821] hover:bg-[#c9121a] text-white text-xs font-bold transition-colors"
+          className="w-full py-3 rounded-xl bg-[#e51821] hover:bg-[#c9121a] text-white text-sm font-bold transition-colors"
         >
           Got It, Pick My Seats
         </button>

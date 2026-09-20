@@ -205,9 +205,9 @@ export default function MovieDetailPage() {
                 &ldquo;{movie.tagline}&rdquo;
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-400">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-300">
                 <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-neutral-500" />
+                  <Clock className="w-4 h-4 text-neutral-400" />
                   <span>{Math.floor(movie.runtimeMinutes / 60)}h {movie.runtimeMinutes % 60}m</span>
                 </div>
                 <span>•</span>
@@ -216,12 +216,12 @@ export default function MovieDetailPage() {
                 <span>Directed by <strong className="text-white">{movie.director}</strong></span>
               </div>
 
-              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-3xl">
+              <p className="text-sm sm:text-base text-neutral-200 leading-relaxed max-w-3xl">
                 {movie.synopsis}
               </p>
 
-              <div className="text-xs text-neutral-400">
-                <strong className="text-neutral-300">Starring: </strong>
+              <div className="text-sm text-neutral-300">
+                <strong className="text-white">Starring: </strong>
                 {movie.cast.join(', ')}
               </div>
 
@@ -229,17 +229,17 @@ export default function MovieDetailPage() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
                   onClick={() => openTrailerModal(movie.trailerYoutubeId, movie.title)}
-                  className="px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white font-semibold text-xs flex items-center gap-2 transition-colors"
+                  className="px-4 py-2.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white font-semibold text-sm flex items-center gap-2 transition-colors"
                 >
-                  <Play className="w-3.5 h-3.5 fill-white" />
+                  <Play className="w-4 h-4 fill-white" />
                   <span>Watch Trailer</span>
                 </button>
 
                 <button
                   onClick={() => openAlertModal(movie.title, movie.lowestPrice)}
-                  className="px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 font-medium text-xs flex items-center gap-1.5 transition-colors"
+                  className="px-4 py-2.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 font-semibold text-sm flex items-center gap-1.5 transition-colors"
                 >
-                  <Bell className="w-3.5 h-3.5" />
+                  <Bell className="w-4 h-4" />
                   <span>Price Drop Alert</span>
                 </button>
 
@@ -254,13 +254,13 @@ export default function MovieDetailPage() {
                       lowestPrice: movie.lowestPrice,
                     })
                   }
-                  className={`px-4 py-2 rounded-lg border text-xs font-semibold flex items-center gap-1.5 transition-colors ${
+                  className={`px-4 py-2.5 rounded-lg border text-sm font-semibold flex items-center gap-1.5 transition-colors ${
                     isSaved
                       ? 'bg-[#e51821] border-[#e51821] text-white'
-                      : 'bg-neutral-900 border-neutral-800 text-neutral-300 hover:text-white'
+                      : 'bg-neutral-900 border-neutral-800 text-neutral-200 hover:text-white'
                   }`}
                 >
-                  <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-white' : ''}`} />
+                  <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-white' : ''}`} />
                   <span>{isSaved ? 'Saved to Watchlist' : 'Add to Watchlist'}</span>
                 </button>
 
@@ -274,9 +274,9 @@ export default function MovieDetailPage() {
                         time: '7:30 PM',
                       })
                     }
-                    className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-red-950/40 transition-colors"
+                    className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-sm flex items-center gap-1.5 shadow-md shadow-red-950/40 transition-colors"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+                    <Sparkles className="w-4 h-4 text-yellow-300" />
                     <span>Plan Date Night</span>
                   </button>
 
@@ -288,9 +288,9 @@ export default function MovieDetailPage() {
                         'AMC Theatres'
                       )
                     }
-                    className="px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                    className="px-4 py-2.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 hover:text-white text-sm font-semibold flex items-center gap-1.5 transition-colors"
                   >
-                    <Armchair className="w-3.5 h-3.5 text-[#e51821]" />
+                    <Armchair className="w-4 h-4 text-[#e51821]" />
                     <span>Seat Advisor</span>
                   </button>
                 </div>
@@ -377,7 +377,7 @@ export default function MovieDetailPage() {
                     {cinema.amenities.map((amenity, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded text-[10px] font-medium bg-neutral-900 text-neutral-300 border border-neutral-800"
+                        className="px-2.5 py-1 rounded-md text-xs font-semibold bg-neutral-900 text-neutral-200 border border-neutral-800"
                       >
                         {amenity}
                       </span>
@@ -398,12 +398,12 @@ export default function MovieDetailPage() {
                       >
                         <div>
                           <div className="flex items-center justify-between mb-1.5">
-                            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-neutral-900 text-neutral-300 border border-neutral-800">
+                            <span className="px-2.5 py-0.5 rounded text-xs font-bold bg-neutral-900 text-neutral-200 border border-neutral-800">
                               {st.format}
                             </span>
                             <span
-                              className={`text-[10px] font-medium ${
-                                isAlmostSoldOut ? 'text-red-400 font-semibold' : 'text-neutral-400'
+                              className={`text-xs font-semibold ${
+                                isAlmostSoldOut ? 'text-red-400 font-bold' : 'text-neutral-400'
                               }`}
                             >
                               {st.availableSeatCount} seats left
@@ -411,31 +411,31 @@ export default function MovieDetailPage() {
                           </div>
 
                           <div className="flex items-baseline gap-2 mt-1">
-                            <span className="text-xl font-bold text-white group-hover:text-red-400 transition-colors">
+                            <span className="text-xl sm:text-2xl font-black text-white group-hover:text-red-400 transition-colors">
                               {st.time}
                             </span>
-                            <span className="text-xs text-neutral-500 truncate max-w-[140px]">
+                            <span className="text-xs sm:text-sm text-neutral-400 truncate max-w-[140px]">
                               {st.screenName}
                             </span>
                           </div>
 
-                          <div className="mt-2 text-xs text-neutral-400">
-                            Lowest rate: <strong className="text-white">${lowestQuote.total.toFixed(2)}</strong> via {lowestQuote.provider}
+                          <div className="mt-2.5 text-xs sm:text-sm text-neutral-300">
+                            Lowest rate: <strong className="text-white font-bold">${lowestQuote.total.toFixed(2)}</strong> via {lowestQuote.provider}
                           </div>
                         </div>
 
                         <div className="mt-4 pt-3 border-t border-neutral-800 flex items-center gap-2">
                           <button
                             onClick={() => openComparisonModal(st, movie)}
-                            className="flex-1 py-2 px-3 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-xs flex items-center justify-center gap-1 shadow-md shadow-red-950/40 transition-colors"
+                            className="flex-1 py-2.5 px-3.5 rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-sm flex items-center justify-center gap-1.5 shadow-md shadow-red-950/40 transition-colors"
                           >
                             <span>Compare Rates</span>
-                            <ChevronRight className="w-3.5 h-3.5" />
+                            <ChevronRight className="w-4 h-4" />
                           </button>
 
                           <button
                             onClick={() => openSeatMapModal(st, movie)}
-                            className="p-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-700 transition-colors"
+                            className="p-2.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-700 transition-colors"
                             title="Interactive Seat Map"
                             aria-label="Interactive Seat Map"
                           >

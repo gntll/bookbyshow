@@ -91,15 +91,15 @@ export default function HomePage() {
 
           {/* Format pills: Cinema Red Active */}
           <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto scrollbar-none pb-1 md:pb-0">
-            <span className="text-xs text-neutral-500 font-medium px-2 shrink-0">Screen:</span>
+            <span className="text-sm text-neutral-400 font-semibold px-2 shrink-0">Screen:</span>
             {formats.map((fmt) => (
               <button
                 key={fmt}
                 onClick={() => setSelectedFormat(fmt)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold shrink-0 transition-all ${
+                className={`px-3.5 py-1.5 rounded-lg text-sm font-semibold shrink-0 transition-all ${
                   selectedFormat === fmt
                     ? 'bg-[#e51821] text-white shadow-md shadow-red-950/40'
-                    : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
+                    : 'bg-neutral-900 text-neutral-300 hover:text-white border border-neutral-800'
                 }`}
               >
                 {fmt}
@@ -123,14 +123,14 @@ export default function HomePage() {
                   Live Rates
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+              <p className="text-sm text-neutral-400 mt-1">
                 Compare real-time showtimes and seating across AMC, Regal, and Cinemark
               </p>
             </div>
 
             <Link
               href="/movies"
-              className="text-xs sm:text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
+              className="text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
             >
               <span>Explore All ({MOVIES.length})</span>
               <ArrowRight className="w-4 h-4" />
@@ -162,14 +162,14 @@ export default function HomePage() {
                   Live Nation & Ticketmaster
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+              <p className="text-sm text-neutral-400 mt-1">
                 Direct primary and resale ticket comparison with zero unverified scalper markups
               </p>
             </div>
 
             <Link
               href="/events?category=concert"
-              className="text-xs sm:text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
+              className="text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
             >
               <span>View All Concerts</span>
               <ArrowRight className="w-4 h-4" />
@@ -195,14 +195,14 @@ export default function HomePage() {
                   Top Rated
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+              <p className="text-sm text-neutral-400 mt-1">
                 Radio City, Madison Square Garden, and Broadway box offices
               </p>
             </div>
 
             <Link
               href="/events"
-              className="text-xs sm:text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
+              className="text-sm font-bold text-[#e51821] hover:text-red-400 flex items-center gap-1 transition-colors"
             >
               <span>Explore All Shows</span>
               <ArrowRight className="w-4 h-4" />

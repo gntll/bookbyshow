@@ -28,8 +28,8 @@ export function DateRibbon({ selectedDate, onSelectDate }: DateRibbonProps) {
 
   return (
     <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
-      <div className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-neutral-400 shrink-0">
-        <Calendar className="w-3.5 h-3.5 text-[#e51821]" />
+      <div className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-neutral-300 shrink-0">
+        <Calendar className="w-4 h-4 text-[#e51821]" />
         <span>Date:</span>
       </div>
 
@@ -39,16 +39,16 @@ export function DateRibbon({ selectedDate, onSelectDate }: DateRibbonProps) {
           <button
             key={item.iso}
             onClick={() => onSelectDate(item.iso)}
-            className={`flex flex-col items-center justify-center px-4 py-2 rounded-xl text-center transition-all shrink-0 min-w-[82px] border ${
+            className={`flex flex-col items-center justify-center px-4 py-2 rounded-xl text-center transition-all shrink-0 min-w-[86px] border ${
               isSelected
                 ? 'bg-[#e51821] border-[#e51821] text-white font-bold shadow-md shadow-red-950/40 scale-102'
                 : 'bg-neutral-900 border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white'
             }`}
           >
-            <span className="text-[10px] uppercase tracking-wider font-bold">
+            <span className="text-xs uppercase tracking-wider font-bold">
               {item.dayName}
             </span>
-            <span className="text-xs font-medium mt-0.5 opacity-90">
+            <span className="text-sm font-semibold mt-0.5">
               {item.monthDay}
             </span>
           </button>

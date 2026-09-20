@@ -125,7 +125,7 @@ export function ShowScoutModal() {
                   Concierge
                 </span>
               </div>
-              <p className="text-xs text-neutral-400">
+              <p className="text-sm text-neutral-400">
                 Live movie showtimes, concert tickets & optimal seat guidance
               </p>
             </div>
@@ -154,9 +154,9 @@ export function ShowScoutModal() {
               )}
 
               <div
-                className={`max-w-[85%] rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm leading-relaxed ${
+                className={`max-w-[85%] rounded-2xl p-3.5 sm:p-4 text-sm leading-relaxed ${
                   msg.sender === 'user'
-                    ? 'bg-[#e51821] text-white rounded-br-none shadow-md shadow-red-950/30'
+                    ? 'bg-[#e51821] text-white rounded-br-none shadow-md shadow-red-950/30 font-medium'
                     : 'bg-neutral-900 border border-neutral-800 text-neutral-200 rounded-bl-none'
                 }`}
               >
@@ -165,7 +165,7 @@ export function ShowScoutModal() {
                 {/* Rich Matched Movies */}
                 {msg.data?.matchedMovies && msg.data.matchedMovies.length > 0 && (
                   <div className="mt-3 pt-3 border-t border-neutral-800/80 space-y-2">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                    <p className="text-xs font-bold uppercase tracking-wider text-neutral-400">
                       Recommended Movies
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -179,17 +179,17 @@ export function ShowScoutModal() {
                           <img
                             src={movie.posterUrl}
                             alt={movie.title}
-                            className="w-9 h-12 rounded object-cover shrink-0"
+                            className="w-10 h-14 rounded object-cover shrink-0"
                           />
                           <div className="min-w-0 flex-1">
-                            <h4 className="text-xs font-bold text-white group-hover:text-red-400 truncate">
+                            <h4 className="text-sm font-bold text-white group-hover:text-red-400 truncate">
                               {movie.title}
                             </h4>
-                            <p className="text-[10px] text-neutral-400 truncate">
+                            <p className="text-xs text-neutral-300 truncate mt-0.5">
                               From ${movie.lowestPrice.toFixed(2)} • {movie.certificateRating}
                             </p>
                           </div>
-                          <ChevronRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-white" />
+                          <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-white" />
                         </Link>
                       ))}
                     </div>
@@ -199,7 +199,7 @@ export function ShowScoutModal() {
                 {/* Rich Matched Events */}
                 {msg.data?.matchedEvents && msg.data.matchedEvents.length > 0 && (
                   <div className="mt-3 pt-3 border-t border-neutral-800/80 space-y-2">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                    <p className="text-xs font-bold uppercase tracking-wider text-neutral-400">
                       Live Stadium & Tour Dates
                     </p>
                     <div className="space-y-2">
@@ -211,17 +211,17 @@ export function ShowScoutModal() {
                           className="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-neutral-950/70 border border-neutral-800 hover:border-[#e51821]/50 transition-colors group"
                         >
                           <div className="min-w-0">
-                            <h4 className="text-xs font-bold text-white group-hover:text-red-400 truncate">
+                            <h4 className="text-sm font-bold text-white group-hover:text-red-400 truncate">
                               {event.title}
                             </h4>
-                            <p className="text-[10px] text-neutral-400 flex items-center gap-1.5 mt-0.5">
-                              <Calendar className="w-3 h-3 text-[#e51821]" />
+                            <p className="text-xs text-neutral-300 flex items-center gap-1.5 mt-0.5">
+                              <Calendar className="w-3.5 h-3.5 text-[#e51821]" />
                               <span>{event.date} • {event.venueCity}</span>
                             </p>
                           </div>
                           <div className="text-right shrink-0">
-                            <span className="text-[10px] text-neutral-400 block">From</span>
-                            <span className="text-xs font-bold text-white">${event.minPrice.toFixed(2)}</span>
+                            <span className="text-xs text-neutral-400 block">From</span>
+                            <span className="text-sm font-bold text-white">${event.minPrice.toFixed(2)}</span>
                           </div>
                         </Link>
                       ))}
@@ -232,7 +232,7 @@ export function ShowScoutModal() {
                 {/* Showtimes Pills */}
                 {msg.data?.matchedShowtimes && msg.data.matchedShowtimes.length > 0 && (
                   <div className="mt-3 pt-3 border-t border-neutral-800/80 space-y-2">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                    <p className="text-xs font-bold uppercase tracking-wider text-neutral-400">
                       Upcoming Showtimes
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -241,9 +241,9 @@ export function ShowScoutModal() {
                           key={idx}
                           href={st.bookingUrl}
                           onClick={closeShowScout}
-                          className="px-2.5 py-1.5 rounded-lg bg-neutral-950 border border-neutral-800 hover:border-[#e51821] text-[11px] font-medium text-neutral-300 hover:text-white transition-colors"
+                          className="px-3 py-1.5 rounded-lg bg-neutral-950 border border-neutral-800 hover:border-[#e51821] text-xs sm:text-sm font-medium text-neutral-200 hover:text-white transition-colors"
                         >
-                          <strong className="text-white">{st.time}</strong> ({st.format}) — ${st.lowestPrice.toFixed(2)}
+                          <strong className="text-white font-bold">{st.time}</strong> ({st.format}) — ${st.lowestPrice.toFixed(2)}
                         </Link>
                       ))}
                     </div>
@@ -257,7 +257,7 @@ export function ShowScoutModal() {
                       <button
                         key={idx}
                         onClick={() => handleSend(action)}
-                        className="px-2 py-1 rounded-md bg-neutral-950 hover:bg-neutral-800 border border-neutral-800 text-[10px] font-medium text-neutral-300 hover:text-white transition-colors"
+                        className="px-2.5 py-1.5 rounded-md bg-neutral-950 hover:bg-neutral-800 border border-neutral-800 text-xs font-medium text-neutral-300 hover:text-white transition-colors"
                       >
                         {action}
                       </button>
@@ -283,7 +283,7 @@ export function ShowScoutModal() {
                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse delay-100" />
                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse delay-200" />
-                <span className="text-xs ml-1">Searching live entertainment feeds...</span>
+                <span className="text-sm ml-1 text-neutral-300">Searching live entertainment feeds...</span>
               </div>
             </div>
           )}
@@ -292,15 +292,15 @@ export function ShowScoutModal() {
         </div>
 
         {/* Quick Suggestion Chips */}
-        <div className="px-4 py-2 border-t border-neutral-800/60 bg-neutral-950/60 flex items-center gap-1.5 overflow-x-auto scrollbar-none">
-          <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-semibold shrink-0">
+        <div className="px-4 py-2.5 border-t border-neutral-800/60 bg-neutral-950/60 flex items-center gap-2 overflow-x-auto scrollbar-none">
+          <span className="text-xs uppercase tracking-wider text-neutral-400 font-bold shrink-0">
             Suggested:
           </span>
           {DEFAULT_SUGGESTIONS.map((s, idx) => (
             <button
               key={idx}
               onClick={() => handleSend(s)}
-              className="px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white text-[11px] font-medium shrink-0 transition-colors"
+              className="px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 hover:border-neutral-700 text-neutral-300 hover:text-white text-xs sm:text-sm font-medium shrink-0 transition-colors"
             >
               {s}
             </button>
@@ -321,16 +321,16 @@ export function ShowScoutModal() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Ask for showtimes, formats, or live concert prices..."
-            className="flex-1 bg-neutral-900 border border-neutral-800 focus:border-[#e51821] rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white placeholder-neutral-400 focus:outline-none transition-colors"
+            className="flex-1 bg-neutral-900 border border-neutral-800 focus:border-[#e51821] rounded-xl px-4 py-2.5 text-sm text-white placeholder-neutral-400 focus:outline-none transition-colors"
           />
           <button
             type="submit"
             disabled={!inputValue.trim() || isLoading}
-            className="px-4 py-2.5 rounded-xl bg-[#e51821] hover:bg-[#c9121a] disabled:opacity-50 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-red-950/40 transition-colors shrink-0"
+            className="px-4 py-2.5 rounded-xl bg-[#e51821] hover:bg-[#c9121a] disabled:opacity-50 text-white font-bold text-sm flex items-center gap-1.5 shadow-md shadow-red-950/40 transition-colors shrink-0"
             aria-label="Send message"
           >
             <span>Ask</span>
-            <Send className="w-3.5 h-3.5" />
+            <Send className="w-4 h-4" />
           </button>
         </form>
       </div>

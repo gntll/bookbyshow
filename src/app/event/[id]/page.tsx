@@ -183,7 +183,7 @@ export default function EventDetailPage() {
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-neutral-200 leading-relaxed max-w-2xl">
               {event.description}
             </p>
 
@@ -191,17 +191,17 @@ export default function EventDetailPage() {
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={downloadCalendarFile}
-                className="px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white text-xs font-medium flex items-center gap-2 transition-colors"
+                className="px-4 py-2.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white text-sm font-semibold flex items-center gap-2 transition-colors"
               >
-                <Download className="w-3.5 h-3.5 text-neutral-400" />
+                <Download className="w-4 h-4 text-neutral-300" />
                 <span>Add to Calendar (.ics)</span>
               </button>
 
               <button
                 onClick={() => openAlertModal(event.title, event.minPrice)}
-                className="px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 text-xs font-medium flex items-center gap-2 transition-colors"
+                className="px-4 py-2.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 text-sm font-semibold flex items-center gap-2 transition-colors"
               >
-                <Bell className="w-3.5 h-3.5" />
+                <Bell className="w-4 h-4" />
                 <span>Price Drop Alert</span>
               </button>
 
@@ -216,13 +216,13 @@ export default function EventDetailPage() {
                     lowestPrice: event.minPrice,
                   })
                 }
-                className={`px-4 py-2 rounded-lg border text-xs font-medium flex items-center gap-2 transition-colors ${
+                className={`px-4 py-2.5 rounded-lg border text-sm font-semibold flex items-center gap-2 transition-colors ${
                   isSaved
                     ? 'bg-white border-white text-black'
-                    : 'bg-neutral-900 border-neutral-800 text-neutral-300 hover:text-white'
+                    : 'bg-neutral-900 border-neutral-800 text-neutral-200 hover:text-white'
                 }`}
               >
-                <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-black' : ''}`} />
+                <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-black' : ''}`} />
                 <span>{isSaved ? 'Saved in Watchlist' : 'Add to Watchlist'}</span>
               </button>
 
@@ -236,9 +236,9 @@ export default function EventDetailPage() {
                     time: event.time,
                   })
                 }
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-red-950/40 transition-colors"
+                className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-sm flex items-center gap-1.5 shadow-md shadow-red-950/40 transition-colors"
               >
-                <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+                <Sparkles className="w-4 h-4 text-yellow-300" />
                 <span>Plan Evening</span>
               </button>
             </div>
@@ -258,7 +258,7 @@ export default function EventDetailPage() {
               <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 Verified Marketplace Pricing
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+              <p className="text-sm text-neutral-400 mt-1">
                 Compare rates across primary sellers and verified resale exchanges
               </p>
             </div>
@@ -278,25 +278,25 @@ export default function EventDetailPage() {
               >
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-base text-white">{quote.provider}</span>
+                    <span className="font-bold text-base sm:text-lg text-white">{quote.provider}</span>
                     {isBest && (
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-white text-black">
+                      <span className="px-2.5 py-0.5 rounded text-xs font-bold bg-white text-black">
                         BEST RATE
                       </span>
                     )}
                   </div>
 
-                  <div className="mt-3 space-y-1 text-xs text-neutral-400">
+                  <div className="mt-3 space-y-1.5 text-sm text-neutral-300">
                     <div className="flex justify-between">
-                      <span>Base Ticket</span>
-                      <span className="text-white">${quote.basePrice.toFixed(2)}</span>
+                      <span className="text-neutral-400">Base Ticket</span>
+                      <span className="text-white font-medium">${quote.basePrice.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Service / Platform Fee</span>
+                      <span className="text-neutral-400">Service / Platform Fee</span>
                       <span className="text-neutral-300">+${quote.fee.toFixed(2)}</span>
                     </div>
                     {quote.badge && (
-                      <p className="text-[11px] text-neutral-300 font-medium pt-1">
+                      <p className="text-xs text-neutral-300 font-medium pt-1">
                         Note: {quote.badge}
                       </p>
                     )}
@@ -305,8 +305,8 @@ export default function EventDetailPage() {
 
                 <div className="pt-3 border-t border-neutral-800 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] text-neutral-500 uppercase block">Total with Fees</span>
-                    <span className="text-xl font-bold text-white">${quote.total.toFixed(2)}</span>
+                    <span className="text-xs text-neutral-400 uppercase font-semibold block">Total with Fees</span>
+                    <span className="text-2xl font-black text-white">${quote.total.toFixed(2)}</span>
                   </div>
 
                   <a
@@ -317,7 +317,7 @@ export default function EventDetailPage() {
                     })}
                     target="_blank"
                     rel="noopener noreferrer sponsored nofollow"
-                    className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold transition-colors ${
+                    className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-bold transition-colors ${
                       isBest
                         ? 'bg-[#e51821] hover:bg-[#c9121a] text-white shadow-md shadow-red-950/40'
                         : 'bg-neutral-800 text-white hover:bg-neutral-700'

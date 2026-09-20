@@ -35,7 +35,7 @@ export function MobileNav() {
                 <div className="w-8 h-8 rounded-full bg-[#e51821] text-white flex items-center justify-center shadow-md shadow-red-950/40">
                   <Icon className="w-4 h-4" />
                 </div>
-                <span className="text-[10px] font-medium mt-0.5 text-neutral-300">Search</span>
+                <span className="text-xs font-semibold mt-1 text-neutral-200">Search</span>
               </button>
             );
           }
@@ -51,12 +51,12 @@ export function MobileNav() {
               <div className="relative">
                 <Icon className="w-5 h-5" />
                 {item.count && item.count > 0 ? (
-                  <span className="absolute -top-1 -right-2 w-3.5 h-3.5 bg-[#e51821] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
+                  <span className="absolute -top-1.5 -right-2.5 w-4 h-4 bg-[#e51821] text-white rounded-full text-[10px] font-bold flex items-center justify-center">
                     {item.count}
                   </span>
                 ) : null}
               </div>
-              <span className="text-[10px] mt-1">{item.label}</span>
+              <span className="text-xs font-medium mt-1">{item.label}</span>
             </Link>
           );
         })}

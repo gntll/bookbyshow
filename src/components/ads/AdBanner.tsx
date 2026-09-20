@@ -48,7 +48,7 @@ export function AdBanner({
       className={`my-6 flex flex-col items-center justify-center overflow-hidden ${className}`}
     >
       <div className="w-full flex items-center justify-center gap-2 mb-1.5">
-        <span className="text-[10px] font-semibold tracking-widest text-neutral-500 uppercase">
+        <span className="text-xs font-bold tracking-widest text-neutral-400 uppercase">
           Advertisement
         </span>
       </div>
@@ -68,16 +68,16 @@ export function AdBanner({
           />
         ) : (
           <div className="flex flex-col items-center justify-center p-4 text-neutral-500 space-y-1 select-none">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-400">
-              <span className="w-2 h-2 rounded-full bg-neutral-600" />
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-300">
+              <span className="w-2 h-2 rounded-full bg-neutral-500" />
               <span>Google AdSense Slot</span>
             </div>
-            <p className="text-[11px] text-neutral-400 max-w-sm">
+            <p className="text-xs text-neutral-400 max-w-sm">
               {format === 'leaderboard' && 'Leaderboard (728×90 / 320×100 Responsive)'}
               {format === 'in-feed' && 'In-Feed Responsive Display Unit'}
               {format === 'sidebar' && 'Medium Rectangle (300×250)'}
             </p>
-            <span className="text-[10px] text-neutral-400 font-mono">
+            <span className="text-xs text-neutral-400 font-mono">
               Ready for client: {adsenseClientId || 'pub-XXXXXXXXXXXXXXXX'}
             </span>
           </div>

@@ -24,11 +24,11 @@ export function MovieCard({ movie }: { movie: Movie }) {
         {/* Top Badges */}
         <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between z-10">
           <div className="flex items-center gap-1.5">
-            <span className="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-neutral-700 text-[10px] font-bold text-white uppercase">
+            <span className="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md border border-neutral-700 text-xs font-bold text-white uppercase">
               {movie.certificateRating}
             </span>
             {movie.releaseStatusLabel && (
-              <span className="px-2 py-0.5 rounded bg-red-950/85 backdrop-blur-md border border-red-500/40 text-[10px] font-semibold text-red-200">
+              <span className="px-2 py-0.5 rounded bg-red-950/85 backdrop-blur-md border border-red-500/40 text-xs font-semibold text-red-200">
                 {movie.releaseStatusLabel}
               </span>
             )}
@@ -76,63 +76,63 @@ export function MovieCard({ movie }: { movie: Movie }) {
 
         {/* Bottom Poster Bar: Ratings */}
         <div className="absolute bottom-2.5 inset-x-2.5 z-10 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-black/80 backdrop-blur-md text-neutral-200 font-semibold border border-neutral-700 text-[11px]">
-            <Star className="w-3 h-3 fill-neutral-300 text-neutral-300" />
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/85 backdrop-blur-md text-white font-bold border border-neutral-700 text-xs shadow">
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             <span>{movie.imdbScore}</span>
           </div>
 
-          <div className="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md text-neutral-200 font-medium border border-neutral-700 text-[11px]">
+          <div className="px-2.5 py-1 rounded-md bg-black/85 backdrop-blur-md text-white font-bold border border-neutral-700 text-xs shadow">
             RT {movie.rtScore}%
           </div>
         </div>
       </div>
 
       {/* Details Body */}
-      <div className="p-3.5 flex-1 flex flex-col justify-between space-y-2.5">
+      <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
         <div>
-          <div className="flex flex-wrap gap-1 mb-1">
+          <div className="flex flex-wrap gap-1.5 mb-1.5">
             {movie.formats.slice(0, 2).map((fmt, idx) => (
               <span
                 key={idx}
-                className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-neutral-900 text-neutral-300 border border-neutral-800"
+                className="px-2 py-0.5 rounded-md text-xs font-semibold bg-neutral-900 text-neutral-200 border border-neutral-800"
               >
                 {fmt}
               </span>
             ))}
             {movie.formats.length > 2 && (
-              <span className="px-1.5 py-0.5 rounded text-[10px] text-neutral-500 bg-neutral-900 border border-neutral-800">
+              <span className="px-2 py-0.5 rounded-md text-xs text-neutral-400 bg-neutral-900 border border-neutral-800 font-medium">
                 +{movie.formats.length - 2}
               </span>
             )}
           </div>
 
           <Link href={`/movie/${movie.slug}`}>
-            <h3 className="font-bold text-white text-sm line-clamp-1 group-hover:text-red-400 transition-colors">
+            <h3 className="font-bold text-white text-base line-clamp-1 group-hover:text-red-400 transition-colors">
               {movie.title}
             </h3>
           </Link>
 
-          <p className="text-[11px] text-neutral-400 mt-0.5 line-clamp-1">
+          <p className="text-xs sm:text-sm text-neutral-400 mt-1 line-clamp-1 font-medium">
             {movie.genre.join(' • ')}
           </p>
         </div>
 
         {/* Price & Compare Button: Bold cinema red CTA */}
-        <div className="pt-2 border-t border-neutral-800 flex items-center justify-between gap-2">
+        <div className="pt-2.5 border-t border-neutral-800/80 flex items-center justify-between gap-2">
           <div>
-            <span className="text-[10px] uppercase text-neutral-400 font-semibold block leading-tight">
+            <span className="text-xs uppercase text-neutral-400 font-medium block leading-tight">
               Lowest Rate
             </span>
-            <span className="text-xs font-bold text-white">
+            <span className="text-base font-black text-white">
               ${movie.lowestPrice.toFixed(2)}
             </span>
           </div>
 
           <Link
             href={`/movie/${movie.slug}`}
-            className="px-3.5 py-2 min-h-[36px] rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-xs font-bold inline-flex items-center gap-1 shadow-sm shadow-red-950/40 transition-colors focus:outline-none focus:ring-2 focus:ring-[#e51821] focus:ring-offset-2 focus:ring-offset-neutral-900"
+            className="px-4 py-2 min-h-[38px] rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-sm font-bold inline-flex items-center gap-1.5 shadow-sm shadow-red-950/40 transition-colors focus:outline-none focus:ring-2 focus:ring-[#e51821] focus:ring-offset-2 focus:ring-offset-neutral-900"
           >
-            <Ticket className="w-3 h-3" />
+            <Ticket className="w-3.5 h-3.5" />
             <span>Compare</span>
           </Link>
         </div>

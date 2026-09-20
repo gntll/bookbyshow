@@ -27,11 +27,11 @@ export function EventCard({ event }: { event: Event }) {
         {/* Top Badges */}
         <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between z-10">
           <div className="flex items-center gap-1.5">
-            <span className="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-neutral-200 border border-neutral-700">
+            <span className="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-xs font-bold uppercase tracking-wider text-neutral-200 border border-neutral-700">
               {event.category}
             </span>
             {event.quotes.some((q) => q.provider === 'Ticketmaster') && (
-              <span className="px-1.5 py-0.5 rounded bg-blue-950/85 backdrop-blur-md text-[9px] font-bold text-blue-300 border border-blue-500/40">
+              <span className="px-2 py-0.5 rounded bg-blue-950/85 backdrop-blur-md text-xs font-bold text-blue-300 border border-blue-500/40">
                 Ticketmaster
               </span>
             )}
@@ -63,11 +63,11 @@ export function EventCard({ event }: { event: Event }) {
         </div>
 
         {/* Bottom tags */}
-        <div className="absolute bottom-2 left-2.5 z-10 flex flex-wrap gap-1">
+        <div className="absolute bottom-2.5 left-2.5 z-10 flex flex-wrap gap-1">
           {event.tags.slice(0, 2).map((t, idx) => (
             <span
               key={idx}
-              className="px-2 py-0.5 rounded text-[10px] font-medium bg-black/80 backdrop-blur-md text-neutral-300 border border-neutral-700"
+              className="px-2 py-0.5 rounded text-xs font-medium bg-black/80 backdrop-blur-md text-neutral-200 border border-neutral-700"
             >
               {t}
             </span>
@@ -76,49 +76,49 @@ export function EventCard({ event }: { event: Event }) {
       </div>
 
       {/* Details */}
-      <div className="p-3.5 flex-1 flex flex-col justify-between space-y-2.5">
+      <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
         <div>
           <Link href={`/event/${event.slug}`}>
-            <h3 className="font-bold text-white text-sm line-clamp-1 group-hover:text-red-400 transition-colors">
+            <h3 className="font-bold text-white text-base line-clamp-1 group-hover:text-red-400 transition-colors">
               {event.title}
             </h3>
           </Link>
-          <p className="text-xs text-neutral-400 font-medium mt-0.5">
+          <p className="text-xs sm:text-sm text-neutral-300 font-medium mt-0.5">
             {event.artistOrHost}
           </p>
 
-          <div className="mt-2 space-y-1 text-xs text-neutral-400">
-            <div className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#e51821]" />
+          <div className="mt-2 space-y-1.5 text-xs sm:text-sm text-neutral-400">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-[#e51821] shrink-0" />
               <span>{event.date} • {event.time}</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-neutral-500" />
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-neutral-500 shrink-0" />
               <span className="truncate">{event.venueName}, {event.venueCity}</span>
             </div>
           </div>
 
-          <div className="pt-2">
+          <div className="pt-2.5">
             <PricePredictorBadge event={event} variant="compact" />
           </div>
         </div>
 
         {/* Price & Compare CTA */}
-        <div className="pt-2 border-t border-neutral-800 flex items-center justify-between gap-2">
+        <div className="pt-2.5 border-t border-neutral-800/80 flex items-center justify-between gap-2">
           <div>
-            <span className="text-[10px] uppercase text-neutral-400 font-semibold block leading-tight">
+            <span className="text-xs uppercase text-neutral-400 font-medium block leading-tight">
               Verified Lowest
             </span>
-            <span className="text-xs font-bold text-white">
+            <span className="text-base font-black text-white">
               ${event.minPrice.toFixed(2)}
             </span>
           </div>
 
           <Link
             href={`/event/${event.slug}`}
-            className="px-3.5 py-2 min-h-[36px] rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-xs font-bold inline-flex items-center gap-1 shadow-sm shadow-red-950/40 transition-colors focus:outline-none focus:ring-2 focus:ring-[#e51821] focus:ring-offset-2 focus:ring-offset-neutral-900"
+            className="px-4 py-2 min-h-[38px] rounded-lg bg-[#e51821] hover:bg-[#c9121a] text-white text-sm font-bold inline-flex items-center gap-1.5 shadow-sm shadow-red-950/40 transition-colors focus:outline-none focus:ring-2 focus:ring-[#e51821] focus:ring-offset-2 focus:ring-offset-neutral-900"
           >
-            <Ticket className="w-3 h-3" />
+            <Ticket className="w-3.5 h-3.5" />
             <span>Compare</span>
           </Link>
         </div>

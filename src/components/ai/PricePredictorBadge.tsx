@@ -37,22 +37,22 @@ export function PricePredictorBadge({
           e.stopPropagation();
           openAlertModal(event.title);
         }}
-        className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wide border transition-all ${
+        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold tracking-wide border transition-all ${
           isBuyNow
             ? 'bg-red-950/80 text-red-300 border-red-500/40 hover:bg-red-900/80'
             : 'bg-emerald-950/80 text-emerald-300 border-emerald-500/40 hover:bg-emerald-900/80'
         }`}
         title={`${prediction.reason} Click to set price alert.`}
       >
-        <Sparkles className="w-2.5 h-2.5" />
+        <Sparkles className="w-3.5 h-3.5" />
         {isBuyNow ? (
           <>
-            <TrendingUp className="w-2.5 h-2.5" />
+            <TrendingUp className="w-3.5 h-3.5" />
             <span>AI: BUY NOW ({prediction.confidence}%)</span>
           </>
         ) : (
           <>
-            <TrendingDown className="w-2.5 h-2.5" />
+            <TrendingDown className="w-3.5 h-3.5" />
             <span>AI: WAIT & TRACK ({prediction.confidence}%)</span>
           </>
         )}
@@ -62,23 +62,23 @@ export function PricePredictorBadge({
 
   // Detailed Card on Event Detail Page
   return (
-    <div className="p-4 sm:p-5 rounded-2xl bg-[#0e1017] border border-neutral-800 shadow-xl space-y-3">
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
+    <div className="p-5 rounded-2xl bg-[#0e1017] border border-neutral-800 shadow-xl space-y-4">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
           <div
-            className={`w-7 h-7 rounded-lg flex items-center justify-center ${
+            className={`w-9 h-9 rounded-xl flex items-center justify-center ${
               isBuyNow ? 'bg-red-950 text-red-400 border border-red-500/40' : 'bg-emerald-950 text-emerald-400 border border-emerald-500/40'
             }`}
           >
-            {isBuyNow ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
+            {isBuyNow ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
           </div>
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-neutral-400">
               AI Price Trajectory & Surge Predictor
             </span>
-            <h4 className="text-xs sm:text-sm font-black text-white flex items-center gap-2">
+            <h4 className="text-base sm:text-lg font-black text-white flex items-center gap-2 mt-0.5">
               <span>{isBuyNow ? 'Recommendation: Buy Now' : 'Recommendation: Wait & Monitor'}</span>
-              <span className="px-2 py-0.2 rounded bg-neutral-900 border border-neutral-800 text-[10px] font-semibold text-neutral-300">
+              <span className="px-2.5 py-0.5 rounded-md bg-neutral-900 border border-neutral-800 text-xs font-semibold text-neutral-300">
                 {prediction.confidence}% Confidence
               </span>
             </h4>
@@ -87,37 +87,37 @@ export function PricePredictorBadge({
 
         <button
           onClick={() => openAlertModal(event.title)}
-          className="px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-xs font-semibold text-neutral-200 hover:text-white flex items-center gap-1.5 transition-colors shrink-0"
+          className="px-3.5 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-sm font-semibold text-neutral-200 hover:text-white flex items-center gap-1.5 transition-colors shrink-0"
         >
-          <Bell className="w-3.5 h-3.5 text-[#e51821]" />
+          <Bell className="w-4 h-4 text-[#e51821]" />
           <span>Price Alert</span>
         </button>
       </div>
 
-      <p className="text-xs text-neutral-300 leading-relaxed">
+      <p className="text-sm text-neutral-300 leading-relaxed">
         {prediction.reason}
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-2 border-t border-neutral-800/80 text-[11px]">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-3 border-t border-neutral-800/80 text-xs sm:text-sm">
         <div>
-          <span className="text-neutral-400 block text-[10px] uppercase">Market Demand</span>
-          <span className="text-white font-bold">{prediction.marketDemand}</span>
+          <span className="text-neutral-400 block text-xs uppercase font-medium">Market Demand</span>
+          <span className="text-white font-bold text-sm">{prediction.marketDemand}</span>
         </div>
         <div>
-          <span className="text-neutral-400 block text-[10px] uppercase">Trajectory</span>
-          <span className={isBuyNow ? 'text-red-400 font-bold' : 'text-emerald-400 font-bold'}>
+          <span className="text-neutral-400 block text-xs uppercase font-medium">Trajectory</span>
+          <span className={`text-sm font-bold ${isBuyNow ? 'text-red-400' : 'text-emerald-400'}`}>
             {prediction.trajectory}
           </span>
         </div>
         <div className="col-span-2 sm:col-span-1">
-          <span className="text-neutral-400 block text-[10px] uppercase">Days to Event</span>
-          <span className="text-white font-bold">{prediction.daysUntilEvent} days remaining</span>
+          <span className="text-neutral-400 block text-xs uppercase font-medium">Days to Event</span>
+          <span className="text-white font-bold text-sm">{prediction.daysUntilEvent} days remaining</span>
         </div>
       </div>
 
       {prediction.estimatedSavings && (
-        <div className="p-2.5 rounded-lg bg-red-950/30 border border-red-500/30 text-[11px] text-red-200/90 flex items-center gap-2">
-          <Info className="w-3.5 h-3.5 text-[#e51821] shrink-0" />
+        <div className="p-3 rounded-xl bg-red-950/30 border border-red-500/30 text-xs sm:text-sm text-red-200 flex items-center gap-2.5">
+          <Info className="w-4 h-4 text-[#e51821] shrink-0" />
           <span>{prediction.estimatedSavings}</span>
         </div>
       )}

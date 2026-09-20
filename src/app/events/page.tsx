@@ -71,7 +71,7 @@ export default function EventsPage() {
           <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Live Concerts, Comedy & Sports
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-400 mt-1 max-w-2xl">
+          <p className="text-sm sm:text-base text-neutral-300 mt-2 max-w-2xl">
             Compare primary and resale tickets across Ticketmaster, StubHub, SeatGeek, and AXS with transparent fee calculation.
           </p>
         </div>
@@ -82,13 +82,13 @@ export default function EventsPage() {
         <div className="p-4 rounded-2xl bg-[#0e1015] border border-neutral-800 space-y-4 shadow-xl">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative">
-              <Search className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by artist, venue, team, or city..."
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl pl-10 pr-4 py-2 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#e51821]"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl pl-10 pr-4 py-2.5 text-sm sm:text-base text-white placeholder-neutral-400 focus:outline-none focus:border-[#e51821]"
               />
             </div>
           </div>
@@ -99,10 +99,10 @@ export default function EventsPage() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-bold shrink-0 transition-colors ${
                   selectedCategory === cat.id
                     ? 'bg-[#e51821] text-white shadow-md shadow-red-950/40'
-                    : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
+                    : 'bg-neutral-900 text-neutral-300 hover:text-white border border-neutral-800'
                 }`}
               >
                 {cat.label}
@@ -114,7 +114,7 @@ export default function EventsPage() {
         {/* Results */}
         <div className="mt-8">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs text-neutral-400 font-medium">
+            <span className="text-sm text-neutral-300 font-semibold">
               Showing {filtered.length} of {events.length} events
             </span>
           </div>
