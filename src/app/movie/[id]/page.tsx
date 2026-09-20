@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
 import { MOVIES, CINEMAS, getShowtimesForMovie } from '@/data/mockData';
+import { DateRibbon } from '@/components/home/DateRibbon';
 import {
   Star,
   Clock,
@@ -25,6 +26,7 @@ export default function MovieDetailPage() {
 
   const movie = MOVIES.find((m) => m.slug === slug || m.id === slug);
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
+  const [selectedDate, setSelectedDate] = useState(() => new Date().toISOString().split('T')[0]);
 
   if (!movie) {
     return (
@@ -45,7 +47,7 @@ export default function MovieDetailPage() {
   }
 
   const isSaved = isItemInWatchlist(movie.id);
-  const movieShowtimes = getShowtimesForMovie(movie.id);
+  const movieShowtimes = getShowtimesForMovie(movie.id, selectedDate);
 
   const cinemasWithShowtimes = CINEMAS.map((cinema) => {
     const times = movieShowtimes.filter((s) => {
@@ -218,6 +220,11 @@ export default function MovieDetailPage() {
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Date Selector Strip */}
+        <div className="mb-6 p-4 rounded-2xl bg-[#0e1015] border border-neutral-800 shadow-md">
+          <DateRibbon selectedDate={selectedDate} onSelectDate={setSelectedDate} />
         </div>
 
         {/* Cinemas list */}

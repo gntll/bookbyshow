@@ -1,23 +1,37 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { MOVIES } from '@/data/mockData';
 import { MovieCard } from '@/components/home/MovieCard';
 import { Search, Film } from 'lucide-react';
-import { MovieFormat } from '@/types';
+import { Movie, MovieFormat } from '@/types';
 
 export default function MoviesPage() {
+  const [movies, setMovies] = useState<Movie[]>(MOVIES);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedFormat, setSelectedFormat] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState<'all' | 'now_showing' | 'advance_booking' | 'coming_soon'>('all');
   const [sortBy, setSortBy] = useState<'trending' | 'rating' | 'price'>('trending');
 
+  useEffect(() => {
+    fetch('/api/movies')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.movies && Array.isArray(data.movies) && data.movies.length > 0) {
+          setMovies(data.movies);
+        }
+      })
+      .catch(() => {
+        // Fallback already set to rolling MOVIES
+      });
+  }, []);
+
   const allGenres = ['All', 'Sci-Fi', 'Action', 'Drama', 'Adventure', 'Musical', 'Horror', 'Comedy'];
   const allFormats = ['All', 'IMAX 70mm', 'IMAX with Laser', 'Dolby Cinema', 'RealD 3D', '4DX'];
 
   const filtered = useMemo(() => {
-    return MOVIES.filter((m) => {
+    return movies.filter((m) => {
       const matchesSearch =
         m.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         m.cast.some((c) => c.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -151,7 +165,7 @@ export default function MoviesPage() {
         <div className="mt-8">
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs text-neutral-400 font-medium">
-              Showing {filtered.length} of {MOVIES.length} movies
+              Showing {filtered.length} of {movies.length} movies
             </span>
           </div>
 

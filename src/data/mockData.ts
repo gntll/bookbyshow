@@ -1,5 +1,15 @@
 import { Movie, Event, Cinema, Showtime, City, MovieFormat } from '@/types';
 
+/**
+ * Returns dynamic ISO date strings relative to today.
+ * Ensures movie releases, live events, and showtimes are perpetually auto-updated.
+ */
+export function getRollingDate(daysOffset: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() + daysOffset);
+  return d.toISOString().split('T')[0];
+}
+
 export const CITIES: City[] = [
   {
     id: 'nyc',
@@ -69,7 +79,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 118,
     genre: ['Action', 'Sci-Fi', 'Adventure', 'Thriller'],
     certificateRating: 'PG-13',
-    releaseDate: '2025-02-14',
+    releaseDate: getRollingDate(-14),
     posterUrl: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: '1pHDWnXmK7Y',
@@ -96,7 +106,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 139,
     genre: ['Sci-Fi', 'Comedy', 'Adventure'],
     certificateRating: 'R',
-    releaseDate: '2025-03-07',
+    releaseDate: getRollingDate(-7),
     posterUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: 'osYlpqIMEC8',
@@ -123,7 +133,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 135,
     genre: ['Horror', 'Supernatural Thriller', 'Drama'],
     certificateRating: 'R',
-    releaseDate: '2025-04-18',
+    releaseDate: getRollingDate(-3),
     posterUrl: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1514306191717-452ec28c7814?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: 'bKGxHflevYY',
@@ -138,7 +148,7 @@ export const MOVIES: Movie[] = [
     isTrending: true,
     isSpotlight: true,
     languages: ['English'],
-    status: 'advance_booking',
+    status: 'now_showing',
     releaseStatusLabel: 'IMAX 70mm Pre-Sale',
   },
   {
@@ -150,7 +160,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 105,
     genre: ['Adventure', 'Comedy', 'Family', 'Fantasy'],
     certificateRating: 'PG',
-    releaseDate: '2025-04-04',
+    releaseDate: getRollingDate(7),
     posterUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: 'PE2YZhcC4NY',
@@ -177,7 +187,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 165,
     genre: ['Action', 'Thriller', 'Adventure'],
     certificateRating: 'PG-13',
-    releaseDate: '2025-05-23',
+    releaseDate: getRollingDate(14),
     posterUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: 'fsQgc9pCyDU',
@@ -204,7 +214,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 145,
     genre: ['Action', 'Sci-Fi', 'Adventure'],
     certificateRating: 'PG-13',
-    releaseDate: '2025-07-11',
+    releaseDate: getRollingDate(28),
     posterUrl: 'https://images.unsplash.com/photo-1578836537282-3171d77f8632?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: 'uhUht6vAsMY',
@@ -220,7 +230,7 @@ export const MOVIES: Movie[] = [
     isSpotlight: true,
     languages: ['English'],
     status: 'coming_soon',
-    releaseStatusLabel: 'Summer 2025 Drop',
+    releaseStatusLabel: 'Coming Soon',
   },
   {
     id: 'the-brutalist',
@@ -231,7 +241,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 215,
     genre: ['Drama', 'Epic', 'History'],
     certificateRating: 'R',
-    releaseDate: '2025-01-24',
+    releaseDate: getRollingDate(-21),
     posterUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: 'C4K_j4Fk7s0',
@@ -258,7 +268,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 138,
     genre: ['Action', 'Drama', 'Sport'],
     certificateRating: 'PG-13',
-    releaseDate: '2025-06-27',
+    releaseDate: getRollingDate(35),
     posterUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: '8qh9wdqZ0Yg',
@@ -274,7 +284,7 @@ export const MOVIES: Movie[] = [
     isSpotlight: false,
     languages: ['English'],
     status: 'coming_soon',
-    releaseStatusLabel: 'Coming June 2025',
+    releaseStatusLabel: 'Coming Soon',
   },
   {
     id: 'jurassic-world-rebirth',
@@ -285,7 +295,7 @@ export const MOVIES: Movie[] = [
     runtimeMinutes: 130,
     genre: ['Action', 'Sci-Fi', 'Adventure'],
     certificateRating: 'PG-13',
-    releaseDate: '2025-07-02',
+    releaseDate: getRollingDate(42),
     posterUrl: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop',
     backdropUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1600&auto=format&fit=crop',
     trailerYoutubeId: 'fb5ELWi-ekk',
@@ -449,7 +459,7 @@ export const EVENTS: Event[] = [
     artistOrHost: 'Oasis (Liam & Noel Gallagher)',
     venueName: 'MetLife Stadium / Wembley Stadium / Rose Bowl',
     venueCity: 'New York / London / Los Angeles',
-    date: '2025-08-15',
+    date: getRollingDate(28),
     time: '19:30',
     bannerUrl: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1600&auto=format&fit=crop',
     posterUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop',
@@ -503,7 +513,7 @@ export const EVENTS: Event[] = [
     artistOrHost: 'Coldplay',
     venueName: 'Wembley Stadium / Stanford Stadium',
     venueCity: 'London / San Francisco',
-    date: '2025-06-22',
+    date: getRollingDate(14),
     time: '19:00',
     bannerUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1600&auto=format&fit=crop',
     posterUrl: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800&auto=format&fit=crop',
@@ -556,7 +566,7 @@ export const EVENTS: Event[] = [
     artistOrHost: 'Taylor Swift',
     venueName: 'MetLife Stadium / Wembley Stadium',
     venueCity: 'New York / London',
-    date: '2025-05-18',
+    date: getRollingDate(21),
     time: '19:00',
     bannerUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1600&auto=format&fit=crop',
     posterUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800&auto=format&fit=crop',
@@ -610,7 +620,7 @@ export const EVENTS: Event[] = [
     artistOrHost: 'Hans Zimmer & Symphony Orchestra',
     venueName: 'Madison Square Garden',
     venueCity: 'New York',
-    date: '2025-09-14',
+    date: getRollingDate(35),
     time: '20:00',
     bannerUrl: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=1600&auto=format&fit=crop',
     posterUrl: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800&auto=format&fit=crop',
@@ -663,7 +673,7 @@ export const EVENTS: Event[] = [
     artistOrHost: 'FIA Formula 1 World Championship',
     venueName: 'Circuit of The Americas (COTA)',
     venueCity: 'Austin',
-    date: '2025-10-17',
+    date: getRollingDate(49),
     time: '13:00',
     bannerUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1600&auto=format&fit=crop',
     posterUrl: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=800&auto=format&fit=crop',
@@ -716,7 +726,7 @@ export const EVENTS: Event[] = [
     artistOrHost: 'Lin-Manuel Miranda / Broadway Cast',
     venueName: 'Richard Rodgers Theatre',
     venueCity: 'New York',
-    date: '2025-05-24',
+    date: getRollingDate(7),
     time: '19:00',
     bannerUrl: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=1600&auto=format&fit=crop',
     posterUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop',
@@ -848,7 +858,7 @@ export const SHOWTIMES: Showtime[] = [
     movieId: 'captain-america-brave-new-world',
     cinemaId: 'amc-lincoln-square',
     time: '15:15',
-    date: '2025-05-18',
+    date: getRollingDate(0),
     format: 'IMAX with Laser',
     screenName: 'Auditorium 1 - IMAX Laser Experience',
     seatAvailability: 'almost_sold_out',
@@ -861,7 +871,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.19,
         total: 24.18,
         isLowest: true,
-        directUrl: 'https://amctheatres.com',
+        directUrl: 'https://amctheatres.com/movies/captain-america-brave-new-world',
         badge: 'Lowest Price Guarantee',
       },
       {
@@ -870,7 +880,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.89,
         total: 24.88,
         isLowest: false,
-        directUrl: 'https://fandango.com',
+        directUrl: 'https://fandango.com/search?q=Captain+America',
         badge: 'VIP Points Eligible',
       },
       {
@@ -888,7 +898,7 @@ export const SHOWTIMES: Showtime[] = [
     movieId: 'captain-america-brave-new-world',
     cinemaId: 'amc-empire-25',
     time: '18:45',
-    date: '2025-05-18',
+    date: getRollingDate(0),
     format: 'Dolby Cinema',
     screenName: 'Auditorium 4 - Dolby Cinema at AMC',
     seatAvailability: 'filling_fast',
@@ -901,7 +911,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 1.99,
         total: 21.98,
         isLowest: true,
-        directUrl: 'https://amctheatres.com',
+        directUrl: 'https://amctheatres.com/movies/captain-america-brave-new-world',
         badge: 'Best Rate',
       },
       {
@@ -910,7 +920,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.75,
         total: 22.74,
         isLowest: false,
-        directUrl: 'https://fandango.com',
+        directUrl: 'https://fandango.com/search?q=Captain+America',
       },
     ],
   },
@@ -919,7 +929,7 @@ export const SHOWTIMES: Showtime[] = [
     movieId: 'captain-america-brave-new-world',
     cinemaId: 'regal-union-square',
     time: '21:30',
-    date: '2025-05-18',
+    date: getRollingDate(0),
     format: '4DX',
     screenName: 'Screen 7 - 4DX Sensory Motion',
     seatAvailability: 'good_seats_left',
@@ -932,7 +942,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.00,
         total: 22.50,
         isLowest: true,
-        directUrl: 'https://regmovies.com',
+        directUrl: 'https://regmovies.com/search?query=Captain+America',
         badge: 'Lowest Price',
       },
       {
@@ -941,7 +951,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.80,
         total: 23.30,
         isLowest: false,
-        directUrl: 'https://fandango.com',
+        directUrl: 'https://fandango.com/search?q=Captain+America',
       },
     ],
   },
@@ -952,7 +962,7 @@ export const SHOWTIMES: Showtime[] = [
     movieId: 'mickey-17',
     cinemaId: 'amc-lincoln-square',
     time: '14:00',
-    date: '2025-05-18',
+    date: getRollingDate(0),
     format: 'IMAX with Laser',
     screenName: 'Auditorium 1 - IMAX Laser',
     seatAvailability: 'filling_fast',
@@ -965,7 +975,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.19,
         total: 24.18,
         isLowest: true,
-        directUrl: 'https://amctheatres.com',
+        directUrl: 'https://amctheatres.com/movies/mickey-17',
         badge: 'Lowest Price',
       },
       {
@@ -974,7 +984,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.99,
         total: 24.98,
         isLowest: false,
-        directUrl: 'https://fandango.com',
+        directUrl: 'https://fandango.com/search?q=Mickey+17',
       },
     ],
   },
@@ -985,7 +995,7 @@ export const SHOWTIMES: Showtime[] = [
     movieId: 'sinners',
     cinemaId: 'amc-lincoln-square',
     time: '19:00',
-    date: '2025-05-18',
+    date: getRollingDate(0),
     format: 'IMAX 70mm',
     screenName: 'Auditorium 1 - The 70mm Screen',
     seatAvailability: 'almost_sold_out',
@@ -998,7 +1008,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.39,
         total: 26.38,
         isLowest: true,
-        directUrl: 'https://amctheatres.com',
+        directUrl: 'https://amctheatres.com/movies/sinners',
         badge: '70mm Authentic Film',
       },
       {
@@ -1007,7 +1017,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 3.10,
         total: 27.09,
         isLowest: false,
-        directUrl: 'https://fandango.com',
+        directUrl: 'https://fandango.com/search?q=Sinners',
       },
     ],
   },
@@ -1018,7 +1028,7 @@ export const SHOWTIMES: Showtime[] = [
     movieId: 'the-brutalist',
     cinemaId: 'amc-lincoln-square',
     time: '17:00',
-    date: '2025-05-18',
+    date: getRollingDate(0),
     format: '70mm Film',
     screenName: 'Auditorium 2 - 70mm VistaVision Projection',
     seatAvailability: 'almost_sold_out',
@@ -1031,7 +1041,7 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.15,
         total: 23.65,
         isLowest: true,
-        directUrl: 'https://amctheatres.com',
+        directUrl: 'https://amctheatres.com/movies/the-brutalist',
         badge: '70mm Roadshow Pass',
       },
       {
@@ -1040,21 +1050,22 @@ export const SHOWTIMES: Showtime[] = [
         fee: 2.95,
         total: 24.45,
         isLowest: false,
-        directUrl: 'https://fandango.com',
+        directUrl: 'https://fandango.com/search?q=The+Brutalist',
       },
     ],
   },
 ];
 
-export function getShowtimesForMovie(movieId: string): Showtime[] {
-  const existing = SHOWTIMES.filter((s) => s.movieId === movieId);
+export function getShowtimesForMovie(movieId: string, targetDate?: string): Showtime[] {
+  const dateToUse = targetDate || getRollingDate(0);
+  const existing = SHOWTIMES.filter((s) => s.movieId === movieId && s.date === dateToUse);
   if (existing.length > 0) return existing;
 
   const movie = MOVIES.find((m) => m.id === movieId);
   if (!movie) return [];
 
   const cinemas = CINEMAS.slice(0, 4);
-  const times = ['13:00', '16:15', '19:30', '22:15'];
+  const times = ['11:30', '14:15', '17:00', '19:45', '22:30'];
   const generated: Showtime[] = [];
 
   cinemas.forEach((cinema, cIdx) => {
@@ -1065,14 +1076,18 @@ export function getShowtimesForMovie(movieId: string): Showtime[] {
       const isAmc = cinema.chain.includes('AMC');
       const isRegal = cinema.chain.includes('Regal');
       const primaryProvider = isAmc ? 'AMC Direct' : isRegal ? 'Regal Cinemas' : 'Cinemark';
-      const primaryUrl = isAmc ? 'https://amctheatres.com' : isRegal ? 'https://regmovies.com' : 'https://cinemark.com';
+      const primaryUrl = isAmc
+        ? `https://amctheatres.com/movies/${movie.slug}`
+        : isRegal
+        ? `https://regmovies.com/search?query=${encodeURIComponent(movie.title)}`
+        : `https://cinemark.com/search?search=${encodeURIComponent(movie.title)}`;
 
       generated.push({
-        id: `${movieId}-st-${cinema.id}-${fIdx}`,
+        id: `${movieId}-st-${cinema.id}-${dateToUse}-${timeStr}-${fIdx}`,
         movieId,
         cinemaId: cinema.id,
         time: timeStr,
-        date: '2025-05-18',
+        date: dateToUse,
         format: fmt as MovieFormat,
         screenName: `${cinema.name} - Auditorium ${fIdx + 1} (${fmt})`,
         seatAvailability: (cIdx + fIdx) % 3 === 0 ? 'almost_sold_out' : 'good_seats_left',
@@ -1082,8 +1097,8 @@ export function getShowtimesForMovie(movieId: string): Showtime[] {
           {
             provider: primaryProvider,
             basePrice: base,
-            fee: 1.99,
-            total: Number((base + 1.99).toFixed(2)),
+            fee: 1.89,
+            total: Number((base + 1.89).toFixed(2)),
             isLowest: true,
             directUrl: primaryUrl,
             badge: 'Lowest Price Guarantee',
@@ -1091,10 +1106,10 @@ export function getShowtimesForMovie(movieId: string): Showtime[] {
           {
             provider: 'Fandango',
             basePrice: base,
-            fee: 2.89,
-            total: Number((base + 2.89).toFixed(2)),
+            fee: 2.79,
+            total: Number((base + 2.79).toFixed(2)),
             isLowest: false,
-            directUrl: 'https://fandango.com',
+            directUrl: `https://fandango.com/search?q=${encodeURIComponent(movie.title)}`,
             badge: 'VIP Points Eligible',
           },
           {
@@ -1103,7 +1118,7 @@ export function getShowtimesForMovie(movieId: string): Showtime[] {
             fee: 2.50,
             total: Number((base + 2.99).toFixed(2)),
             isLowest: false,
-            directUrl: 'https://atomtickets.com',
+            directUrl: `https://atomtickets.com/search?q=${encodeURIComponent(movie.title)}`,
           },
         ],
       });

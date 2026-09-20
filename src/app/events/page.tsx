@@ -1,13 +1,28 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { EVENTS } from '@/data/mockData';
 import { EventCard } from '@/components/home/EventCard';
 import { Music, Search } from 'lucide-react';
+import { Event } from '@/types';
 
 export default function EventsPage() {
+  const [events, setEvents] = useState<Event[]>(EVENTS);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    fetch('/api/events')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.events && Array.isArray(data.events) && data.events.length > 0) {
+          setEvents(data.events);
+        }
+      })
+      .catch(() => {
+        // Fallback already set to rolling EVENTS
+      });
+  }, []);
 
   const categories = [
     { id: 'all', label: 'All Live Events' },
@@ -19,7 +34,7 @@ export default function EventsPage() {
   ];
 
   const filtered = useMemo(() => {
-    return EVENTS.filter((e) => {
+    return events.filter((e) => {
       let matchesCategory = false;
       if (selectedCategory === 'all') {
         matchesCategory = true;
@@ -99,7 +114,7 @@ export default function EventsPage() {
         <div className="mt-8">
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs text-neutral-400 font-medium">
-              Showing {filtered.length} of {EVENTS.length} events
+              Showing {filtered.length} of {events.length} events
             </span>
           </div>
 

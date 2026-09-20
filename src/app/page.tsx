@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { HeroBanner } from '@/components/home/HeroBanner';
 import { QuickSearchBar } from '@/components/home/QuickSearchBar';
@@ -15,22 +15,44 @@ import {
   HelpCircle,
   ChevronDown,
 } from 'lucide-react';
-import { MovieFormat } from '@/types';
+import { Movie, Event, MovieFormat } from '@/types';
 
 export default function HomePage() {
+  const [movies, setMovies] = useState<Movie[]>(MOVIES);
+  const [events, setEvents] = useState<Event[]>(EVENTS);
   const [selectedDate, setSelectedDate] = useState(() => new Date().toISOString().split('T')[0]);
   const [selectedFormat, setSelectedFormat] = useState<string>('All');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
+  useEffect(() => {
+    fetch('/api/movies')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.movies && Array.isArray(data.movies) && data.movies.length > 0) {
+          setMovies(data.movies);
+        }
+      })
+      .catch(() => {});
+
+    fetch('/api/events')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.events && Array.isArray(data.events) && data.events.length > 0) {
+          setEvents(data.events);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const formats = ['All', 'IMAX 70mm', 'IMAX with Laser', 'Dolby Cinema', 'RealD 3D', '4DX'];
 
-  const filteredMovies = MOVIES.filter((m) => {
+  const filteredMovies = movies.filter((m) => {
     if (selectedFormat === 'All') return true;
     return m.formats.includes(selectedFormat as MovieFormat);
   });
 
-  const concerts = EVENTS.filter((e) => e.category === 'concert');
-  const otherEvents = EVENTS.filter((e) => e.category !== 'concert');
+  const concerts = events.filter((e) => e.category === 'concert');
+  const otherEvents = events.filter((e) => e.category !== 'concert');
 
   const faqs = [
     {
