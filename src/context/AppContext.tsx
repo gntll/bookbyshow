@@ -29,8 +29,8 @@ interface AppContextType {
   closeTrailerModal: () => void;
 
   // Price alert modal state
-  alertTarget: { title: string; currentLowest: number } | null;
-  openAlertModal: (title: string, currentLowest?: number) => void;
+  alertTarget: { id?: string; type?: 'movie' | 'concert' | 'sports'; title: string; currentLowest: number } | null;
+  openAlertModal: (title: string, currentLowest?: number, id?: string, type?: 'movie' | 'concert' | 'sports') => void;
   closeAlertModal: () => void;
 
   // ShowScout AI modal state
@@ -88,7 +88,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   } | null>(null);
 
   const [activeTrailer, setActiveTrailer] = useState<{ youtubeId: string; title: string } | null>(null);
-  const [alertTarget, setAlertTarget] = useState<{ title: string; currentLowest: number } | null>(null);
+  const [alertTarget, setAlertTarget] = useState<{
+    id?: string;
+    type?: 'movie' | 'concert' | 'sports';
+    title: string;
+    currentLowest: number;
+  } | null>(null);
 
   // ShowScout AI state
   const [isShowScoutOpen, setIsShowScoutOpen] = useState(false);
@@ -155,8 +160,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setActiveTrailer(null);
   };
 
-  const openAlertModal = (title: string, currentLowest?: number) => {
-    setAlertTarget({ title, currentLowest: currentLowest || 0 });
+  const openAlertModal = (
+    title: string,
+    currentLowest?: number,
+    id?: string,
+    type?: 'movie' | 'concert' | 'sports'
+  ) => {
+    const slugId = id || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    setAlertTarget({
+      title,
+      currentLowest: currentLowest || 0,
+      id: slugId,
+      type: type || 'movie',
+    });
   };
 
   const closeAlertModal = () => {

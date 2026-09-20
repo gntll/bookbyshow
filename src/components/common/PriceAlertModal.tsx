@@ -10,18 +10,49 @@ export function PriceAlertModal() {
   const [targetPrice, setTargetPrice] = useState<number>(() => {
     return alertTarget ? Math.floor(alertTarget.currentLowest * 0.85) : 15;
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   if (!alertTarget) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    setIsSuccess(true);
-    setTimeout(() => {
-      setIsSuccess(false);
-      closeAlertModal();
-    }, 1500);
+
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/alerts/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          targetId: alertTarget.id || alertTarget.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+          targetType: alertTarget.type || 'movie',
+          title: alertTarget.title,
+          initialPrice: alertTarget.currentLowest,
+          targetPrice,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to activate alert');
+      }
+
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        closeAlertModal();
+      }, 2000);
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Network error. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -106,11 +137,25 @@ export function PriceAlertModal() {
               </div>
             </div>
 
+            {errorMessage && (
+              <div className="p-3 rounded-lg bg-red-950/60 border border-red-500/50 text-red-200 text-xs font-medium">
+                {errorMessage}
+              </div>
+            )}
+
             <button
               type="submit"
-              className="w-full py-3 bg-[#e51821] hover:bg-[#c9121a] text-white font-bold text-sm rounded-lg transition-colors shadow-md shadow-red-950/40"
+              disabled={isSubmitting}
+              className="w-full py-3 bg-[#e51821] hover:bg-[#c9121a] disabled:opacity-50 text-white font-bold text-sm rounded-lg transition-colors shadow-md shadow-red-950/40 flex items-center justify-center gap-2"
             >
-              Activate Price Drop Alert
+              {isSubmitting ? (
+                <>
+                  <div className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                  <span>Activating Alert...</span>
+                </>
+              ) : (
+                <span>Activate Price Drop Alert</span>
+              )}
             </button>
           </form>
         )}

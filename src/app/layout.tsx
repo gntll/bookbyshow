@@ -16,6 +16,7 @@ import { ShowScoutModal } from '@/components/ai/ShowScoutModal';
 import { ShowScoutFloatingButton } from '@/components/ai/ShowScoutFloatingButton';
 import { SeatAdvisorModal } from '@/components/ai/SeatAdvisorModal';
 import { EveningPlannerModal } from '@/components/ai/EveningPlannerModal';
+import PwaRegister from '@/components/common/PwaRegister';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icon.svg',
     shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    apple: '/icon-192.png',
   },
   formatDetection: {
     email: false,
@@ -196,6 +197,9 @@ export default function RootLayout({
           <SeatAdvisorModal />
           <EveningPlannerModal />
           <ShowScoutFloatingButton />
+
+          {/* PWA Service Worker & Install Prompt */}
+          <PwaRegister />
         </AppProvider>
       </body>
     </html>

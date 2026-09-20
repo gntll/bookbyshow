@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { MOVIES, EVENTS } from '@/data/mockData';
+import { METRO_MARKETS } from '@/data/metroMarkets';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://bookbyshow.com';
@@ -16,6 +17,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.9,
+  }));
+
+  const cityCinemaUrls = METRO_MARKETS.map((market) => ({
+    url: `${baseUrl}/cinemas/${market.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+  }));
+
+  const cityEventUrls = METRO_MARKETS.map((market) => ({
+    url: `${baseUrl}/events/${market.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.85,
   }));
 
   return [
