@@ -35,9 +35,9 @@ export function Navbar() {
           <div className="flex-1 text-center flex items-center justify-center gap-2">
             <Tag className="w-3.5 h-3.5 shrink-0" />
             <span>
-              Comparing 20+ Primary Box Offices: Save up to $6.50 on convenience fees across AMC, Regal, Cinemark & Ticketmaster.{' '}
+              100% Price Transparency: Compare verified ticket rates, showtimes & fees across AMC, Regal, Cinemark & Ticketmaster.{' '}
               <Link href="/deals" className="underline font-bold hover:text-neutral-100 ml-1">
-                View Deals*
+                Savings Guide →
               </Link>
             </span>
           </div>
